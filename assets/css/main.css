@@ -1,0 +1,139 @@
+:root {
+    --x: calc(0.5vw + 0.5vh);
+    --a1: #01174c;
+    --a2: #213462;
+    --a3: #aac4ff;
+    --a4: #bac5df;
+    --b1: #1dc8cd;
+    --b2: #55fabe;
+    --b3: #1dcd59;
+    --c1: #343b40;
+    --c2: #494e5c;
+    --c3: #7f89a1;
+    --g0: #222222;
+    --g1: #666666;
+    --g2: #EEEEEE;
+}
+
+* {
+    margin: 0;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+    padding: 0;
+    padding-inline-start: 0;
+    padding-inline-end: 0;
+    padding-block-start: 0;
+    padding-block-end: 0;
+    border: none;
+    color: inherit;
+    font-family: 'Open Sans', sans-serif;
+    z-index: inherit;
+    font-size: inherit;
+    transition: all 0.3s ease-in-out;
+}
+
+body {
+    font-size: min(calc(var(--x) * 1.8), 16px);
+}
+
+input, select, button {
+    border-radius: calc(var(--x) * 0.5);
+    -moz-appearance: textfield;
+    appearance: none;
+    text-align: center;
+}
+
+input[readonly] {
+    cursor: default;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button,
+select {
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+input:focus-visible, select:focus-visible {
+    outline: none;
+}
+
+button {
+    cursor: pointer;
+    background-color: var(--a2);
+    color: #fff;
+    font-weight: 600;
+    padding: calc(var(--x) * 0.5);
+}
+
+button:not(.ir):hover {
+    background-color: var(--a1);
+}
+
+html, body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background-color: var(--g2);
+}
+
+main {
+    color: var(--g0);
+    width: 90vw;
+    height: 90vh;
+}
+
+a {
+    text-decoration: none;
+}
+
+h1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(var(--x) * 3);
+}
+
+img {
+    background: url(../IMG/placeholder.jpeg);
+    background-size: cover;
+    background-position: center;
+}
+
+.hidden {
+    visibility: hidden !important;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.no-display {
+    display: none !important;
+}
+
+/* Scrollbar */
+
+::-webkit-scrollbar {
+    width: 20px;
+    height: 20px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--c1);
+  border: 5px solid transparent;
+  border-radius: 10px;
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--c2);
+}

@@ -4,7 +4,7 @@
 Esta plataforma servirá de suporte para atividades que poderão ser desenvolvidas no processo de curricularização da extensão na Universidade Estadual de Campinas, à qual o projeto está vinculado.
 
 ## Natureza do projeto
-Este é um projeto de Iniciação Científica de [Douglas Speck](https://github.com/douglasspeck) e [Ícaro Chiabai](https://github.com/), orientados pelo professor doutor [Marcelo Firer](https://www.ime.unicamp.br/~mfirer/).
+Este é um projeto de Iniciação Científica de [Douglas Speck](https://github.com/douglasspeck), orientado pelo professor doutor [Marcelo Firer](https://www.ime.unicamp.br/~mfirer/).
 
 ## Objetivos
 O objetivo principal do projeto é a criação de uma interface gráfica disponível online para o estudo de problemas matemáticos, com recursos modulares para a criação de novos problemas.
