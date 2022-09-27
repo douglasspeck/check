@@ -1,15 +1,10 @@
 :root {
     --x: calc(0.5vw + 0.5vh);
-    --a1: #01174c;
-    --a2: #213462;
-    --a3: #aac4ff;
-    --a4: #bac5df;
-    --b1: #1dc8cd;
-    --b2: #55fabe;
-    --b3: #1dcd59;
-    --c1: #343b40;
-    --c2: #494e5c;
-    --c3: #7f89a1;
+    --a1: #edc951;
+    --a2: #eb6841;
+    --a3: #cc333f;
+    --b1: #6a4a3c;
+    --c1: #00a0b0;
     --g0: #222222;
     --g1: #666666;
     --g2: #EEEEEE;
@@ -76,7 +71,7 @@ html, body {
     justify-content: center;
     width: 100vw;
     height: 100vh;
-    overflow: hidden;
+    /* overflow: hidden; */
     background-color: var(--g2);
 }
 

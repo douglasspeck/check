@@ -1,5 +1,5 @@
 #menu {
-    background-color: #96a2be9d;
+    background-color: var(--g3);
     width: calc(var(--x) * 25);
     height: 100vh;
     position: absolute;
@@ -10,7 +10,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    color: var(--a1);
+    color: var(--g0);
     transform: translateX(0);
     transition: transform 1s ease-in-out;
     backdrop-filter: blur(10px);
@@ -42,7 +42,7 @@
     display: block;
     width: var(--w);
     height: var(--h);
-    background-color: var(--a1);
+    background-color: var(--g0);
     transition: all 1s ease-in-out;
 }
 
@@ -74,7 +74,7 @@
     background: none;
     height: 15vh;
     padding: 5vh 0;
-    filter: drop-shadow(0 0 1px var(--a1))
+    filter: drop-shadow(0 0 1px var(--b1))
 }
 
 #menu > nav {
@@ -97,5 +97,5 @@
 }
 
 #menu .menu:hover, #menu .menu:focus {
-    background-color: #ffffffa0;
+    background-color: var(--c1);
 }
