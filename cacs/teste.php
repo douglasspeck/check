@@ -147,15 +147,8 @@
 
                 <article id="assoc-001" class="cell associate">
 
-                    <input type="button" class="fig-assoc" id="assoc-001-fig1" value="fig1" assoc-id=001 onclick="associate(this);">
-                    <input type="button" class="fig-assoc" id="assoc-001-fig2" value="fig2" assoc-id=001 onclick="associate(this);">
-                    <input type="button" class="fig-assoc" id="assoc-001-fig3" value="fig3" assoc-id=001 onclick="associate(this);">
-
-                    <input type="button" class="frac-assoc" id="assoc-001-fra1" value="fra1" assoc-id=001 onclick="associate(this);">
-                    <input type="button" class="frac-assoc" id="assoc-001-fra2" value="fra2" assoc-id=001 onclick="associate(this);">
-
                     <section class="figures-container">
-                        <label for="fig1" id="assoc-001-fig1-label">
+                        <div id="assoc-001-fig1" onclick="associate(this);">
                             <svg xmlns="http://www.w3.org/2000/svg" width="100px" height="100px" viewBox="0 0 100 100" version="1.1" id="figure-9">
                                 <defs></defs>
                                 <g>
@@ -165,8 +158,8 @@
                                     <path d="M 50 50 L 100 50 L 100 100 L 50 100 Z" />
                                 </g>
                             </svg>
-                        </label>
-                        <label for="fig2" id="assoc-001-fig2-label">
+                        </div>
+                        <div id="assoc-001-fig2" onclick="associate(this);">
                             <svg xmlns="http://www.w3.org/2000/svg" width="100px" height="100px" viewBox="0 0 90 60" version="1.1" id="figure-10">
                                 <defs></defs>
                                 <g>
@@ -178,8 +171,8 @@
                                     <rect width="30" height="30" x="60" y="30" />
                                 </g>
                             </svg>
-                        </label>
-                        <label for="fig3" id="assoc-001-fig3-label">
+                        </div>
+                        <div id="assoc-001-fig3" onclick="associate(this);">
                             <svg xmlns="http://www.w3.org/2000/svg" width="100px" height="87px" viewBox="0 0 100 100" version="1.1" id="figure-11">
                                 <defs></defs>
                                 <g>
@@ -189,23 +182,24 @@
                                     <path d="M 25 50 L 75 50 L 50 0 Z" />
                                 </g>
                             </svg>
-                        </label>
+                        </div>
                     </section>
 
                     <section class="fractions-container">
-                        <label for="fra1" id="assoc-001-fra1-label">
+                        <div id="assoc-001-fra1" onclick="associate(this);">
                             <div class="fraction">
                                 <input type="number" value=1 readonly>
                                 <input type="number" value=4 readonly>
                             </div>
-                        </label>
-                        <label for="fra2" id="assoc-001-fra2-label">
+                        </div>
+                        <div id="assoc-001-fra2" onclick="associate(this);">
                             <div class="fraction">
                                 <input type="number" value=1 readonly>
                                 <input type="number" value=3 readonly>
                             </div>
-                        </label>
+                        </div>
                     </section>
+
                 </article>
 
             </section>

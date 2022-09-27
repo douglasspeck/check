@@ -1,13 +1,13 @@
 function associate(el) {
 
     // Gets the article which the element is related to
-    let id = el.getAttribute("assoc-id");
-    let val = el.value;
+    let id = el.id.slice(6,9);
+    let val = el.id.slice(-4);
     
     // Breaks if no ID
     if (!id) {return false}
 
-    let query = "assoc-" + id;
+    let query = `temp-assoc-${id}`;
 
     // Gives the corresponding ID to the function, which
     // returns the stored corresponding value (and false if none)
@@ -52,12 +52,14 @@ function getCoords(elem) {
 
 }
 
-function connectItems(id,el1,el2) {
+function connectItems(id,element1,element2) {
+
+    storeResults(id,[element1,element2]);
 
     // Gets the associated labels' coordinates,
     // according to the values and ID
-    el1 = getCoords(document.getElementById(`assoc-${id}-${el1}-label`).firstElementChild);
-    el2 = getCoords(document.getElementById(`assoc-${id}-${el2}-label`).firstElementChild);
+    el1 = getCoords(document.getElementById(`assoc-${id}-${element1}`).firstElementChild);
+    el2 = getCoords(document.getElementById(`assoc-${id}-${element2}`).firstElementChild);
 
     // Orders elements left-to-right
     let first = el1.left < el2.left ? el1 : el2;
@@ -85,6 +87,9 @@ function connectItems(id,el1,el2) {
     svg.setAttribute("height", h);
     svg.setAttribute("viewbox", `0 0 ${w} ${h}`);
     svg.setAttribute("version", "1.1");
+    svg.setAttribute("onclick", "deleteElement(this);");
+    svg.setAttribute("stored-id", id);
+    svg.setAttribute("stored-content", `${element1},${element2}`);
     svg.setAttribute("style",`position:absolute;left:${x1};top:${Math.min(y1, y2)};`);
 
     // Creates a line path inside the <svg> element
@@ -113,4 +118,27 @@ function storedData(query) {
 
     }
     
+}
+
+function deleteElement(el) {
+
+    let id = el.getAttribute("stored-id");
+    let content = el.getAttribute("stored-content");
+    removeResults(id, content);
+    
+    el.remove();
+
+}
+
+function storeResults(id,values) {
+
+    console.log(`The activity ${id} had the following values registered: ${values.join(", ")}`);
+
+}
+
+function removeResults(id,str) {
+
+    let arr = str.split(",");
+    console.log(`The activity ${id} had the following values removed: ${arr.join(", ")}`);
+
 }
