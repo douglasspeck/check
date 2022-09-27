@@ -108,6 +108,7 @@ function connectItems(id,element1,element2) {
 
 }
 
+// Returns the stored corresponding value (and false if none)
 function storedData(query) {
 
     let stored = localStorage.getItem(query);
@@ -120,6 +121,8 @@ function storedData(query) {
     
 }
 
+// Deletes the register of content associated with this element
+// and the element itself
 function deleteElement(el) {
 
     let id = el.getAttribute("stored-id");
