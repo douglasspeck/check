@@ -68,13 +68,15 @@ function connectItems(id,element1,element2) {
     // Sets an horizontal offset for the generated stroke (in px)
     let offset = 5;
 
-    // Converts the coordinates to the final stroke coordinates;
+    // Converts the coordinates to the final stroke coordinates
     let x1 = first.right + offset;
     let x2 = second.left - offset;
     let y1 = (first.top + first.bottom) / 2;    // Vertical mid-point 1
     let y2 = (second.top + second.bottom) / 2;  // Vertical mid-point
     let h = Math.abs(y2 - y1);
     let w = x2 - x1;
+    // Percentual offset for the line
+    let o = 0.05;
 
     // Creates a new <svg> element
     let svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
@@ -98,8 +100,8 @@ function connectItems(id,element1,element2) {
     line.setAttribute("stroke-width","5");
     line.setAttribute("class","assoc-line");
     
-    if (y2 > y1) { line.setAttribute("d",`M 0 0 L ${w} ${h} Z`); }
-    else { line.setAttribute("d",`M 0 ${h} L ${w} 0 Z`); }
+    if (y2 > y1) { line.setAttribute("d",`M ${w * o} ${h * o} L ${w * (1-o)} ${h * (1-o)} Z`); }
+    else { line.setAttribute("d",`M ${w * o} ${h * (1-o)} L ${w * (1-o)} ${h * o} Z`); }
 
     // Appends the corresponding elements to the page
     svg.appendChild(line);
