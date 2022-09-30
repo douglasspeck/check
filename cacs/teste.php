@@ -19,10 +19,10 @@
                     <svg xmlns="http://www.w3.org/2000/svg" width="100px" height="100px" viewBox="0 0 100 100" version="1.1" id="figure-1">
                         <defs></defs>
                         <g>
-                            <path d="M 0 0 L 50 0 L 50 50 L 0 50 Z" />
-                            <path d="M 50 0 L 100 0 L 100 50 L 50 50 Z" />
-                            <path d="M 0 50 L 50 50 L 50 100 L 0 100 Z" class="filled" />
-                            <path d="M 50 50 L 100 50 L 100 100 L 50 100 Z" />
+                            <rect width="50" height="50" x="0" y="0" />
+                            <rect width="50" height="50" x="50" y="0" />
+                            <rect width="50" height="50" x="0" y="50" class="filled" />
+                            <rect width="50" height="50" x="50" y="50" />
                         </g>
                     </svg>
                     <div class="fraction">
