@@ -44,10 +44,10 @@ function getCoords(elem) {
     let box = elem.getBoundingClientRect();
   
     return {
-      top: box.top + window.pageYOffset,
-      right: box.right + window.pageXOffset,
-      bottom: box.bottom + window.pageYOffset,
-      left: box.left + window.pageXOffset
+      top: box.top,
+      right: box.right,
+      bottom: box.bottom,
+      left: box.left
     };
 
 }
@@ -55,6 +55,9 @@ function getCoords(elem) {
 function connectItems(id,element1,element2) {
 
     storeResults(id,[element1,element2]);
+
+    let container = document.getElementById(`assoc-${id}`);
+    let cont = getCoords(container);
 
     // Gets the associated labels' coordinates,
     // according to the values and ID
@@ -69,44 +72,50 @@ function connectItems(id,element1,element2) {
     let offset = 5;
 
     // Converts the coordinates to the final stroke coordinates
-    let x1 = first.right + offset;
-    let x2 = second.left - offset;
-    let y1 = (first.top + first.bottom) / 2;    // Vertical mid-point 1
-    let y2 = (second.top + second.bottom) / 2;  // Vertical mid-point
-    let h = Math.abs(y2 - y1);
-    let w = x2 - x1;
+    let x1 = first.right + offset - cont.left;
+    let x2 = second.left - offset - cont.left;
+    let y1 = (first.top + first.bottom) / 2 - cont.top;    // Vertical mid-point 1
+    let y2 = (second.top + second.bottom) / 2 - cont.top;  // Vertical mid-point
+    let H = cont.bottom - cont.top;
+    let W = cont.right - cont.left;
     // Percentual offset for the line
     let o = 0.05;
 
     // Creates a new <svg> element
-    let svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    let svg = container.getElementsByClassName("line-container")[0];
 
-    // Sets the following attributes to the new element.
-    // Note that the position is absolute.
-    svg.setAttribute("xmlns","http://www.w3.org/2000/svg");
-    svg.setAttribute("width", w);
-    svg.setAttribute("height", h);
-    svg.setAttribute("height", h);
-    svg.setAttribute("viewbox", `0 0 ${w} ${h}`);
-    svg.setAttribute("version", "1.1");
-    svg.setAttribute("onclick", "deleteElement(this);");
-    svg.setAttribute("stored-id", id);
-    svg.setAttribute("stored-content", `${element1},${element2}`);
-    svg.setAttribute("style",`position:absolute;left:${x1};top:${Math.min(y1, y2)};`);
+    if (!svg) {
+
+        svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    
+        // Sets the following attributes to the new element.
+        // Note that the position is absolute.
+        svg.setAttribute("xmlns","http://www.w3.org/2000/svg");
+        svg.setAttribute("width", W);
+        svg.setAttribute("height", H);
+        svg.setAttribute("class", "line-container");
+        svg.setAttribute("viewbox", `0 0 ${W} ${H}`);
+        svg.setAttribute("version", "1.1");
+        svg.setAttribute("style","pointer-events: none; position:absolute; left:0px; top:0px;");
+        
+        container.appendChild(svg);
+
+    }
 
     // Creates a line path inside the <svg> element
     let line = document.createElementNS(svg.namespaceURI,'path');
 
     line.setAttribute("stroke-width","5");
     line.setAttribute("class","assoc-line");
+    line.setAttribute("stored-id", id);
+    line.setAttribute("stored-content", `${element1},${element2}`);
+    line.setAttribute("onclick", "deleteElement(this);");
+    line.setAttribute("pointer-events", "stroke");
     
-    if (y2 > y1) { line.setAttribute("d",`M ${w * o} ${h * o} L ${w * (1-o)} ${h * (1-o)} Z`); }
-    else { line.setAttribute("d",`M ${w * o} ${h * (1-o)} L ${w * (1-o)} ${h * o} Z`); }
+    line.setAttribute("d",`M ${x1 * (1+o)} ${y1 * (1+o)} L ${x2 * (1-o)} ${y2 * (1-o)} Z`);
 
     // Appends the corresponding elements to the page
     svg.appendChild(line);
-
-    document.body.appendChild(svg);
 
 }
 
