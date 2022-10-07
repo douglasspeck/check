@@ -15,41 +15,11 @@
             <h1>Caderno Autocorretivo: Frações</h1>
             <section class="gallery">
 
-                <article class="cell fill">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="100px" height="100px" viewBox="0 0 100 100" version="1.1" id="figure-1">
-                        <defs></defs>
-                        <g>
-                            <rect width="50" height="50" x="0" y="0" />
-                            <rect width="50" height="50" x="50" y="0" />
-                            <rect width="50" height="50" x="0" y="50" class="filled" />
-                            <rect width="50" height="50" x="50" y="50" />
-                        </g>
-                    </svg>
-                    <div class="fraction">
-                        <input type="number" value=1 readonly>
-                        <input type="number">
-                    </div>
-                </article>
+                <article class="figure fill" shape="square" size=100 sections=4 num=1 den=4 show="d"></article>
 
-                <article class="cell fill">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="100px" height="100px" viewBox="0 0 90 60" version="1.1" id="figure-2">
-                        <defs></defs>
-                        <g>
-                            <rect width="30" height="30" x="0" y="0" />
-                            <rect width="30" height="30" x="30" y="0" />
-                            <rect width="30" height="30" x="60" y="0" />
-                            <rect width="30" height="30" x="0" y="30" class="filled" />
-                            <rect width="30" height="30" x="30" y="30" class="filled" />
-                            <rect width="30" height="30" x="60" y="30" />
-                        </g>
-                    </svg>
-                    <div class="fraction">
-                        <input type="number">
-                        <input type="number" value=6 readonly>
-                    </div>
-                </article>
+                <article class="figure fill" shape="rect" size=100 sections=6 num=2 den=6 show="d"></article>
 
-                <article class="cell fill">
+                <article class="figure fill">
                     <svg xmlns="http://www.w3.org/2000/svg" width="100px" height="87px" viewBox="0 0 100 100" version="1.1" id="figure-3">
                         <defs></defs>
                         <g>
@@ -65,7 +35,7 @@
                     </div>
                 </article>
 
-                <article class="cell fill">
+                <article class="figure fill">
                     <svg xmlns="http://www.w3.org/2000/svg" width="100px" height="87px" viewBox="0 0 100 90" version="1.1" id="figure-4">
                         <defs></defs>
                         <g>
@@ -83,25 +53,9 @@
                     </div>
                 </article>
 
-                <article class="cell paint">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="100px" height="100px" viewBox="0 0 60 90" version="1.1" id="figure-5">
-                        <defs></defs>
-                        <g paintable>
-                            <rect width="30" height="30" x="0" y="0" />
-                            <rect width="30" height="30" x="30" y="0" />
-                            <rect width="30" height="30" x="0" y="30" />
-                            <rect width="30" height="30" x="30" y="30" />
-                            <rect width="30" height="30" x="0" y="60" />
-                            <rect width="30" height="30" x="30" y="60" />
-                        </g>
-                    </svg>
-                    <div class="fraction">
-                        <input type="number" value=1 readonly>
-                        <input type="number" value=6 readonly>
-                    </div>
-                </article>
+                <article class="figure paint" shape="rect" size=100 sections=6 num=2 den=6></article>
 
-                <article class="cell paint">
+                <article class="figure paint">
                     <svg xmlns="http://www.w3.org/2000/svg" width="100px" height="87px" viewBox="0 0 100 90" version="1.1" id="figure-4">
                         <defs></defs>
                         <g paintable>
@@ -119,33 +73,11 @@
                     </div>
                 </article>
 
-                <article class="cell paint">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="100px" height="100px" viewBox="0 0 100 100" version="1.1" id="figure-7">
-                        <defs></defs>
-                        <g paintable>
-                            <rect width="50" height="100" x="0" y="0" />
-                            <rect width="50" height="100" x="50" y="0" />
-                        </g>
-                    </svg>
-                    <div class="fraction">
-                        <input type="number" value=1 readonly>
-                        <input type="number" value=2 readonly>
-                    </div>
-                </article>
+                <article class="figure paint" shape="square" size=100 sections=2 num=1 den=2></article>
 
-                <article class="cell paint">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="100px" height="100px" viewBox="0 0 100 100" version="1.1" id="figure-8">
-                        <defs></defs>
-                        <g class="newCircle" cy=50 cx=50 r=49 slices=3 paintable>
-                        </g>
-                    </svg>
-                    <div class="fraction">
-                        <input type="number" value=1 readonly>
-                        <input type="number" value=3 readonly>
-                    </div>
-                </article>
+                <article class="figure paint" shape="circle" cy=50 cx=50 r=49 sections=3 num=1 den=3></article>
 
-                <article id="assoc-001" class="cell associate">
+                <article id="assoc-001" class="figure associate">
 
                     <section class="figures-container">
                         <div id="assoc-001-fig1" onclick="associate(this);">
