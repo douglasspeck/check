@@ -77,7 +77,7 @@
 
                 <article class="figure paint" shape="circle" cy=50 cx=50 r=49 sections=3 num=1 den=3></article>
 
-                <article id="assoc-001" class="figure associate">
+                <article class="associate" id="assoc-001">
 
                     <section class="figures-container">
                         <div id="assoc-001-fig1" onclick="associate(this);">

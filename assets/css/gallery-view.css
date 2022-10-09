@@ -6,7 +6,7 @@
     padding-top: 50px;
 }
 
-.figure {
+.figure, .associate {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -16,13 +16,13 @@
     border-radius: 10px;
 }
 
-.figure.associate {
+.associate {
     flex-direction: row;
     grid-column: span 2;
     position: relative;
 }
 
-.figure.associate > section {
+.associate > section {
     display: flex;
     min-height: 70%;
     flex-direction: column;
