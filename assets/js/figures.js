@@ -1,10 +1,10 @@
 // Source: https://codepen.io/hari_shanx/pen/NRyPBz
 
-function createCircle(el, cx, cy, r, slices) {
+function createCircle(el, size, slices) {
 
-    cx = cx * 1;
-    cy = cy * 1;
-    r = r * 1;
+    cx = size / 2;
+    cy = size / 2;
+    r = size / 2 * 0.98;
     slices = slices * 1;
 
     for (let i = 0; i < slices; i++) {
@@ -49,6 +49,42 @@ function createRect(el, size, sec) {
         let y = Math.floor(i / W) * h;
 
         let d = `M ${x} ${y + o} L ${x + w} ${y + o} L ${x + w} ${y + o + h} L ${x} ${y + o + h} Z`;
+        
+        path.setAttributeNS(null, "d", d);
+    
+        el.appendChild(path);
+
+    }
+
+}
+
+function createTriangle(el, size, sec) {
+
+    let cx = size / 2;
+    let h = cx * Math.sqrt(3);
+    let o = (size - h) / 2;
+    let cy = h * 2 / 3 + o;
+
+    let x1, y1, x2, y2;
+
+    if (sec == 3) {
+
+        x1 = 0;
+        y1 = size - o;
+        x2 = size;
+        y2 = y1;
+
+    }
+
+    for (let i = 0; i < sec; i++) {
+
+        let path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+
+        deg = sec == 2 ? 0 : 360 / sec * i;
+
+        let d = `M ${cx} ${cy} L ${x1} ${y1} L ${x2} ${y2} Z`;
+
+        path.setAttributeNS(null, "transform", `rotate(${deg},${cx},${cy})`);
         
         path.setAttributeNS(null, "d", d);
     
@@ -112,16 +148,20 @@ function createFigure(fig,id){
     let defs = document.createElementNS("http://www.w3.org/2000/svg","defs");
     let g = document.createElementNS("http://www.w3.org/2000/svg","g");
 
-    if (fig.getAttribute('shape') == 'circle') {
-        createCircle(g, fig.getAttribute('cx'), fig.getAttribute('cy'), fig.getAttribute('r'), fig.getAttribute('sections'));
+    if (fig.getAttribute('shape') == 'rect') {
+        createRect(g, fig.getAttribute('size'), fig.getAttribute('sections'));
     }
 
     if (fig.getAttribute('shape') == 'square') {
         createSquare(g, fig.getAttribute('size'), fig.getAttribute('sections'));
     }
 
-    if (fig.getAttribute('shape') == 'rect') {
-        createRect(g, fig.getAttribute('size'), fig.getAttribute('sections'));
+    if (fig.getAttribute('shape') == 'triangle') {
+        createTriangle(g, fig.getAttribute('size'), fig.getAttribute('sections'));
+    }
+
+    if (fig.getAttribute('shape') == 'circle') {
+        createCircle(g, fig.getAttribute('size'), fig.getAttribute('sections'));
     }
 
     if (fig.classList.contains("paint")) {

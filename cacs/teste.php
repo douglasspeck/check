@@ -19,21 +19,7 @@
 
                 <article class="figure fill" shape="rect" size=100 sections=6 num=2 den=6 show="d"></article>
 
-                <article class="figure fill">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="100px" height="87px" viewBox="0 0 100 100" version="1.1" id="figure-3">
-                        <defs></defs>
-                        <g>
-                            <path d="M 0 100 L 50 100 L 25 50 Z" class="filled" />
-                            <path d="M 50 100 L 100 100 L 75 50 Z" />
-                            <path d="M 50 100 L 25 50 L 75 50 Z" />
-                            <path d="M 25 50 L 75 50 L 50 0 Z" />
-                        </g>
-                    </svg>
-                    <div class="fraction">
-                        <input type="number">
-                        <input type="number">
-                    </div>
-                </article>
+                <article class="figure fill" shape="triangle" size=100 sections=3 num=1 den=3></article>
 
                 <article class="figure fill">
                     <svg xmlns="http://www.w3.org/2000/svg" width="100px" height="87px" viewBox="0 0 100 90" version="1.1" id="figure-4">
