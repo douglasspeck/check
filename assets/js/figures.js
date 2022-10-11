@@ -35,7 +35,6 @@ function createRect(el, size, sec) {
     
     let W = f.length % 2 == 0 ? f[f.length / 2] : f[Math.floor(f.length / 2)];
     let H = f.length % 2 == 0 ? f[f.length / 2 - 1] : W;
-    console.log(W);
 
     let w = size / W;
     let h = H == 1 ? size : w;
@@ -76,15 +75,32 @@ function createTriangle(el, size, sec) {
 
     }
 
+    if (sec == 6) {
+
+        x1 = 0;
+        y1 = size - o;
+        x2 = size / 2;
+        y2 = y1;
+
+    }
+
     for (let i = 0; i < sec; i++) {
 
         let path = document.createElementNS("http://www.w3.org/2000/svg", "path");
 
-        deg = sec == 2 ? 0 : 360 / sec * i;
+        deg = sec == 2 ? 0 : 360 / sec * i * -1;
+        
+        if (sec % 2 == 0 && i % 2 == 1) {
+            deg = deg + 360 / sec;
+        }
 
         let d = `M ${cx} ${cy} L ${x1} ${y1} L ${x2} ${y2} Z`;
 
-        path.setAttributeNS(null, "transform", `rotate(${deg},${cx},${cy})`);
+        let transform = `rotate(${deg},${cx},${cy})`;
+
+        transform = i % 2 == 0 ? transform : transform + " scale(-1,1) translate(-100,0)";
+
+        path.setAttributeNS(null, "transform", transform);
         
         path.setAttributeNS(null, "d", d);
     

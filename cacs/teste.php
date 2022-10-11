@@ -21,47 +21,15 @@
 
                 <article class="figure fill" shape="triangle" size=100 sections=3 num=1 den=3></article>
 
-                <article class="figure fill">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="100px" height="87px" viewBox="0 0 100 90" version="1.1" id="figure-4">
-                        <defs></defs>
-                        <g>
-                            <path d="M 0 90 L 50 90 L 50 60 Z" class="filled" />
-                            <path d="M 0 90 L 25 45 L 50 60 Z" />
-                            <path d="M 100 90 L 50 90 L 50 60 Z" />
-                            <path d="M 100 90 L 75 45 L 50 60 Z" />
-                            <path d="M 25 45 L 50 60 L 50 0 Z" />
-                            <path d="M 75 45 L 50 60 L 50 0 Z" />
-                        </g>
-                    </svg>
-                    <div class="fraction">
-                        <input type="number">
-                        <input type="number">
-                    </div>
-                </article>
+                <article class="figure fill" shape="triangle" size=100 sections=6 num=1 den=6></article>
 
                 <article class="figure paint" shape="rect" size=100 sections=6 num=2 den=6></article>
 
-                <article class="figure paint">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="100px" height="87px" viewBox="0 0 100 90" version="1.1" id="figure-4">
-                        <defs></defs>
-                        <g paintable>
-                            <path d="M 0 90 L 50 90 L 50 60 Z" />
-                            <path d="M 0 90 L 25 45 L 50 60 Z" />
-                            <path d="M 100 90 L 50 90 L 50 60 Z" />
-                            <path d="M 100 90 L 75 45 L 50 60 Z" />
-                            <path d="M 25 45 L 50 60 L 50 0 Z" />
-                            <path d="M 75 45 L 50 60 L 50 0 Z" />
-                        </g>
-                    </svg>
-                    <div class="fraction">
-                        <input type="number" value=2 readonly>
-                        <input type="number" value=6 readonly>
-                    </div>
-                </article>
+                <article class="figure paint" shape="triangle" size=100 sections=6 num=1 den=6></article>
 
                 <article class="figure paint" shape="square" size=100 sections=2 num=1 den=2></article>
 
-                <article class="figure paint" shape="circle" cy=50 cx=50 r=49 sections=3 num=1 den=3></article>
+                <article class="figure paint" shape="circle" size=100 sections=3 num=1 den=3></article>
 
                 <article class="associate" id="assoc-001">
 
