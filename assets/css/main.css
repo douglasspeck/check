@@ -62,7 +62,7 @@ button {
 }
 
 button:not(.ir):hover {
-    background-color: var(--a1);
+    background-color: var(--a3);
 }
 
 html, body {

@@ -89,6 +89,33 @@
                 </article>
 
             </section>
+
+            <section class="input">
+                <h2>Nova figura</h2>
+                <label for="type">Tipo de Atividade</label>
+                <select name="type" id="type">
+                    <option value="fill">Preencher</option>
+                    <option value="paint">Pintar</option>
+                </select>
+                <label for="shape">Figura</label>
+                <select name="shape" id="shape">
+                    <option value="square">Quadrado</option>
+                    <option value="rect">Retângulo</option>
+                    <option value="triangle">Triângulo</option>
+                    <option value="circle">Círculo</option>
+                </select>
+                <label for="size">Tamanho</label>
+                <input name="size" id="size" type="number">
+                <label for="sections">Número de seções</label>
+                <input name="sections" id="sections" type="number">
+                <label for="num">Numerador</label>
+                <input name="num" id="num" type="number">
+                <label for="den">Denominador</label>
+                <input name="den" id="den" type="number">
+                <button onclick="inputFigure()">Gerar</button>
+            </section>
+
+            <section id="white-canvas" class="gallery"></section>
         </main>
         <?php include '../assets/php/scripts.php' ?>
     </body>

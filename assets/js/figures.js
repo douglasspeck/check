@@ -182,6 +182,9 @@ function createFigure(fig,id){
 
     if (fig.classList.contains("paint")) {
         g.setAttribute('paintable',"");
+        for (let i = 0; i < g.children.length; i++) {
+            g.children[i].setAttribute("onclick","paint(this);");
+        };
     }
 
     if (fig.classList.contains("fill")) {
@@ -254,5 +257,32 @@ function generateFigures() {
         }
 
     }
+
+}
+
+function inputFigure() {
+
+    let type = document.getElementById("type").value;
+    let shape = document.getElementById("shape").value;
+    let size = document.getElementById("size").value;
+    let sections = document.getElementById("sections").value;
+    let num = document.getElementById("num").value;
+    let den = document.getElementById("den").value;
+
+    let canvas = document.getElementById("white-canvas");
+
+    let art = document.createElement("article");
+    art.classList.add("figure");
+    art.classList.add(type);
+    art.setAttribute("shape", shape);
+    art.setAttribute("size", size);
+    art.setAttribute("sections", sections);
+    art.setAttribute("num", num);
+    art.setAttribute("den", den);
+
+    canvas.appendChild(art);
+
+    createFigure(art, 0);
+    createFraction(art, num, den, "");
 
 }
