@@ -37,8 +37,8 @@ function createRect(el, size, sec) {
     let H = f.length % 2 == 0 ? f[f.length / 2 - 1] : W;
 
     let w = size / W;
-    let h = H == 1 ? size : w;
-    let o = size * (1 - H / W) / 2;
+    let h = H == 1 ? size * 1 : w;
+    let o = H == 1 ? 0 : size * (1 - H / W) / 2;
 
     for (let i = 0; i < sec; i++) {
 
@@ -268,6 +268,8 @@ function inputFigure() {
     let sections = document.getElementById("sections").value;
     let num = document.getElementById("num").value;
     let den = document.getElementById("den").value;
+
+    if (sections % den > 0) { return newError(1); }
 
     let canvas = document.getElementById("white-canvas");
 
