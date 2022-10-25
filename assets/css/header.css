@@ -36,32 +36,6 @@
     cursor: pointer;
 }
 
-#menu-tag > .h-bar {
-    --h: calc(var(--x) * 0.5);
-    --w: 50%;
-    display: block;
-    width: var(--w);
-    height: var(--h);
-    background-color: var(--g0);
-    transition: all 1s ease-in-out;
-}
-
-#menu-tag > .h-bar:not(:last-of-type) {
-    margin-bottom: var(--h);
-}
-
-#menu-tag.open > .h-bar {
-    transform: rotate(45deg);
-}
-
-#menu-tag.open > .h-bar:first-of-type {
-    transform: rotate(-45deg) translateX(calc(-0.5 * var(--w))) translateY(calc(1.35 * var(--h)));
-}
-
-#menu-tag.open > .h-bar:last-of-type {
-    transform: rotate(-45deg) translateX(calc(0.5 * var(--w))) translateY(calc(-1.35 * var(--h)));
-}
-
 #menu > * {
     width: 90%;
     display: flex;
