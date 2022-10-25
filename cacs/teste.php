@@ -112,6 +112,10 @@
                 <input name="num" id="num" type="number">
                 <label for="den">Denominador</label>
                 <input name="den" id="den" type="number">
+                <label for="vis-num">Visibilidade do Num</label>
+                <input name="vis-num" id="vis-num" type="checkbox">
+                <label for="vis-den">Visibilidade do Den</label>
+                <input name="vis-den" id="vis-den" type="checkbox">
                 <button onclick="inputFigure()">Gerar</button>
             </section>
 

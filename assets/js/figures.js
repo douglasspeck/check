@@ -1,6 +1,5 @@
-// Source: https://codepen.io/hari_shanx/pen/NRyPBz
-
 function createCircle(el, size, slices) {
+// Source: https://codepen.io/hari_shanx/pen/NRyPBz
 
     cx = size / 2;
     cy = size / 2;
@@ -29,7 +28,7 @@ function createCircle(el, size, slices) {
     }
 }
 
-function createRect(el, size, sec) {
+function createRect(el, size, sec, square) {
 
     let f = factors(sec * 1);
     
@@ -37,8 +36,8 @@ function createRect(el, size, sec) {
     let H = f.length % 2 == 0 ? f[f.length / 2 - 1] : W;
 
     let w = size / W;
-    let h = H == 1 ? size * 1 : w;
-    let o = H == 1 ? 0 : size * (1 - H / W) / 2;
+    let h = H == 1 || square ? size / H : size / W;
+    let o = H == 1 || square ? 0 : size * (1 - H / W) / 2;
 
     for (let i = 0; i < sec; i++) {
 
@@ -138,6 +137,9 @@ function createSquare(el, size, sec) {
             d = parity ? `M ${l} 0 L ${size} 0 L ${size} ${size} L ${l} ${size} Z` : `M 0 0 L ${l} 0 L ${l} ${size} L 0 ${size} Z`;
 
         }
+        else {
+            return createRect(el, size, sec, true);
+        }
 
         path.setAttributeNS(null, "transform", `rotate(${deg},${l},${l})`);
         
@@ -149,9 +151,9 @@ function createSquare(el, size, sec) {
 
 }
 
-function createFigure(fig,id){
+function createFigure(fig,id,size){
     
-    const size = 100;
+    size = size ? size : 100;
         
     let svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
     svg.setAttribute("xmlns","http://www.w3.org/2000/svg");
@@ -212,12 +214,12 @@ function createFraction(fig,n,d,show){
     let den = document.createElement("input");
     den.setAttribute("type", "number");
     
-    if (show.includes("n")) {
+    if (n && show.includes("n")) {
         num.setAttribute("readonly","");
         num.setAttribute("value", n);
     }
     
-    if (show.includes("d")) {
+    if (d && show.includes("d")) {
         den.setAttribute("readonly","");
         den.setAttribute("value", d);
     }
@@ -265,11 +267,18 @@ function inputFigure() {
     let type = document.getElementById("type").value;
     let shape = document.getElementById("shape").value;
     let size = document.getElementById("size").value;
+    size = size ? size : 100;
     let sections = document.getElementById("sections").value;
     let num = document.getElementById("num").value;
     let den = document.getElementById("den").value;
+    let vis_num = document.getElementById("vis-num").value ? "n" : "";
+    let vis_den = document.getElementById("vis-den").value ? "d" : "";
 
+    if (sections < 1) { return newError(3); }
+    if (num < 1) { return newError(4); }
+    if (den < 1) { return newError(5); }
     if (sections % den > 0) { return newError(1); }
+    if (num > den) { return newError(2); }
 
     let canvas = document.getElementById("white-canvas");
 
@@ -284,7 +293,7 @@ function inputFigure() {
 
     canvas.appendChild(art);
 
-    createFigure(art, 0);
-    createFraction(art, num, den, "");
+    createFigure(art, 0, size);
+    createFraction(art, num, den, vis_num + vis_den);
 
 }

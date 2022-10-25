@@ -48,7 +48,7 @@
     min-height: 20px;
 }
 
-.input > *:not(:first-child):not(:last-child)::after {
+.input > label::after {
     content: ":";
 }
 
