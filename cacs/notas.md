@@ -66,19 +66,19 @@
 2. **Preencher subconjuntos:** Clicar no elemento do conjunto maior seleciona ele como um "pincel". Cada figura sólida deve ter um ID próprio e uma classe (esta última de acordo com o formato). Pelo ID, a função selecionaria ela como pincel, preenchendo o subconjunto selecionado em sequência com uma figura de mesma classe e ID. Após a ação, a figura sólida é hachurada. Ao clicar na figura gerada no subconjunto, a mesma é removida e a figura original tem sua hachura removida.
 3. **Contornar subconjuntos:** Com base em uma "paleta de padrões", o usuário pode hachurar as figuras de maneiras diferentes, destacando as mesmas em diferentes subconjuntos de acordo com o padrão de sua hachura.
 4. **Preencher Lacuna:**
-- Lacunas numéricas
-- Frações Comuns
-- Frações Mistas
+    - Lacunas numéricas
+    - Frações Comuns
+    - Frações Mistas
 5. **Preencher Fração por Extenso**
-- Circular sinal da desigualdade
-- Conjunto de Frações
-- Contar Figuras Sólidas por Conjunto
-- Contar Figuras Sólidas por Tipo
-- Contornar Pontos
-- Contornar subconjuntos de acordo com fração
-- Dividir Figuras
-- Hachurar Figuras
-- Preencher Linha Segmentada
-- Preencher o contorno com subconjuntos de acordo com a fração
-- Preencher subconjuntos de acordo com fração
-- Selecionar desigualdades
+    - Circular sinal da desigualdade
+    - Conjunto de Frações
+    - Contar Figuras Sólidas por Conjunto
+    - Contar Figuras Sólidas por Tipo
+    - Contornar Pontos
+    - Contornar subconjuntos de acordo com fração
+    - Dividir Figuras
+    - Hachurar Figuras
+    - Preencher Linha Segmentada
+    - Preencher o contorno com subconjuntos de acordo com a fração
+    - Preencher subconjuntos de acordo com fração
+    - Selecionar desigualdades
