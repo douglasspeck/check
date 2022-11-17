@@ -4,7 +4,7 @@
 **``input:``**
 
 ```html
-<fraction [ int={INT} ] [ num={INT} ] [ den={INT} ]>;
+<fraction [ int={INT} ] [ num={INT} ] [ den={INT} ]>
 ```
 
 **``output:``**
@@ -46,3 +46,21 @@
 | ``shape`` | ❌ | Determina a forma da figura. | ``"circle"``, ``"rect"``, ``"square"``, ``"triangle"`` |
 | ``size`` | ❌ | Determina o tamanho da região vetorial (``<svg>``) criada, em *pixels*. || ``width="{INT}px"``, ``height="{INT}px"``, ``viewbox="0 0 {INT} {INT}"`` |
 | ``sections`` | ❌ | Determina o número de seções (``<path>``) em que a figura será dividida. |
+
+## Conjuntos Associáveis
+
+**``input:``**
+
+```html
+<associate>
+    ...
+</associate>
+```
+
+**``output:``**
+
+```html
+<article class="associate">
+    ...
+</article>
+```
