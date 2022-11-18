@@ -1,4 +1,37 @@
 # Tipos de Elementos
+
+## Lacunas Numéricas
+
+**``input:``**
+
+```html
+<number [ value={INT} ]>
+```
+
+**``output:``**
+
+```html
+<input type="number" [ value={INT} readonly ]>
+```
+
+---
+
+## Lacunas Textuais
+
+**``input:``**
+
+```html
+<text [ value={STR} ]>
+```
+
+**``output:``**
+
+```html
+<input type="text" [ value={STR} readonly ]>
+```
+
+---
+
 ## Frações
 
 **``input:``**
@@ -21,6 +54,7 @@
 | ``num`` | ✅ | Numerador da fração. Se omitido, imprime uma lacuna. | ``<input type="number" [value={INT} readonly]>`` |
 | ``den`` | ✅ | Denominador da fração. Se omitido, imprime uma lacuna. | ``<input type="number" [value={INT} readonly]>`` |
 
+---
 
 ## Figuras
 
@@ -47,13 +81,20 @@
 | ``size`` | ❌ | Determina o tamanho da região vetorial (``<svg>``) criada, em *pixels*. || ``width="{INT}px"``, ``height="{INT}px"``, ``viewbox="0 0 {INT} {INT}"`` |
 | ``sections`` | ❌ | Determina o número de seções (``<path>``) em que a figura será dividida. |
 
+---
+
 ## Conjuntos Associáveis
 
 **``input:``**
 
 ```html
 <associate>
-    ...
+    <first>
+        ...
+    </first>
+    <second>
+        ...
+    </second>
 </associate>
 ```
 
@@ -61,6 +102,11 @@
 
 ```html
 <article class="associate">
-    ...
+    <section class="first-container">
+        ...
+    </section>
+    <section class="second-container">
+        ...
+    </section>
 </article>
 ```
