@@ -15,21 +15,37 @@
             <h1>Caderno Autocorretivo: Frações</h1>
             <section class="gallery">
 
-                <article class="figure fill" shape="square" size=100 sections=4 num=1 den=4 show="d"></article>
+                <article>
+                    <figure fill=1 shape="square" size=100 sections=4></figure>
+                </article>
 
-                <article class="figure fill" shape="rect" size=100 sections=6 num=2 den=6 show="d"></article>
+                <article>
+                    <figure fill=2 shape="rect" size=100 sections=6></figure>
+                </article>
 
-                <article class="figure fill" shape="triangle" size=100 sections=3 num=1 den=3></article>
+                <article>
+                    <figure fill=1 shape="triangle" size=100 sections=3></figure>
+                </article>
 
-                <article class="figure fill" shape="triangle" size=100 sections=6 num=1 den=6></article>
+                <article>
+                    <figure fill=1 shape="triangle" size=100 sections=6></figure>
+                </article>
 
-                <article class="figure paint" shape="rect" size=100 sections=6 num=2 den=6></article>
+                <article>
+                    <figure paint shape="rect" size=100 sections=6></figure>
+                </article>
 
-                <article class="figure paint" shape="triangle" size=100 sections=6 num=1 den=6></article>
+                <article>
+                    <figure paint shape="triangle" size=100 sections=6></figure>
+                </article>
 
-                <article class="figure paint" shape="square" size=100 sections=2 num=1 den=2></article>
+                <article>
+                    <figure paint shape="square" size=100 sections=2></figure>
+                </article>
 
-                <article class="figure paint" shape="circle" size=100 sections=3 num=1 den=3></article>
+                <article>
+                    <figure paint shape="circle" size=100 sections=3></figure>
+                </article>
 
                 <article class="associate" id="assoc-001">
 
