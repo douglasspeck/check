@@ -151,10 +151,19 @@ function createSquare(el, size, sec) {
 
 }
 
-function createFigure(fig,id,size){
+function createFigure(fig, id){
     
-    size = size ? size : 100;
-        
+    let paint = fig.getAttribute('paint');
+    
+    let fill = fig.getAttribute('fill');
+    
+    let shape = fig.getAttribute('shape');
+
+    let size = fig.getAttribute('size');
+    size = size ? size : 100; // default
+
+    let sections = fig.getAttribute('sections');
+    
     let svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
     svg.setAttribute("xmlns","http://www.w3.org/2000/svg");
     svg.setAttribute("width",`${size}px`);
@@ -163,95 +172,48 @@ function createFigure(fig,id,size){
     svg.setAttribute("version","1.1");
     svg.setAttribute("id",`figure-${id}`);
 
-    let defs = document.createElementNS("http://www.w3.org/2000/svg","defs");
-    let g = document.createElementNS("http://www.w3.org/2000/svg","g");
-
-    if (fig.getAttribute('shape') == 'rect') {
-        createRect(g, fig.getAttribute('size'), fig.getAttribute('sections'));
+    if (shape == 'rect') {
+        createRect(svg, size, sections);
     }
 
-    if (fig.getAttribute('shape') == 'square') {
-        createSquare(g, fig.getAttribute('size'), fig.getAttribute('sections'));
+    if (shape == 'square') {
+        createSquare(svg, size, sections);
     }
 
-    if (fig.getAttribute('shape') == 'triangle') {
-        createTriangle(g, fig.getAttribute('size'), fig.getAttribute('sections'));
+    if (shape == 'triangle') {
+        createTriangle(svg, size, sections);
     }
 
-    if (fig.getAttribute('shape') == 'circle') {
-        createCircle(g, fig.getAttribute('size'), fig.getAttribute('sections'));
+    if (shape == 'circle') {
+        createCircle(svg, size, sections);
     }
 
-    if (fig.classList.contains("paint")) {
-        g.setAttribute('paintable',"");
-        for (let i = 0; i < g.children.length; i++) {
-            g.children[i].setAttribute("onclick","paint(this);");
+    if (paint) {
+        window.alert("teste");
+        for (let i = 0; i < svg.children.length; i++) {
+            svg.children[i].setAttribute("onclick","paint(this);");
         };
     }
 
-    if (fig.classList.contains("fill")) {
-        let den = fig.getAttribute('den') ? fig.getAttribute('den') : fig.getAttribute('sections');
-        let num = fig.getAttribute('sections') / den * fig.getAttribute('num');
-        for (let i = 0; i < num; i++) {
-            g.children[i].classList.add("filled");
+    if (fill) {
+        for (let i = 0; i < fill; i++) {
+            svg.children[i].classList.add("filled");
         }
     }
 
-    svg.appendChild(defs);
-    svg.appendChild(g);
-    fig.appendChild(svg);
+    fig.after(svg);
+    fig.remove();
     
-}
-
-function createFraction(fig,n,d,show){
-
-    let frac = document.createElement("div");
-    frac.classList.add("fraction");
-    
-    let num = document.createElement("input");
-    num.setAttribute("type", "number");
-    
-    let den = document.createElement("input");
-    den.setAttribute("type", "number");
-    
-    if (n && show.includes("n")) {
-        num.setAttribute("readonly","");
-        num.setAttribute("value", n);
-    }
-    
-    if (d && show.includes("d")) {
-        den.setAttribute("readonly","");
-        den.setAttribute("value", d);
-    }
-
-    if (fig.classList.contains("paint")) {
-        num.setAttribute("readonly","");
-        num.setAttribute("value", n);
-        den.setAttribute("readonly","");
-        den.setAttribute("value", d);
-    }
-
-    frac.appendChild(num);
-    frac.appendChild(den);
-
-    fig.appendChild(frac);
-
 }
 
 function generateFigures() {
 
-    let figures = document.getElementsByClassName("figure");
+    let figures = document.getElementsByTagName("figure");
 
     for (let i = 0; i < figures.length; i++) {
 
         let fig = figures[i];
-
-        let den = fig.getAttribute("den") ? fig.getAttribute("den") : fig.getAttribute('sections');
-
-        let show = fig.getAttribute("show") ? fig.getAttribute("show") : "";
-
         createFigure(fig, i + 1);
-        createFraction(fig, fig.getAttribute("num"), den, show);
 
         while (fig.getAttributeNames().length > 1) {
             let att = fig.getAttributeNames()[1];
@@ -297,3 +259,10 @@ function inputFigure() {
     createFraction(art, num, den, vis_num + vis_den);
 
 }
+
+/*
+let den = fig.getAttribute("den") ? fig.getAttribute("den") : fig.getAttribute('sections');
+
+let show = fig.getAttribute("show") ? fig.getAttribute("show") : "";
+
+createFraction(fig, fig.getAttribute("num"), den, show); */
