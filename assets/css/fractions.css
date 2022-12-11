@@ -1,7 +1,26 @@
 .fraction {
     display: grid;
-    grid-template-columns: 1fr;
-    margin-top: 5px;
+    grid-template-columns: 3ch;
+    grid-template-rows: 1fr 3px 1fr;
+    align-items: center;
+    justify-content: end;
+    column-gap: 0.5ch;
+    margin: auto;
+}
+
+.fraction.mixed {
+    grid-template-columns: 3ch 3ch;
+    width: 6.5ch;
+}
+
+.fraction.mixed > :first-child {
+    grid-row: 1/4;
+    grid-column: 1/2;
+    align-self: center;
+}
+
+.fraction.mixed > * {
+    grid-column: 2/3;
 }
 
 .fraction::after {
@@ -9,18 +28,17 @@
     display: block;
     width: 100%;
     height: 1px;
-    margin: 2px 0;
     background-color: var(--g0);
     grid-row: 2 / 3;
 }
 
 .fraction > input {
-    background-color: none;
-    width: 3ch;
+    background-color: #fff;
     border-radius: 0;
     border: 1px solid var(--g0);
 }
 
 .fraction > input[readonly] {
     border: none;
+    background-color: transparent;
 }

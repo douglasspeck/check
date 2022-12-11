@@ -188,8 +188,8 @@ function createFigure(fig, id){
         createCircle(svg, size, sections);
     }
 
-    if (paint) {
-        window.alert("teste");
+    if (paint!==null) {
+        svg.classList.add("clickable");
         for (let i = 0; i < svg.children.length; i++) {
             svg.children[i].setAttribute("onclick","paint(this);");
         };
@@ -210,15 +210,13 @@ function generateFigures() {
 
     let figures = document.getElementsByTagName("figure");
 
-    for (let i = 0; i < figures.length; i++) {
+    let id = 0;
 
-        let fig = figures[i];
-        createFigure(fig, i + 1);
+    while (figures.length > 0) {
 
-        while (fig.getAttributeNames().length > 1) {
-            let att = fig.getAttributeNames()[1];
-            fig.removeAttribute(att);
-        }
+        let fig = figures[0];
+        createFigure(fig, id);
+        id++;
 
     }
 

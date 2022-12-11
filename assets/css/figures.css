@@ -14,7 +14,3 @@ svg .filled {
 svg.highlighted .filled {
     fill: var(--a2);
 }
-
-.paint svg * {
-    cursor: pointer;
-}

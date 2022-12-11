@@ -17,10 +17,12 @@
 
                 <article>
                     <figure fill=1 shape="square" size=100 sections=4></figure>
+                    <fraction den=4></fraction>
                 </article>
 
                 <article>
                     <figure fill=2 shape="rect" size=100 sections=6></figure>
+                    <fraction int></fraction>
                 </article>
 
                 <article>

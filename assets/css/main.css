@@ -121,6 +121,10 @@ img {
     display: none !important;
 }
 
+.clickable {
+    cursor: pointer;
+}
+
 /* Scrollbar */
 
 ::-webkit-scrollbar {
