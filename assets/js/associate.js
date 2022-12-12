@@ -2,7 +2,7 @@ function associate(el) {
 
     // Gets the article which the element is related to
     let id = el.id.slice(6,9);
-    let val = el.id.slice(-4);
+    let val = el.id.slice(-5);
     
     // Breaks if no ID
     if (!id) {return false}
@@ -22,7 +22,7 @@ function associate(el) {
 
     }
 
-    if (val.substring(0,3) == stored.substring(0,3)) {
+    if (val.substring(0,1) == stored.substring(0,1)) {
 
         // If the registered value is from the same column/type as the
         // given one, overrides it with the new and breaks
@@ -53,16 +53,19 @@ function getCoords(elem) {
 }
 
 function connectItems(id,element1,element2) {
-
+    
     storeResults(id,[element1,element2]);
+    
+    element1 = document.getElementById("assoc-" + id + "-" + element1);
+    element2 = document.getElementById("assoc-" + id + "-" + element2);
 
-    let container = document.getElementById(`assoc-${id}`);
+    let container = element1.parentNode.parentNode;
     let cont = getCoords(container);
 
     // Gets the associated labels' coordinates,
     // according to the values and ID
-    el1 = getCoords(document.getElementById(`assoc-${id}-${element1}`).firstElementChild);
-    el2 = getCoords(document.getElementById(`assoc-${id}-${element2}`).firstElementChild);
+    el1 = getCoords(element1);
+    el2 = getCoords(element2);
 
     // Orders elements left-to-right
     let first = el1.left < el2.left ? el1 : el2;
@@ -154,5 +157,54 @@ function removeResults(id,str) {
 
     let arr = str.split(",");
     console.log(`The activity ${id} had the following values removed: ${arr.join(", ")}`);
+
+}
+
+function createAssoc(el,id) {
+
+    let first = document.createElement("section");
+    first.innerHTML = el.children[0].innerHTML;
+    first.classList.add("first-container");
+    
+    for (let i = 0; i < first.children.length; i++) {
+        first.children[i].setAttribute("onclick", "associate(this);");
+        first.children[i].setAttribute("id", "assoc-" + id + "-1-" + idThat(i+1));
+    }
+    
+    let second = document.createElement("section");
+    second.innerHTML = el.children[1].innerHTML;
+    second.classList.add("second-container");
+    
+    for (let i = 0; i < second.children.length; i++) {
+        second.children[i].setAttribute("onclick", "associate(this);");
+        second.children[i].setAttribute("id", "assoc-" + id + "-2-" + idThat(i+1));
+    }
+
+    let art = document.createElement("article");
+    art.appendChild(first);
+    art.appendChild(second);
+    art.classList.add("associate");
+
+    el.parentNode.insertBefore(art,el);
+    el.remove();
+
+}
+
+function generateAssoc() {
+
+    let associate = document.getElementsByTagName("associate");
+
+    let id = 1;
+
+    while (associate.length > 0) {
+
+        id = idThat(id);
+
+        let assoc = associate[0];
+        createAssoc(assoc, id);
+        
+        id = parseInt(id)++;
+
+    }
 
 }

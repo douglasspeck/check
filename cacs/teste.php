@@ -17,94 +17,55 @@
 
                 <article>
                     <figure fill=1 shape="square" size=100 sections=4></figure>
-                    <fraction den=4></fraction>
+                    <fraction num=1></fraction>
                 </article>
 
                 <article>
                     <figure fill=2 shape="rect" size=100 sections=6></figure>
-                    <fraction int></fraction>
+                    <fraction den=6></fraction>
                 </article>
 
                 <article>
                     <figure fill=1 shape="triangle" size=100 sections=3></figure>
+                    <fraction num=1></fraction>
                 </article>
 
                 <article>
                     <figure fill=1 shape="triangle" size=100 sections=6></figure>
+                    <fraction num=1></fraction>
                 </article>
 
                 <article>
                     <figure paint shape="rect" size=100 sections=6></figure>
+                    <fraction num=1 den=6></fraction>
                 </article>
 
                 <article>
                     <figure paint shape="triangle" size=100 sections=6></figure>
+                    <fraction num=2 den=6></fraction>
                 </article>
 
                 <article>
                     <figure paint shape="square" size=100 sections=2></figure>
+                    <fraction num=1 den=2></fraction>
                 </article>
 
                 <article>
                     <figure paint shape="circle" size=100 sections=3></figure>
+                    <fraction num=1 den=3></fraction>
                 </article>
 
-                <article class="associate" id="assoc-001">
-
-                    <section class="figures-container">
-                        <div id="assoc-001-fig1" onclick="associate(this);">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="100px" height="100px" viewBox="0 0 100 100" version="1.1" id="figure-9">
-                                <defs></defs>
-                                <g>
-                                    <path d="M 0 0 L 50 0 L 50 50 L 0 50 Z" />
-                                    <path d="M 50 0 L 100 0 L 100 50 L 50 50 Z" />
-                                    <path d="M 0 50 L 50 50 L 50 100 L 0 100 Z" class="filled" />
-                                    <path d="M 50 50 L 100 50 L 100 100 L 50 100 Z" />
-                                </g>
-                            </svg>
-                        </div>
-                        <div id="assoc-001-fig2" onclick="associate(this);">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="100px" height="100px" viewBox="0 0 90 60" version="1.1" id="figure-10">
-                                <defs></defs>
-                                <g>
-                                    <rect width="30" height="30" x="0" y="0" />
-                                    <rect width="30" height="30" x="30" y="0" />
-                                    <rect width="30" height="30" x="60" y="0" />
-                                    <rect width="30" height="30" x="0" y="30" class="filled" />
-                                    <rect width="30" height="30" x="30" y="30" class="filled" />
-                                    <rect width="30" height="30" x="60" y="30" />
-                                </g>
-                            </svg>
-                        </div>
-                        <div id="assoc-001-fig3" onclick="associate(this);">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="100px" height="87px" viewBox="0 0 100 100" version="1.1" id="figure-11">
-                                <defs></defs>
-                                <g>
-                                    <path d="M 0 100 L 50 100 L 25 50 Z" class="filled" />
-                                    <path d="M 50 100 L 100 100 L 75 50 Z" />
-                                    <path d="M 50 100 L 25 50 L 75 50 Z" />
-                                    <path d="M 25 50 L 75 50 L 50 0 Z" />
-                                </g>
-                            </svg>
-                        </div>
-                    </section>
-
-                    <section class="fractions-container">
-                        <div id="assoc-001-fra1" onclick="associate(this);">
-                            <div class="fraction">
-                                <input type="number" value=1 readonly>
-                                <input type="number" value=4 readonly>
-                            </div>
-                        </div>
-                        <div id="assoc-001-fra2" onclick="associate(this);">
-                            <div class="fraction">
-                                <input type="number" value=1 readonly>
-                                <input type="number" value=3 readonly>
-                            </div>
-                        </div>
-                    </section>
-
-                </article>
+                <associate>
+                    <first>
+                        <figure fill=1 shape="square" size=100 sections=4></figure>
+                        <figure fill=2 shape="rect" size=100 sections=6></figure>
+                        <figure fill=1 shape="triangle" size=100 sections=3></figure>
+                    </first>
+                    <second>
+                        <fraction num=1 den=4></fraction>
+                        <fraction num=1 den=3></fraction>
+                    </second>
+                </associate>
 
             </section>
 
