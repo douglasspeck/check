@@ -13,12 +13,12 @@
     $link = basename(__FILE__, '.php');
     if ($link = 'index') {
         $link = '';
-    };
+    }
     
     $isLocal = false;
     
-    if (strpos($url, 'github') !== false) {
-        $link = 'https://douglasspeck.github.io/tech-adm/' . $link;
+    if (strpos($url, 'ime') !== false) {
+        $link = 'https://ime.unicamp.br/~fracoes/' . $link;
         str_replace('.php', '', $link);
     } else if (strpos($url, 'localhost') !== false) {
         $link = 'http://localhost:3000/' . $link;

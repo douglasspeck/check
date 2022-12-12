@@ -22,7 +22,7 @@
     
             for ($i = 0; $i < count($pages); $i++) {
                 
-                echo '<a href="../cacs/' . $pages[$i][1];
+                echo '<a href="/cacs/' . $pages[$i][1];
 
                 if ($isLocal == true && $pages[$i][1] !== './' && $pages[$i][1] !== '') {
                     echo '.php';
