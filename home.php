@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
     <?php
-        error_reporting(E_ALL);
-        ini_set('display_errors', 'On');
-
         $title = 'Check - Cadernos Autocorretivos';
         $keywords = 'Check, CACs, Cadernos Auto-corretivos, Frações';
         $resources = [];
@@ -45,7 +42,7 @@
                     <p class="sequence">Sequência 2</p>
                     <h3>Pintando Figuras</h3>
                     <p class="description">A partir das frações dadas, pinte a figura clicando sobre suas partes.</p>
-                    <button>Retomar atividade</button>
+                    <button id="home-resume-button">Retomar atividade</button>
                     <span class="progress-bar"></span>
                 </article>
             </section>
