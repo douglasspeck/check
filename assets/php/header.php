@@ -8,7 +8,7 @@
         $home = "/~fracoes";
     }
 
-    if (substr_count($link,"/~fracoes/home.php") > 4 - $isLocal) {
+    if (substr_count($link,"/") > 4 - $isLocal) {
         $check = '../assets/img/check.svg';
     } else {
         $check = 'assets/img/check.svg';
