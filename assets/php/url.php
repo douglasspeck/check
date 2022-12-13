@@ -19,9 +19,9 @@
     
     if (strpos($url, 'localhost') !== false) {
         $isLocal = true;
+    } else {
+        str_replace('.php', '', $url);
     }
-    
-    str_replace('.php', '', $url);
 
     $link = $url;
 

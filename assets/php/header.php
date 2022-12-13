@@ -2,7 +2,7 @@
 
     include 'url.php';
 
-    if (substr_count($link,"/")>3) {
+    if (substr_count($link,"/")>4) {
         $check = '../assets/img/check.svg';
     } else {
         $check = 'assets/img/check.svg';
