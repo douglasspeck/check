@@ -3,7 +3,7 @@
     include 'url.php';
 
     if ($isLocal === 0) {
-        $to_scan = '../assets/js/';
+        $to_scan = '/~fracoes/assets/js/';
         $to_src = '/~fracoes/assets/js/';
     } else {
         $to_scan = 'assets/js/';
