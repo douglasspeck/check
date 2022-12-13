@@ -3,7 +3,11 @@
     include 'url.php';
 
     if ($isLocal === 0 && substr_count($link,"/") > 4) {
-        $to_scan = '/~fracoes/assets/js/';
+        $to_scan = "";
+        for ($i = 0; $i < substr_count($link, "/") - 4; $i++) {
+            $to_scan .= "../";
+        }
+        $to_scan .= 'assets/js/';
         $to_src = '/~fracoes/assets/js/';
     } else if ($isLocal === 0) {
         $to_scan = 'assets/js/';
