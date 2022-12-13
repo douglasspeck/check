@@ -2,12 +2,12 @@
 
     include 'url.php';
 
-    if ($_SERVER['REQUEST_URI'] == '/') {
-        $to_scan = 'assets/js/';
-        $to_src = 'assets/js/';
-    } else {
+    if (substr_count($link,"/")>3) {
         $to_scan = '../assets/js/';
         $to_src = '/assets/js/';
+    } else {
+        $to_scan = 'assets/js/';
+        $to_src = 'assets/js/';
     }
     
     $js = scandir($to_scan);

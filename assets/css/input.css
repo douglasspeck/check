@@ -1,0 +1,38 @@
+input:not([raw]), select:not([raw]), button:not([raw]) {
+    border-radius: calc(var(--x) * 0.5);
+    -moz-appearance: textfield;
+    appearance: none;
+    text-align: center;
+}
+
+input[readonly] {
+    cursor: default;
+}
+
+input[type=checkbox] {
+    -moz-appearance: checkbox;
+    appearance: checkbox;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button,
+select {
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+input:focus-visible, select:focus-visible {
+    outline: none;
+}
+
+button {
+    cursor: pointer;
+    background-color: var(--a2);
+    color: #fff;
+    font-weight: 600;
+    padding: calc(var(--x) * 0.5);
+}
+
+button:not(.ir):hover {
+    background-color: var(--a3);
+}

@@ -18,11 +18,11 @@
     $isLocal = false;
     
     if (strpos($url, 'ime') !== false) {
-        $link = 'https://ime.unicamp.br/~fracoes/' . $link;
         str_replace('.php', '', $link);
     } else if (strpos($url, 'localhost') !== false) {
-        $link = 'http://localhost:3000/' . $link;
         $isLocal = true;
     }
+
+    $link = $url;
 
 ?>

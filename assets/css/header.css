@@ -1,75 +1,65 @@
 #menu {
-    background-color: var(--g3);
-    width: calc(var(--x) * 25);
-    height: 100vh;
-    position: absolute;
-    top: 0;
-    left: calc(var(--x) * -30);
+    background-color: #fff;
+    width: 90vw;
+    height: calc(var(--x) * 5);
+    min-height: max(5vh,5vw);
+    padding: 0 5vw;
     z-index: 5;
     display: flex;
-    flex-direction: column;
     align-items: center;
-    justify-content: center;
-    color: var(--g0);
-    transform: translateX(0);
-    transition: transform 1s ease-in-out;
-    backdrop-filter: blur(10px);
-}
-
-#menu.open {
-    transform: translateX(calc(var(--x) * 30));
-    box-shadow: 1px 0 10px #000;
-}
-
-#menu-tag {
-    font-size: 3em;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 10;
-    width: calc(var(--x) * 5);
-    height: calc(var(--x) * 5);
-    cursor: pointer;
-}
-
-#menu > * {
-    width: 90%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-evenly;
-}
-
-#menu > a > img {
-    background: none;
-    height: 15vh;
-    padding: 5vh 0;
-    filter: drop-shadow(0 0 1px var(--b1))
+    justify-content: space-between;
+    color: var(--g1);
+    box-shadow: 0 -10px 12px #000;
 }
 
 #menu > nav {
-    height: 85vh;
-    padding-bottom: 4vh;
-    justify-content: flex-start;
-}
-
-#menu .menu {
+    width: 25%;
     display: flex;
     align-items: center;
-    padding: 0.5em;
-    width: 70%;
-    font-weight: 600;
-    transition: all 0.3s ease-in;
+    justify-content: space-between;
+    font-weight: 500;
 }
 
-#menu .menu:not(:last-child) {
-    border-bottom: 1px solid #222222;
+#menu > nav > a:hover, #menu > nav > a.active:hover {
+    color: var(--a2);
 }
 
-#menu .menu:hover, #menu .menu:focus {
-    background-color: var(--c1);
+#menu > nav > a.active {
+    color: var(--g0);
+    position: relative;
+}
+
+#menu > nav > a.active::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--g0);
+}
+
+#menu > nav > a.active:hover::after {
+    background-color: var(--a2);
+}
+
+#check {
+    display: flex;
+    height: 50%;
+    align-items: center;
+    font-family: Courier;
+    transform: scaleY(1.25);
+    color: var(--g0);
+    font-size: 2em;
+}
+
+#check > * {
+    transform: scaleY(0.8);
+    height: 0.8em;
+    width: 1.2em;
+}
+
+#check > svg > g {
+    fill: var(--g0);
+    stroke: none;
 }
