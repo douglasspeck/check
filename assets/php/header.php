@@ -10,7 +10,7 @@
     $active_page = str_replace('/', '', $active_page);
 
     echo '<header id="menu">
-        <a id="check" href="/">' . file_get_contents('/~fracoes/assets/img/check.svg') . 'check</a>
+        <a id="check" href="/">' . file_get_contents('/assets/img/check.svg') . 'check</a>
         <nav>
             <a class="active" href="">Home</a>
             <a href="">Trilhas</a>
