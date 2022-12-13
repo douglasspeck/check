@@ -2,7 +2,7 @@
 
     include 'url.php';
 
-    if (substr_count($link,"/") > 4 - $isLocal) {
+    if ($isLocal === 0) {
         $to_scan = '../assets/js/';
         $to_src = '/~fracoes/assets/js/';
     } else {
