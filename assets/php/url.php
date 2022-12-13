@@ -17,10 +17,10 @@
     
     $isLocal = false;
     
-    if (strpos($url, 'ime') !== false) {
-        str_replace('.php', '/', $url);
-    } else if (strpos($url, 'localhost') !== false) {
+    if (strpos($url, 'localhost') !== false) {
         $isLocal = true;
+    } else {
+        str_replace('.php', '', $url);
     }
 
     $link = $url;
