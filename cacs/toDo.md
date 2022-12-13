@@ -20,4 +20,5 @@
 - [ ] Documentação
 
 ## Correção de Bugs
--
+- Fallback para círculo sem divisões ainda não configurado;
+- Triângulos de 2 e 4 seções ainda não configurados;

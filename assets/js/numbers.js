@@ -10,7 +10,7 @@ function createFraction(el,id){
     let num = document.createElement("input");
     num.setAttribute("type", "number");
     
-    if (n!==null) {
+    if (n!==null && n!=='') {
         num.setAttribute("readonly","");
         num.setAttribute("value", n);
     }
@@ -18,12 +18,12 @@ function createFraction(el,id){
     let den = document.createElement("input");
     den.setAttribute("type", "number");
     
-    if (d!==null) {
+    if (d!==null && d!=='') {
         den.setAttribute("readonly","");
         den.setAttribute("value", d);
     }
 
-    if (int!==null) {
+    if (int!==null && int!=='') {
         let integer = document.createElement("input");
         integer.setAttribute("type", "number");
         integer.setAttribute("value", int);
