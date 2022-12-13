@@ -45,8 +45,16 @@
             <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,700|Open+Sans:300,300i,400,400i,700,700i" rel="stylesheet">
 
             <!-- Stylesheets -->
-            <link rel="preload" as="style" onload="this.remove();" href="../assets/php/stylesheets.php?t=' . date('YmdHis') . '" type="text/css">
-            <link rel="stylesheet" href="../assets/php/stylesheets.php?t=' . date('YmdHis') . '" type="text/css">';
+            <link rel="preload" as="style" onload="this.remove();" href="';
+            if ($isLocal == 0) {
+                echo '/~fracoes';
+            };
+            echo '/assets/php/stylesheets.php?t=' . date('YmdHis') . '" type="text/css">
+            <link rel="stylesheet" href="';
+            if ($isLocal == 0) {
+                echo '/~fracoes';
+            };
+            echo '/assets/php/stylesheets.php?t=' . date('YmdHis') . '" type="text/css">';
 
     echo '</head>';
 ?>
