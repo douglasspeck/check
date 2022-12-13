@@ -1,5 +1,5 @@
 RewriteEngine On
-RewriteBase /
+RewriteBase /~fracoes/
 
 RewriteCond %{REQUEST_METHOD} !POST
 RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s([^.]+)\.php [NC]
