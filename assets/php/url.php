@@ -18,7 +18,7 @@
     $isLocal = false;
     
     if (strpos($url, 'ime') !== false) {
-        str_replace('.php', '', $link);
+        str_replace('.php', '/', $url);
     } else if (strpos($url, 'localhost') !== false) {
         $isLocal = true;
     }
