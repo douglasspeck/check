@@ -2,7 +2,7 @@
 
     include 'url.php';
 
-    if (substr_count($link,"/")>3) {
+    if (substr_count($link,"/")>4) {
         $to_scan = '../assets/js/';
         $to_src = '/assets/js/';
     } else {
