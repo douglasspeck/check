@@ -15,12 +15,10 @@
         $link = '';
     }
     
-    $isLocal = false;
+    $isLocal = 1;
     
-    if (strpos($url, 'localhost') !== false) {
-        $isLocal = true;
-    } else {
-        str_replace('.php', '', $url);
+    if (strpos($url, 'localhost') > 0) {
+        $isLocal = 1;
     }
 
     $link = $url;

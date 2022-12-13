@@ -2,7 +2,7 @@
 
     include 'url.php';
 
-    if (substr_count($link,"/")>4) {
+    if (substr_count($link,"/")>4 - $isLocal) {
         $to_scan = '../assets/js/';
         $to_src = '/assets/js/';
     } else {
