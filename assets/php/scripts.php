@@ -7,7 +7,7 @@
         $to_src = '/~fracoes/assets/js/';
     } else {
         $to_scan = 'assets/js/';
-        $to_src = '/~fracoes/assets/js/';
+        $to_src = '/assets/js/';
     }
     
     $js = scandir($to_scan);
