@@ -6,11 +6,6 @@ RewriteRule (.*)\.php$ $1 [R=301]
 # remove index
 RewriteRule (.*)index$ $1 [R=301]
 
-# remove slash if not directory
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_URI} /$
-RewriteRule (.*)/ $1 [R=301]
-
 # add .php to access file, but don't redirect
 RewriteCond %{REQUEST_FILENAME}.php -f
 RewriteCond %{REQUEST_URI} !/$
