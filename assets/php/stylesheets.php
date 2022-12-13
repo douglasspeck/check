@@ -9,7 +9,7 @@ $mergeCSS = "";
 foreach ($css as $css_file) {
     // Load the content of the css file
     if (!is_dir($css_file)) {
-        $css_file = '/assets/css/' . $css_file;
+        $css_file = '../css/' . $css_file;
         $mergeCSS.= file_get_contents($css_file);
     }
 }
