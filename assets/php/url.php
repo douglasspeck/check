@@ -15,7 +15,7 @@
         $link = '';
     }
     
-    $isLocal = 1;
+    $isLocal = 0;
     
     if (strpos($url, 'localhost') > 0) {
         $isLocal = 1;
