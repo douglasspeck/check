@@ -2,23 +2,22 @@
 
     include 'url.php';
 
-    if (substr_count($link,"/")>4 - $isLocal) {
+    if ($isLocal === 1) {
+        $home = "/";
+    } else {
+        $home = "/~fracoes";
+    }
+
+    if (substr_count($link,"/~fracoes/home.php") > 4 - $isLocal) {
         $check = '../assets/img/check.svg';
     } else {
         $check = 'assets/img/check.svg';
     }
 
-    $pages = [
-        ['Página inicial', 'teste', 'Teste dos CACs']
-    ];
-
-    $active_page = str_replace('.php', '', $_SERVER['REQUEST_URI']);
-    $active_page = str_replace('/', '', $active_page);
-
     echo '<header id="menu">
-        <a id="check" href="/">' . file_get_contents($check) . 'check</a>
+        <a id="check" href="' . $home . '">' . file_get_contents($check) . 'check</a>
         <nav>
-            <a class="active" href="">Home</a>
+            <a class="active" href="' . $home . '">Home</a>
             <a href="">Trilhas</a>
             <a href="">Perfil</a>
         </nav>
