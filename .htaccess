@@ -1,3 +1,5 @@
+RewriteEngine On
+
 # remove .php; use THE_REQUEST to prevent infinite loops
 RewriteCond %{HTTP_HOST} ^ime\.unicamp\.br\/~fracoes
 RewriteCond %{THE_REQUEST} ^GET\ (.*)\.php\ HTTP
@@ -5,3 +7,8 @@ RewriteRule (.*)\.php$ $1 [R=301]
 
 # remove index
 RewriteRule (.*)index$ $1 [R=301]
+
+# add .php to access file, but don't redirect
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteCond %{REQUEST_URI} !/$
+RewriteRule (.*) $1\.php [L]
