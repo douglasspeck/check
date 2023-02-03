@@ -1,0 +1,206 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&family=Roboto:wght@100;300;400;500;700;900&family=Source+Sans+Pro:wght@200;300;400;600;700;900&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'poppins', sans-serif;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #eeeeee;
+}
+
+.container {
+  background-color: white;
+  padding: 6px;
+  width: 350px;
+  height: 345px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  border-radius: 15px;
+  box-shadow: 0px 0px 10px rgba(0,0,0,0.6);
+  transition: .3s;
+}
+
+form {
+  position: absolute;
+  margin-top: 100px;
+  /*transition: 0.3s;*/
+  width: 300px;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+}
+
+button:active {
+  opacity: 0.75;
+}
+
+.clear {
+    background-color: transparent;
+    border: none;
+    margin-top: 10px;
+    color: rgba(0,0,0,0.7);
+    text-decoration: underline;
+    display: flex;
+    justify-content: center;
+    font-size: 13px;
+}
+
+.buttonsForm {
+  margin-top: 25px;
+  position: relative;
+  border-radius: 30px;
+  box-shadow: 0 0 7px 0 rgba(0,0,0,0.3);
+}
+
+.buttonsForm #btnSignin {
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    font-size: 15px;
+    position: relative;
+    padding: 10px 40px 10px 44px;
+  }
+
+.buttonsForm #btnSignup {
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    font-size: 15px;
+    position: relative;
+    padding: 10px 25px 10px 6px;
+  }
+
+.btnColor {
+  position: absolute;
+  width: 130px;
+  height: 100%;
+  background: #edc951;
+  border-radius: 30px;
+  transition: .3s;
+}
+
+input[type="text"], input[type="email"], input[type="password"] {
+  border: none;
+  background-color: whitesmoke;
+  border-radius: 60px;
+  padding: 8px 0 8px 35px;
+  outline: none;
+  width: 100%;
+  height: 36px;
+  margin-bottom: 15px;
+}
+
+.select {
+    height: 36px;
+    background-color: whitesmoke;
+    border-radius: 60px;
+    padding-left: 35px;
+    margin-bottom: 15px;
+}
+
+#selectYear {
+    position: relative;
+    outline: none;
+    border-radius: 60px;
+    padding: 0 7px;
+    margin-left: 5px;
+    top: 4px;
+    font-size: 13px;
+    background-color: whitesmoke;
+}
+
+button[type="submit"] {
+  background: #eb6841;
+  color: white;
+  border-radius: 30px;
+  width: 100%;
+  border: none;
+  outline: none;
+  padding: 8px 0 8px 15px;
+  font-size: 15px;
+  margin-top: 15px;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background: #da5229;
+}
+
+.divCheck {
+  margin: 0 0 5px 5px;
+  font-size: 13px;
+  color: rgba(0,0,0,0.7);
+}
+
+.divCheck2 {
+    margin: 5px 0 5px 5px;
+    font-size: 12px;
+    color: rgba(0,0,0,0.7);
+  }
+
+a {
+  color: rgba(0, 73, 209, 0.7);
+}
+
+#signin {
+  left: 25px;
+}
+
+#signup {
+  left: 450px;
+}
+
+label {
+    position: relative;
+    font-size: 13.7px;
+    top: 4px;
+    color: rgb(0,0,0,0.6);
+}
+
+i {
+    position: absolute;
+    left: 10px;
+    font-size: 15px;
+}
+
+.iEmailin {
+    top: 10px;
+}
+
+#iPasswordin {
+    top: 61px;
+    font-size: 17px;
+}
+
+.iNameup {
+    top: 10px;
+}
+
+.iYear {
+    top: 61px;
+}
+
+.iEmailup {
+    top: 112px;
+}
+
+#iPasswordup {
+    top: 162px;
+    font-size: 17px;
+}
+
+#iPasswordup2 {
+    top: 213px;
+    font-size: 17px;
+}
