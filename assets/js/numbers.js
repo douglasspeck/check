@@ -1,54 +1,43 @@
-function createFraction(el,id){
+/**
+ * 
+ * @access          public
+ * @author          Douglas Speck
+ * @since           0.4.0
+ * 
+ * @function        createNumber
+ * @param           {Element}   el      The element to create the number input within
+ * @param           {Number}    id      The element's ID
+ * 
+ * @function        generateNumbers
+ * @description     Creates a corresponding number input for each <fraction> pseudo-tag
+ * 
+ */
 
-    let int = el.getAttribute("int");
-    let n = el.getAttribute("num");
-    let d = el.getAttribute("den");
+function createNumber(el,id){
 
-    let frac = document.createElement("div");
-    frac.classList.add("fraction");
+    let num = el.getAttribute("value");
     
-    let num = document.createElement("input");
-    num.setAttribute("type", "number");
-    
-    if (n!==null && n!=='') {
-        num.setAttribute("readonly","");
-        num.setAttribute("value", n);
-    }
-    
-    let den = document.createElement("input");
-    den.setAttribute("type", "number");
-    
-    if (d!==null && d!=='') {
-        den.setAttribute("readonly","");
-        den.setAttribute("value", d);
-    }
+    let inp = document.createElement("input");
+    inp.classList.add("number-input");
+    inp.setAttribute("type", "number");
 
-    if (int!==null && int!=='') {
-        let integer = document.createElement("input");
-        integer.setAttribute("type", "number");
-        integer.setAttribute("value", int);
-        frac.append(integer);
-        frac.classList.add("mixed");
-    }
+    inp.setAttribute("value", num);
 
-    frac.appendChild(num);
-    frac.appendChild(den);
-
-    el.after(frac);
+    el.after(inp);
     el.remove();
 
 }
 
-function generateFractions() {
+function generateNumbers() {
 
-    let fractions = document.getElementsByTagName("fraction");
+    let inputs = document.getElementsByTagName("number");
 
     let id = 0;
 
-    while (fractions.length > 0) {
+    while (inputs.length > 0) {
 
-        let fra = fractions[0];
-        createFraction(fra, id);
+        let inp = inputs[0];
+        createTextInput(inp, id);
         id++;
 
     }
