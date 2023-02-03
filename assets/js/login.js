@@ -1,4 +1,4 @@
-//BOTÃO ENTRAR/CADASTRAR//
+//botão entrar/cadastrar
 var container = document.querySelector('.container')
 var formSignin = document.querySelector('#signin')
 var formSignup = document.querySelector('#signup')
@@ -20,7 +20,8 @@ document.querySelector('#btnSignup')
     btnColor.style.left = "110px"
 })
 
-//VALIDAÇÃO DE SENHAS//
+//validação de ano de nascimento e senhas
+const selectYear = document.getElementById('selectYear');
 const password = document.getElementById('password');
 const confirm = document.getElementById('confirm');
 
@@ -28,11 +29,18 @@ function validate(item) {
     item.setCustomValidity('');
     item.checkValidity();
 
-    if (item == confirm) {
+    if (item == selectYear) {
+        if (selectYear.value === '') {
+          item.setCustomValidity('Selecione um ano de nascimento.');
+        }
+    } else if (item == confirm) {
         if (item.value === password.value) item.setCustomValidity('');
         else item.setCustomValidity('As senhas não coincidem.');
     }
 }
 
-    password.addEventListener('input', function(){validate(password)});
-    confirm.addEventListener('input', function(){validate(confirm)});
+validate(selectYear);
+
+selectYear.addEventListener('input', function(){validate(selectYear)});
+password.addEventListener('input', function(){validate(password)});
+confirm.addEventListener('input', function(){validate(confirm)});

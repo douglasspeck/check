@@ -37,7 +37,7 @@
       <div class="select">
         <i class="fa fa-calendar-o iYear"></i>
         <label for="ano_nasc">Ano de nascimento:</label>
-        <select id="selectYear">
+        <select id="selectYear" required>
             <option value="">Selecione</option>
             <script>
               var currentYear = new Date().getFullYear();
