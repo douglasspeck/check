@@ -1,12 +1,26 @@
-function createCircle(el, size, slices) {
+function createCircle(el, size, slices, cx = size / 2, cy = size / 2) {
 // Source: https://codepen.io/hari_shanx/pen/NRyPBz
 
-    cx = size / 2;
-    cy = size / 2;
     r = size / 2 * 0.98;
     slices = slices * 1;
 
-    for (let i = 0; i < slices; i++) {
+    if (slices == 1) {
+
+        let path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+
+        let fromX = cx - r;
+
+        let toX = cx + r;
+
+        let d = 'M ' + fromX + ' ' + cy +' A ' + r + ' ' + r + ' 0 1 0 ' + toX + ' ' + cy + ' A ' + r + ' ' + r + ' 0 1 0 ' + fromX + ' ' + cy;
+
+        path.setAttributeNS(null, "d", d);
+
+        el.appendChild(path);
+
+    }
+
+    else if (slices > 1) for (let i = 0; i < slices; i++) {
 
         let path = document.createElementNS("http://www.w3.org/2000/svg", "path");
 
@@ -26,6 +40,8 @@ function createCircle(el, size, slices) {
         el.appendChild(path);
 
     }
+
+    else newError(3);
 }
 
 function createRect(el, size, sec, square) {
