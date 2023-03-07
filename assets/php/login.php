@@ -10,7 +10,7 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <script src="https://kit.fontawesome.com/cf6fa412bd.js" crossorigin="anonymous"></script>
 </head>
-<body>
+<body id="login">
   <div class="container">
     <div class="buttonsForm">
       <div class="btnColor"></div>
