@@ -15,57 +15,9 @@
             <h1>Caderno Autocorretivo: Frações</h1>
             <section class="gallery">
 
-                <article>
-                    <figure fill=1 shape="square" size=100 sections=4></figure>
-                    <fraction num=1></fraction>
-                </article>
-
-                <article>
-                    <figure fill=2 shape="rect" size=100 sections=6></figure>
-                    <fraction den=6></fraction>
-                </article>
-
-                <article>
-                    <figure fill=1 shape="triangle" size=100 sections=3></figure>
-                    <fraction num=1></fraction>
-                </article>
-
-                <article>
-                    <figure fill=1 shape="triangle" size=100 sections=6></figure>
-                    <fraction num=1></fraction>
-                </article>
-
-                <article>
-                    <figure paint shape="rect" size=100 sections=6></figure>
-                    <fraction num=1 den=6></fraction>
-                </article>
-
-                <article>
-                    <figure paint shape="triangle" size=100 sections=6></figure>
-                    <fraction num=2 den=6></fraction>
-                </article>
-
-                <article>
-                    <figure paint shape="square" size=100 sections=2></figure>
-                    <fraction num=1 den=2></fraction>
-                </article>
-
-                <article>
-                    <figure paint shape="circle" size=100 sections=3></figure>
-                    <fraction num=1 den=3></fraction>
-                </article>
-
-                <associate>
-                    <first>
-                        <figure fill=1 shape="square" size=100 sections=4></figure>
-                        <figure fill=2 shape="rect" size=100 sections=6></figure>
-                        <figure fill=1 shape="triangle" size=100 sections=3></figure>
-                    </first>
-                    <second>
-                        <fraction num=1 den=4></fraction>
-                        <fraction num=1 den=3></fraction>
-                    </second>
-                </associate>
+                <set figures='{"circles":5}'>
+                    <subset figures='{"circles":2}'></subset>
+                </set>
 
             </section>
 
