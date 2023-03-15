@@ -1,5 +1,6 @@
 <?php
 
+        echo "Hello World";
 
         require_once './assets/php/mysqli/config.php';
         require_once './assets/php/mysqli/db.php';
