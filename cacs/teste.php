@@ -15,7 +15,7 @@
             <h1>Caderno Autocorretivo: Frações</h1>
             <section class="gallery">
 
-                <set figures='{"circles":5}'>
+                <set figures='{"circles":5}' size=200>
                     <subset figures='{"circles":2}'></subset>
                 </set>
 

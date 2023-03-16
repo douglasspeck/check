@@ -23,8 +23,6 @@ function dist(a,b) {
 function createSet(set, id){
     
     let figures = JSON.parse(set.getAttribute('figures'));
-
-    console.log(figures);
     
     let size = set.getAttribute('size');
     size = size ? size : 100; // default
@@ -44,8 +42,8 @@ function createSet(set, id){
     while (circles.length < figures.circles) {
 
         let c = {
-            x: Math.random() * 50 + 25,
-            y: Math.random() * 50 + 25
+            x: Math.random() * size/2 + size/4,
+            y: Math.random() * size/2 + size/4
         }
 
         let overlapping = false;
@@ -76,57 +74,71 @@ function createSet(set, id){
 
     }
 
-    let contour = [];
+    for (i = 1; i < circles.length; i++) {
 
-    for (i = 0; i < circles.length; i++) {
+        let c1 = circles[0];
+        let c2 = circles[i];
 
-        let c = circles[i];
-
-        let n = {
-            x: c.x > center.x ? (size + c.x) * 0.5 : c.x * 0.5,
-            y: c.y > center.y ? (size + c.y) * 0.5 : c.y * 0.5
+        let c0 = {
+            x: (c1.x + c2.x)/2,
+            y: (c1.y + c2.y)/2
         }
 
-        n.deg = Math.atan2(n.y - center.y, n.x - center.x);
+        let deg = Math.atan2((c2.y - c1.y),(c2.x - c1.x));
 
-        contour.push(n);
+        let rx = dist(c1,c2) * 5 / 4;
+        let ry = dist(c1,c2) * 3 / 4;
+
+        let ellipse = document.createElementNS("http://www.w3.org/2000/svg", "ellipse");
+
+        ellipse.setAttributeNS(null, "cx", c0.x);
+        ellipse.setAttributeNS(null, "cy", c0.y);
+        ellipse.setAttributeNS(null, "rx", rx);
+        ellipse.setAttributeNS(null, "ry", ry);
+        ellipse.setAttributeNS(null, "ry", ry);
+        ellipse.setAttributeNS(null, "transform", `rotate(${deg / Math.PI * 180} ${c0.x} ${c0.y})`);
+    
+        svg.appendChild(ellipse);
 
     }
 
-    contour.sort((a,b) => a.deg - b.deg);
-
-    for (i = 0; i < contour.length; i++) {
-
-        let c = contour[i];
-        createCircle(svg, size/20, 1, c.x, c.y);
-
-    }
+    /*
 
     let path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+
+    let d = `M ${ (circles[0].x - circles[1].x) / 2 } ${ (circles[0].y - circles[1].y) / 2 }`;
+
+    for (i = 2; i < circles.length; i++) {
+
+        let c1 = circles[0];
+        let c2 = circles[i];
+
+        let c0 = {
+            x: (c1.x + c2.x)/2,
+            y: (c1.y + c2.y)/2
+        }
+
+        let deg = Math.atan2((c2.y - c1.y),(c2.x - c1.x)) / Math.PI * 180;
+
+        let rx = dist(c1,c2) * 5 / 4;
+        let ry = dist(c1,c2) * 3 / 4;
+
+        d = d + ` A ${rx} ${ry} ${deg} 1 0 `;
+
+        ellipse.setAttributeNS(null, "cx", c0.x);
+        ellipse.setAttributeNS(null, "cy", c0.y);
+        ellipse.setAttributeNS(null, "rx", rx);
+        ellipse.setAttributeNS(null, "ry", ry);
+        ellipse.setAttributeNS(null, "ry", ry);
+        ellipse.setAttributeNS(null, "transform", `rotate(${deg / Math.PI * 180} ${c0.x} ${c0.y})`);
     
-    contour[contour.length] = contour[0];
-    
-    let d = `M ${contour[0].x} ${contour[0].y}`;
-    
-    for (i = 0; i < contour.length-1; i++) {
-        
-        let c1 = contour[i];
-        let c2 = contour[i+1];
-        
-        let c = {
-            x: (c1.x + c2.x)/2 > center.x ? (size * 0.9 + (c1.x + c2.x)/2) * 0.5 : (size * 0.1 + (c1.x + c2.x)/2) * 0.5,
-            y: (c1.y + c2.y)/2 > center.y ? (size * 0.9 + (c1.y + c2.y)/2) * 0.5 : (size * 0.1 + (c1.y + c2.y)/2) * 0.5
-        };
-        
-        d = `${d} Q ${c.x} ${c.y} ${c2.x} ${c2.y}`;
+        path.setAttributeNS(null, "d", d);
         
     }
 
-    d = d + ' Z';
-
-    path.setAttributeNS(null, "d", d);
-
     svg.appendChild(path);
+
+    */
 
     set.after(svg);
     set.remove();
