@@ -8,10 +8,10 @@
             $to_scan .= "../";
         }
         $to_scan .= 'assets/js/';
-        $to_src = '/~fracoes/assets/js/';
+        $to_src = '/~ra260138/assets/js/';
     } else if ($isLocal === 0) {
         $to_scan = 'assets/js/';
-        $to_src = '/~fracoes/assets/js/';
+        $to_src = '/~ra260138/assets/js/';
     } else if (substr_count($link,"/") > 3) {
         $to_scan = "";
         for ($i = 0; $i < substr_count($link, "/") - 3; $i++) {

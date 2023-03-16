@@ -19,7 +19,20 @@
                     <subset figures='{"circles":2}'></subset>
                 </set>
 
+                <associate>
+                    <first>
+                        <figure fill=1 shape="square" sections=4></figure>
+                        <figure fill=1 shape="triangle" sections=3></figure>
+                        <figure paint shape="circle" sections=3></figure>
+                    </first>
+                    <second>
+                        <fraction den=3></fraction>
+                        <fraction num=1 den=4></fraction>
+                    </second>
+                </associate>
+
             </section>
+
 
             <section class="input">
                 <h2>Nova figura</h2>

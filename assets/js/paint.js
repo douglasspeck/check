@@ -15,6 +15,7 @@
 function paint(el) {
 
     let list = el.classList;
+    let painted = false;
 
     if (list.contains("filled")) {
 
@@ -23,8 +24,15 @@ function paint(el) {
     } else {
 
         list.add("filled");
+        painted = true;
 
     }
+
+    register({
+        "input": "paint",
+        "value": painted,
+        "timestamp": Date.now()
+    });
 
 }
 
