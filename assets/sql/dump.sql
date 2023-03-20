@@ -22,6 +22,15 @@ create table if not exists perfil_se (
 	constraint fk_aluno_perfilse foreign key (id_aluno) references aluno (id_aluno)
 ) default charset = utf8
 
+create table if not exists professor (
+	id_professor not null,
+	nome_professor varchar(50) not null,
+	apelido_professor varchar(20) null,
+	email_professor varchar(50) not null unique,
+	senha varchar(64) not null,
+	primary key (id_professor)
+) default charset = utf8
+
 create table if not exists banco_atividades (
 	id_atividade integer not null auto_increment,
 	caderno tinyint unsigned not null,
