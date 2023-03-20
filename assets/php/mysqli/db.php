@@ -1,25 +1,12 @@
 <?php
 
-function connect($db_host, $db_name, $db_user, $db_password){
-    $db = new mysqli($db_host, $db_user, $db_password, $db_name);
-    if($db->connect_error){
-        die("Error connecting to database: \n")
-        . $db->connect_error . "\n"
-        . $db->connect_errno;
-    }
-    return $db;
-}
+require_once "config.php";
 
-function fetchAll(mysqli $db){
-    $data = [];
-    $sql = "SELECT * FROM `aluno`";
-    $results = $db->query($sql);
-    if ($results->num_rows > 0) {
-        while ($row = $results->fetch_assoc()) {
-            $data[] = $row;
-        }
-    }
-    return $data;
+$mysqli = new mysqli($hostname, $usuario, $senha, $bancodedados);
+if ($mysqli->connect_errno) {
+    echo "Falha ao conectar: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
+} else {
+    echo "Conexão realizada com sucesso!";
 }
 
 ?>
