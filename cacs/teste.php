@@ -53,5 +53,6 @@
             <section id="white-canvas" class="gallery"></section>
         </main>
         <?php include '../assets/php/scripts.php' ?>
+        <script src="https://d3js.org/d3.v7.min.js"></script>
     </body>
 </html>
