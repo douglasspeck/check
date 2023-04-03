@@ -16,7 +16,7 @@
             <section class="gallery">
 
                 <set figures='{"circles":8}' size=200>
-                    <subset figures='{"circles":2}'></subset>
+                    <subset figures='{"circles":3}'></subset>
                 </set>
 
             </section>

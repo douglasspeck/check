@@ -1,6 +1,7 @@
 function generateSets() {
 
     let sets = document.getElementsByTagName("set");
+    let subsets = document.getElementsByTagName("subset");
 
     let id = 0;
 
@@ -8,6 +9,14 @@ function generateSets() {
 
         let set = sets[0];
         createSet(set, id);
+        id++;
+
+    }
+
+    while (subsets.length > 0) {
+
+        let subset = subsets[0];
+        createSet(subset, id);
         id++;
 
     }
@@ -118,19 +127,28 @@ function createSet(set, id){
     // Draw the convex hull
     let path = document.createElementNS("http://www.w3.org/2000/svg", "path");
     d = `M ${hull[0].x} ${hull[0].y} Q ${(hull[0].x + hull[1].x) / 2} ${(hull[0].y + hull[1].y) / 2} ${hull[1].x} ${hull[1].y} `;
-    for (let i = 2; i < hull.length; i++) {
-        let controlPoint = {x: (hull[i-1].x + hull[i].x) / 2, y: (hull[i-1].y + hull[i].y) / 2};
-        let dx = controlPoint.x - centroid.x;
-        let dy = controlPoint.y - centroid.y;
-        let rand = Math.random() - 0.3;
-        let length = Math.sqrt(dx * dx + dy * dy);
-        let nx = dx / length * rand;
-        let ny = dy / length * rand;
-        let padding = size / 5;
-        controlPoint.x += nx * padding;
-        controlPoint.y += ny * padding;
-        d += `T ${controlPoint.x} ${controlPoint.y} T ${hull[i].x} ${hull[i].y} `;
-    }
+    
+    for (let i = 2; i <= hull.length; i++) {
+        let segmentLength = Math.sqrt((hull[i-1].x - hull[i % hull.length].x) ** 2 + (hull[i-1].y - hull[i % hull.length].y) ** 2);
+        let numControlPoints = 10;
+    
+        for (let j = 1; j <= numControlPoints; j++) {
+            let controlPoint = {x: hull[i-1].x + j * (hull[i % hull.length].x - hull[i-1].x) / (numControlPoints + 1), 
+                                y: hull[i-1].y + j * (hull[i % hull.length].y - hull[i-1].y) / (numControlPoints + 1)};
+            let dx = controlPoint.x - centroid.x;
+            let dy = controlPoint.y - centroid.y;
+            let rand = Math.random() - 0.3;
+            let length = Math.sqrt(dx * dx + dy * dy);
+            let nx = dx / length * rand;
+            let ny = dy / length * rand;
+            let padding = segmentLength / numControlPoints;
+            controlPoint.x += nx * padding;
+            controlPoint.y += ny * padding;
+            d += `L ${controlPoint.x} ${controlPoint.y} `;
+        }
+    
+        d += `L ${hull[i % hull.length].x} ${hull[i % hull.length].y} `;
+    }    
     d += "Z";
     path.setAttribute("d", d);
     path.setAttribute("fill", "none");
@@ -146,72 +164,6 @@ function createSet(set, id){
         createCircle(svg, size/10, 1, c.x, c.y);
 
     }
-
-    /* for (i = 1; i < circles.length; i++) {
-
-        let c1 = circles[0];
-        let c2 = circles[i];
-
-        let c0 = {
-            x: (c1.x + c2.x)/2,
-            y: (c1.y + c2.y)/2
-        }
-
-        let deg = Math.atan2((c2.y - c1.y),(c2.x - c1.x));
-
-        let rx = dist(c1,c2) * 5 / 4;
-        let ry = dist(c1,c2) * 3 / 4;
-
-        let ellipse = document.createElementNS("http://www.w3.org/2000/svg", "ellipse");
-
-        ellipse.setAttributeNS(null, "cx", c0.x);
-        ellipse.setAttributeNS(null, "cy", c0.y);
-        ellipse.setAttributeNS(null, "rx", rx);
-        ellipse.setAttributeNS(null, "ry", ry);
-        ellipse.setAttributeNS(null, "ry", ry);
-        ellipse.setAttributeNS(null, "transform", `rotate(${deg / Math.PI * 180} ${c0.x} ${c0.y})`);
-    
-        svg.appendChild(ellipse);
-
-    } */
-
-    /*
-
-    let path = document.createElementNS("http://www.w3.org/2000/svg", "path");
-
-    let d = `M ${ (circles[0].x - circles[1].x) / 2 } ${ (circles[0].y - circles[1].y) / 2 }`;
-
-    for (i = 2; i < circles.length; i++) {
-
-        let c1 = circles[0];
-        let c2 = circles[i];
-
-        let c0 = {
-            x: (c1.x + c2.x)/2,
-            y: (c1.y + c2.y)/2
-        }
-
-        let deg = Math.atan2((c2.y - c1.y),(c2.x - c1.x)) / Math.PI * 180;
-
-        let rx = dist(c1,c2) * 5 / 4;
-        let ry = dist(c1,c2) * 3 / 4;
-
-        d = d + ` A ${rx} ${ry} ${deg} 1 0 `;
-
-        ellipse.setAttributeNS(null, "cx", c0.x);
-        ellipse.setAttributeNS(null, "cy", c0.y);
-        ellipse.setAttributeNS(null, "rx", rx);
-        ellipse.setAttributeNS(null, "ry", ry);
-        ellipse.setAttributeNS(null, "ry", ry);
-        ellipse.setAttributeNS(null, "transform", `rotate(${deg / Math.PI * 180} ${c0.x} ${c0.y})`);
-    
-        path.setAttributeNS(null, "d", d);
-        
-    }
-
-    svg.appendChild(path);
-
-    */
 
     set.after(svg);
     set.remove();
