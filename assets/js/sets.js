@@ -52,7 +52,7 @@ function createSet(set, id){
 
             let c0 = circles[i];
 
-            overlapping = dist(c,c0) < size/5 ? true : overlapping;
+            overlapping = dist(c,c0) < size/9 ? true : overlapping;
 
         }
 
@@ -76,7 +76,7 @@ function createSet(set, id){
         }
     }
 
-    hull.push(circles[top]);
+    hull.push({x: circles[top].x, y: circles[top].y});
 
     // Sort the points by polar angle around the lowest point
     circles.sort((a, b) => Math.atan2(a.y - circles[top].y, a.x - circles[top].x) - Math.atan2(b.y - circles[top].y, b.x - circles[top].x));
@@ -85,12 +85,12 @@ function createSet(set, id){
         return (b.x - a.x) * (c.y - a.y) - (b.y - a.y) * (c.x - a.x);
     }
 
-    for (let i = 1; i < circles.length; i++) {
+    for (let i = 0; i < circles.length; i++) {
         // Remove any points that would make the hull concave
         while (hull.length > 1 && cross(hull[hull.length - 2], hull[hull.length - 1], circles[i]) <= 0) {
             hull.pop();
         }
-        hull.push(circles[i]);
+        hull.push({x: circles[i].x, y: circles[i].y});
     }
 
     // Calculate the centroid of the hull
@@ -117,11 +117,21 @@ function createSet(set, id){
 
     // Draw the convex hull
     let path = document.createElementNS("http://www.w3.org/2000/svg", "path");
-    let d = `M ${hull[0].x} ${hull[0].y}`;
-    for (let i = 1; i < hull.length; i++) {
-        d += ` L ${hull[i].x} ${hull[i].y}`;
+    d = `M ${hull[0].x} ${hull[0].y} Q ${(hull[0].x + hull[1].x) / 2} ${(hull[0].y + hull[1].y) / 2} ${hull[1].x} ${hull[1].y} `;
+    for (let i = 2; i < hull.length; i++) {
+        let controlPoint = {x: (hull[i-1].x + hull[i].x) / 2, y: (hull[i-1].y + hull[i].y) / 2};
+        let dx = controlPoint.x - centroid.x;
+        let dy = controlPoint.y - centroid.y;
+        let rand = Math.random() - 0.3;
+        let length = Math.sqrt(dx * dx + dy * dy);
+        let nx = dx / length * rand;
+        let ny = dy / length * rand;
+        let padding = size / 5;
+        controlPoint.x += nx * padding;
+        controlPoint.y += ny * padding;
+        d += `T ${controlPoint.x} ${controlPoint.y} T ${hull[i].x} ${hull[i].y} `;
     }
-    d += " Z";
+    d += "Z";
     path.setAttribute("d", d);
     path.setAttribute("fill", "none");
     path.setAttribute("stroke", "black");

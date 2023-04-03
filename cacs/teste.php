@@ -15,7 +15,7 @@
             <h1>Caderno Autocorretivo: Frações</h1>
             <section class="gallery">
 
-                <set figures='{"circles":5}' size=200>
+                <set figures='{"circles":8}' size=200>
                     <subset figures='{"circles":2}'></subset>
                 </set>
 
@@ -53,6 +53,5 @@
             <section id="white-canvas" class="gallery"></section>
         </main>
         <?php include '../assets/php/scripts.php' ?>
-        <script src="https://d3js.org/d3.v7.min.js"></script>
     </body>
 </html>
