@@ -17,21 +17,20 @@ function connect($db_host, $db_name, $db_user, $db_pass){
 $db = connect($db_host, $db_name, $db_user, $db_pass);
 
 function fetchAll(mysqli $db, $table){
+    $data = [];
     $sql = "SELECT * FROM " . $table;
     $data = $db->query($sql);
-    return $data;
-}
-
-function getSequence(mysqli $db, $notebook, $sequence){
-    $data = [];
-    $sql = "SELECT ('id_activity','parameters') FROM 'activities' WHERE 'notebook' = " . $notebook . " AND 'sequence' = " . $sequence;
-    echo $sql;
-    $results = $db->query($sql);
     if ($results->num_rows > 0) {
         while ($row = $results->fetch_assoc()) {
             $data[] = $row;
         }
     }
+    return $data;
+}
+
+function getSequence(mysqli $db, $notebook, $sequence){
+    $sql = "SELECT ('id_activity','parameters') FROM 'activities' WHERE 'notebook' = " . $notebook . " AND 'sequence' = " . $sequence;
+    $data = $db->query($sql);
     return $data;
 }
 
