@@ -14,7 +14,7 @@ function connect($db_host, $db_name, $db_user, $db_pass){
     return $db;
 }
 
-connect($db_host, $db_name, $db_user, $db_pass);
+$db = connect($db_host, $db_name, $db_user, $db_pass);
 
 function fetchAll(mysqli $db, $table){
     $data = [];
