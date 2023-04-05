@@ -7,7 +7,7 @@
         require_once 'assets/php/mysqli/db.php';
 
         $notebook = isset($_GET['notebook']) ? $_GET['notebook'] : 1;
-        $sequence = isset($_GET['sequence']) ? $_GET['sequence'] : 2;
+        $sequence = isset($_GET['sequence']) ? $_GET['sequence'] : 1;
 
         $title = 'Frações - Sequência ' . $sequence;
         $keywords = 'Check, CACs, Cadernos Auto-corretivos, Frações';
