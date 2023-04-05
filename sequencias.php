@@ -13,10 +13,10 @@
         $title = 'Frações - Sequência ' . $sequence;
         $keywords = 'Check, CACs, Cadernos Auto-corretivos, Frações';
         $resources = [];
-        include '../assets/php/head.php';
+        include 'assets/php/head.php';
     ?>
     <body id="home">
-        <?php include '../assets/php/header.php' ?>
+        <?php include 'assets/php/header.php' ?>
         <main>
             <?php
 
@@ -71,6 +71,6 @@
             ?>
             </section>
         </main>
-        <?php include '../assets/php/scripts.php' ?>
+        <?php include 'assets/php/scripts.php' ?>
     </body>
 </html>
