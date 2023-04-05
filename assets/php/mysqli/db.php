@@ -2,12 +2,19 @@
 
 require_once "config.php";
 
-$mysqli = new mysqli($hostname, $usuario, $senha, $bancodedados);
-if ($mysqli->connect_errno) {
-    echo "<script>console.log('Failed to connect: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error . "');</script>";
-} else {
-    echo "<script>console.log('MySQLi: Succesfully connected!');</script>";
+function connect($db_host, $db_name, $db_user, $db_pass){
+    $db = new mysqli($db_host, $db_user, $db_pass, $db_name);
+    if($db->connect_error){
+        die("<script>console.log('Error connecting to database: \n")
+        . $db->connect_error . "\n"
+        . $db->connect_errno
+        . "');</script>";
+    }
+
+    return $db;
 }
+
+connect($db_host, $db_name, $db_user, $db_pass);
 
 function fetchAll(mysqli $db, $table){
     $data = [];

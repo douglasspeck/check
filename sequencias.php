@@ -4,7 +4,6 @@
         error_reporting(E_ALL);
         ini_set('display_errors', 'On');
 
-        require_once 'assets/php/mysqli/config.php';
         require_once 'assets/php/mysqli/db.php';
 
         $notebook = isset($_GET['notebook']) ? $_GET['notebook'] : 1;
