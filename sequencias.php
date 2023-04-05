@@ -21,9 +21,7 @@
 
                 $data = getSequence($db, $notebook, $sequence);
 
-                echo implode("; ",$data);
-
-                /*echo '<h1>Sequência 1</h1>
+                echo '<h1>Sequência 1</h1>
                 <section class="gallery">';
 
                 for ($i =0; $i < count($data); $i++) {
@@ -67,7 +65,7 @@
 
                 }
 
-                echo '</section>';*/
+                echo '</section>';
 
             ?>
         </main>
