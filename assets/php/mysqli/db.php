@@ -30,7 +30,7 @@ function fetchAll(mysqli $db, $table){
 
 function getSequence(mysqli $db, $notebook, $sequence){
     $data = [];
-    $sql = "SELECT * FROM 'activities' WHERE 'notebook' = " . $notebook . " AND 'sequence' = " . $sequence;
+    $sql = "SELECT * FROM 'activities'";
     $results = $db->query($sql);
     echo $results;
     if ($results->num_rows > 0) {
