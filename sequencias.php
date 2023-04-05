@@ -21,7 +21,7 @@
 
                 $data = getSequence($db, $notebook, $sequence);
 
-                echo $data
+                echo $data;
 
                 /*echo '<h1>Sequência 1</h1>
                 <section class="gallery">';
