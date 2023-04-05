@@ -17,14 +17,8 @@ function connect($db_host, $db_name, $db_user, $db_pass){
 $db = connect($db_host, $db_name, $db_user, $db_pass);
 
 function fetchAll(mysqli $db, $table){
-    $data = [];
     $sql = "SELECT * FROM " . $table;
-    $results = $db->query($sql);
-    if ($results->num_rows > 0) {
-        while ($row = $results->fetch_assoc()) {
-            $data[] = $row;
-        }
-    }
+    $data = $db->query($sql);
     return $data;
 }
 
