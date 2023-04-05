@@ -31,6 +31,7 @@ function fetchAll(mysqli $db, $table){
 function getSequence(mysqli $db, $notebook, $sequence){
     $data = [];
     $sql = "SELECT ('id_activity','parameters') FROM 'activities' WHERE 'notebook' = " . $notebook . " AND 'sequence' = " . $sequence;
+    echo $db;
     $results = $db->query($sql);
     echo $results;
     if ($results->num_rows > 0) {
