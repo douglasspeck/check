@@ -4,8 +4,8 @@
         error_reporting(E_ALL);
         ini_set('display_errors', 'On');
 
-        require_once './mysqli/config.php';
-        require_once './mysqli/db.php';
+        require_once '/mysqli/config.php';
+        require_once '/mysqli/db.php';
 
         $notebook = isset($_GET['notebook']) ? $_GET['notebook'] : 1;
         $sequence = isset($_GET['sequence']) ? $_GET['sequence'] : 2;
