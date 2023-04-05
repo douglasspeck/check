@@ -4,9 +4,9 @@ require_once "config.php";
 
 $mysqli = new mysqli($hostname, $usuario, $senha, $bancodedados);
 if ($mysqli->connect_errno) {
-    echo "Falha ao conectar: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
+    echo "<script>console.log('Falha ao conectar: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error . "');</script>";
 } else {
-    echo "Conexão realizada com sucesso!";
+    echo "<script>console.log('Conexão realizada com sucesso!');</script>";
 }
 
 function fetchAll(mysqli $db, $table){
