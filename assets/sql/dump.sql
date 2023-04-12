@@ -1,49 +1,47 @@
-create table if not exists aluno (
-	id_aluno integer not null auto_increment,
-	nome_aluno varchar(50) not null,
-	nome_usuario varchar(20) not null,
-	email_aluno varchar(50) not null unique,
-	senha varchar(64) not null, -- bcrypt, SHA-256
-	data_cadastro date not null,
-	status boolean,
-	primary key (id_aluno)
+create table if not exists student (
+	id_student integer not null auto_increment,
+	student_name varchar(50) not null,
+	user_name varchar(20) not null,
+	email_student varchar(50) not null unique,
+	password varchar(64) not null,
+	registration_date date not null,
+	email_status boolean,
+	primary key (id_student)
 ) default charset = utf8;
 
-create table if not exists perfil_se (
-	id_perfilse integer not null,
-	id_aluno integer not null,
-	ano_nascimento year(4) not null,
-	sexo ENUM('Feminino', 'Masculino', 'Prefiro não informar') not null,
-	etnia ENUM('Branco', 'Preto', 'Pardo', 'Amarelo', 'Indígena') not null,
-	tipo_instituicao varchar(10) not null,
-	ano_escolar varchar(10) not null,
-	opiniao_desempenho boolean,
-	primary key (id_perfilse),
-	constraint fk_aluno_perfilse foreign key (id_aluno) references aluno (id_aluno)
+create table if not exists profile_se (
+	id_profilese integer not null,
+	id_student integer not null,
+	birth_year year(4) not null,
+	sex ENUM('Feminino', 'Masculino', 'Não-binário', 'Prefiro não informar') not null,
+	ethnicity ENUM('Branco', 'Preto', 'Pardo', 'Amarelo', 'Indígena') not null,
+	institution_type varchar(10) not null,
+	school_year varchar(10) not null,
+	performance_opinion boolean,
+	primary key (id_profilese),
+	constraint fk_student_profilese foreign key (id_student) references student (id_student)
 ) default charset = utf8;
 
-create table if not exists professor (
-	id_professor integer not null,
-	nome_professor varchar(50) not null,
-	apelido_professor varchar(20) null,
-	email_professor varchar(50) not null unique,
-	senha varchar(64) not null,
-	primary key (id_professor)
+create table if not exists teacher (
+	id_teacher integer not null,
+	teacher_name varchar(50) not null,
+	teacher_surname varchar(20) null,
+	email_teacher varchar(50) not null unique,
+	password varchar(64) not null,
+	primary key (id_teacher)
 ) default charset = utf8;
 
-create table if not exists banco_atividades (
-	id_atividade integer not null auto_increment,
-	caderno tinyint unsigned not null,
-	sequencia tinyint unsigned not null,
-	atividade tinyint unsigned not null,
+create table if not exists activities (
+	id_activity integer not null auto_increment,
+	notebook tinyint unsigned not null,
+	sequence tinyint unsigned not null,
+	activity tinyint unsigned not null,
 	item varchar(2) null,
-	exemplo boolean,
-	cod_primeiroelem tinyint unsigned not null,
-	cod_segundoelem tinyint unsigned null,
-	cod_exercicio tinyint unsigned not null,
-	parametros text null, -- ver como armazenar os parametros (sem text)
-	primary key (id_atividade)
+	parameters text null, 
+	primary key (id_activity)
 ) default charset = utf8;
+
+/*
 
 create table if not exists depara_elemento (
 	cod_elemento tinyint unsigned not null,
@@ -107,3 +105,5 @@ insert into depara_exercicio values (124, 'Selecionar Desigualdade');
 insert into depara_exercicio values (125, 'Conjunto de Frações');
 insert into depara_exercicio values (126, 'Seccionar e Hachurar as Figuras e Circular Sinal da Desigualdade');
 insert into depara_exercicio values (127, 'Associar e Selecionar Desigualdades');
+
+*/
