@@ -37,7 +37,7 @@ create table if not exists activities (
 	sequence tinyint unsigned not null,
 	activity tinyint unsigned not null,
 	item varchar(2) null,
-	parameters text null, 
+	parameters json null, 
 	primary key (id_activity)
 ) default charset = utf8;
 
