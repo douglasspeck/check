@@ -2,17 +2,24 @@
 
 require_once "config.php";
 
-$mysqli = new mysqli($hostname, $usuario, $senha, $bancodedados);
-if ($mysqli->connect_errno) {
-    echo "Falha ao conectar: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
-} else {
-    echo "Conexão realizada com sucesso!";
+function connect($db_host, $db_name, $db_user, $db_pass){
+    $db = new mysqli($db_host, $db_user, $db_pass, $db_name);
+    if($db->connect_error){
+        die("<script>console.log('Error connecting to database: \n")
+        . $db->connect_error . "\n"
+        . $db->connect_errno
+        . "');</script>";
+    }
+
+    return $db;
 }
+
+$db = connect($db_host, $db_name, $db_user, $db_pass);
 
 function fetchAll(mysqli $db, $table){
     $data = [];
     $sql = "SELECT * FROM " . $table;
-    $results = $db->query($sql);
+    $data = $db->query($sql);
     if ($results->num_rows > 0) {
         while ($row = $results->fetch_assoc()) {
             $data[] = $row;
@@ -23,7 +30,7 @@ function fetchAll(mysqli $db, $table){
 
 function getSequence(mysqli $db, $notebook, $sequence){
     $data = [];
-    $sql = "SELECT ('id_activities','parameters') FROM 'activities' WHERE 'notebook' = " . $notebook . " AND 'sequence' = " . $sequence;
+    $sql = "SELECT id_activity,parameters FROM activities WHERE notebook = " . $notebook . " AND sequence = " . $sequence;
     $results = $db->query($sql);
     if ($results->num_rows > 0) {
         while ($row = $results->fetch_assoc()) {
