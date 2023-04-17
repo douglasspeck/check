@@ -28,7 +28,7 @@
                 echo '<h1>Sequência 1</h1>
                 <section class="gallery">';
 
-                for ($i = 0; $i < 1; $i++) {
+                for ($i = 0; $i < count($data); $i++) {
 
                     $item = json_decode($data[$i]['parameters'],true);
 
