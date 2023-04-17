@@ -3,18 +3,20 @@
 As atividades possuem uma estrutura geral de objeto na forma:
 
 ```js
-{
+[
     notebook: INT,
     sequence: INT,
     activity: INT,
     [ item: INT ],
-    type: INT,
-    elements: [
-        OBJECT,
-        ...
-    ],
-    [ example: BOOL ]
-}
+    parameters: {
+        type: INT,
+        elements: [
+            OBJECT,
+            ...
+        ],
+        [ example: BOOL ]
+    }
+]
 ```
 
 Além disso, podem ter outros parâmetros relacionados ao tipo de atividade:
