@@ -7,7 +7,7 @@
   font-family: 'poppins', sans-serif;
 }
 
-#login body {
+#login {
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -56,7 +56,7 @@
     font-size: 13px;
 }
 
-.buttonsForm {
+#login .buttonsForm {
   margin-top: 25px;
   position: relative;
   border-radius: 30px;
@@ -101,25 +101,6 @@
   margin-bottom: 15px;
 }
 
-#login .select {
-    height: 36px;
-    background-color: whitesmoke;
-    border-radius: 60px;
-    padding-left: 35px;
-    margin-bottom: 15px;
-}
-
-#login #selectYear {
-    position: relative;
-    outline: none;
-    border-radius: 60px;
-    padding: 0 7px;
-    margin-left: 5px;
-    top: 4px;
-    font-size: 13px;
-    background-color: whitesmoke;
-}
-
 #login button[type="submit"] {
   background: #eb6841;
   color: white;
@@ -137,13 +118,13 @@
     background: #da5229;
 }
 
-#login .divCheck {
+#login .divCheckbox {
   margin: 0 0 5px 5px;
   font-size: 13px;
   color: rgba(0,0,0,0.7);
 }
 
-#login .divCheck2 {
+#login .divCheckbox2 {
     margin: 5px 0 5px 5px;
     font-size: 12px;
     color: rgba(0,0,0,0.7);
@@ -166,41 +147,4 @@
     font-size: 13.7px;
     top: 4px;
     color: rgb(0,0,0,0.6);
-}
-
-#login i {
-    position: absolute;
-    left: 10px;
-    font-size: 15px;
-}
-
-#login .iEmailin {
-    top: 10px;
-}
-
-#login #iPasswordin {
-    top: 61px;
-    font-size: 17px;
-}
-
-#login .iNameup {
-    top: 10px;
-}
-
-#login .iYear {
-    top: 61px;
-}
-
-#login .iEmailup {
-    top: 112px;
-}
-
-#login #iPasswordup {
-    top: 162px;
-    font-size: 17px;
-}
-
-#login #iPasswordup2 {
-    top: 213px;
-    font-size: 17px;
 }

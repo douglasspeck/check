@@ -7,8 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login</title>
   <link rel="stylesheet" href="../css/login.css">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <script src="https://kit.fontawesome.com/cf6fa412bd.js" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
 </head>
 <body id="login">
   <div class="container">
@@ -20,10 +19,10 @@
 
     <form action="" id="signin" method="POST">
       <input type="email" name="email" placeholder="Email" autocomplete="email" required />
-      <i class="fa fa-envelope-o iEmailin"></i>
+      <span class="material-icons-outlined">mail</span>
       <input type="password" name="senha" placeholder="Senha" autocomplete="current-password" required minlength="8" />
-      <i class="material-icons" id="iPasswordin">lock_outline</i>
-      <div class="divCheck">
+      <span class="material-icons-outlined">mail</span>
+      <div class="divCheckbox">
         <input type="checkbox" />
         <span>Lembrar minha senha</span>
       </div>
@@ -33,29 +32,16 @@
 
     <form action="" id="signup" method="POST">
       <input type="text" name="nome_aluno" placeholder="Nome do Aluno" pattern="[A-Za-z'\s+]+" required />
-      <i class="fa fa-user-o iNameup"></i>
-      <div class="select">
-        <i class="fa fa-calendar-o iYear"></i>
-        <label for="ano_nasc">Ano de nascimento:</label>
-        <select id="selectYear" required>
-            <option value="">Selecione</option>
-            <script>
-              var currentYear = new Date().getFullYear();
-              var options = "";
-              for (var i = currentYear; i >= 1920; i--) {
-                options += "<option value='" + i + "'>" + i + "</option>";
-              }
-              document.getElementById("selectYear").innerHTML += options;
-            </script>
-          </select>
-      </div>
+      <span class="material-icons-outlined">person</span>
+      <input type="text" name="nome_usuario" placeholder="Nome de Usuário" pattern="[A-Za-z'\s+]+" required />
+      <span class="material-icons-outlined">alternate_email</span>
       <input type="email" name="email_aluno" placeholder="Email" autocomplete="email" required />
-      <i class="fa fa-envelope-o iEmailup"></i>
+      <span class="material-icons-outlined">mail</span>
       <input type="password" name="password" id="password" placeholder="Senha" autocomplete="current-password" minlength="8" required />
-      <i class="material-icons" id="iPasswordup">lock_outline</i>
+      <span class="material-icons-outlined">lock</span>
       <input type="password" name="confirm" id="confirm" placeholder="Confirmar senha" autocomplete="current-password" required minlength="8" />
-      <i class="material-icons" id="iPasswordup2">lock_outline</i>
-      <div class="divCheck2">
+      <span class="material-icons-outlined">lock</span>
+      <div class="divCheckbox2">
         <input type="checkbox" required />
         <span>Li e concordo com os termos da <a href="https://privacidade.dados.unicamp.br/" target="_blank">Política de Privacidade</a></span>
       </div>
