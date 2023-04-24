@@ -19,3 +19,20 @@ document.querySelector('#btnSignup')
     formSignup.style.left = "25px"
     btnColor.style.left = "110px"
 })
+
+// password validation in sign up
+const password = document.getElementById('password');
+const confirm = document.getElementById('confirm');
+
+function validate(item) {
+    item.setCustomValidity('');
+    item.checkValidity();
+
+    if (item == confirm) {
+        if (item.value === password.value) item.setCustomValidity('');
+        else item.setCustomValidity('As senhas não coincidem.');
+    }
+}
+
+password.addEventListener('input', function(){validate(password)});
+confirm.addEventListener('input', function(){validate(confirm)});
