@@ -1,4 +1,4 @@
-//botão entrar/cadastrar
+//button sign-in/sign-up
 var container = document.querySelector('.container')
 var formSignin = document.querySelector('#signin')
 var formSignup = document.querySelector('#signup')
@@ -20,8 +20,19 @@ document.querySelector('#btnSignup')
     btnColor.style.left = "110px"
 })
 
-//validação de ano de nascimento e senhas
-const selectYear = document.getElementById('selectYear');
+//username validation
+const usernameInput = document.getElementById("username");
+usernameInput.addEventListener("input", function(event) {
+  const regex = /^[a-zA-Z0-9]+$/;
+  if (regex.test(usernameInput.value)) {
+    usernameInput.setCustomValidity("");
+  } else {
+    const errorMessage = "Nome de usuário inválido. Use apenas letras e números sem espaços.";
+    usernameInput.setCustomValidity(errorMessage);
+  }
+});
+
+// password validation in sign up
 const password = document.getElementById('password');
 const confirm = document.getElementById('confirm');
 
@@ -29,18 +40,11 @@ function validate(item) {
     item.setCustomValidity('');
     item.checkValidity();
 
-    if (item == selectYear) {
-        if (selectYear.value === '') {
-          item.setCustomValidity('Selecione um ano de nascimento.');
-        }
-    } else if (item == confirm) {
+    if (item == confirm) {
         if (item.value === password.value) item.setCustomValidity('');
         else item.setCustomValidity('As senhas não coincidem.');
     }
 }
 
-validate(selectYear);
-
-selectYear.addEventListener('input', function(){validate(selectYear)});
 password.addEventListener('input', function(){validate(password)});
 confirm.addEventListener('input', function(){validate(confirm)});
