@@ -65,21 +65,23 @@
 }
 
 #page-login .buttonsForm #btnSignin {
-    cursor: pointer;
-    background: transparent;
-    border: none;
-    font-size: 15px;
-    position: relative;
-    padding: 10px 40px 10px 44px;
+  color: black;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  font-size: 15px;
+  position: relative;
+  padding: 10px 40px 10px 44px;
   }
 
 #page-login .buttonsForm #btnSignup {
-    cursor: pointer;
-    background: transparent;
-    border: none;
-    font-size: 15px;
-    position: relative;
-    padding: 10px 25px 10px 6px;
+  color: black;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  font-size: 15px;
+  position: relative;
+  padding: 10px 25px 10px 6px;
   }
 
 #page-login .btnColor {

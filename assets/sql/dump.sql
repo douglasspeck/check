@@ -1,7 +1,7 @@
 create table if not exists student (
 	id_student integer not null auto_increment,
 	student_name varchar(35) not null,
-	user_name varchar(20) not null,
+	username varchar(20) not null,
 	email_student varchar(50) not null unique,
 	password varchar(64) not null,
 	registration_date date not null,
