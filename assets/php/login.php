@@ -13,21 +13,20 @@ if(isset($_POST['signin']))
   $quant = fetchAll($db, $table, $dataset)->num_rows;
 
   if($quant == 1) {
-
-    echo "Encontrado no banco de dados.";
-    /*$usuario = $sql_query->fetch_assoc();
+    $user = (fetchAll($db, $table, $dataset))->fetch_assoc();
 
     if(!isset($_SESSION)) {
       session_start();
     }
 
-    $_SESSION['id_student'] = $usuario['id_student'];
-    $_SESSION['student_name'] = $usuario['student_name'];*/
+    $_SESSION['id_student'] = $user['id_student'];
+    $_SESSION['student_name'] = $user['student_name'];
+    $_SESSION['username'] = $user['username'];
 
     header("Location: ../../home.php");
 
   } else {
-    echo "Falha ao logar! Email ou senha incorretos.";
+    echo "<a id=\"incorrect\">Falha ao logar! Email ou senha incorretos.<\a>";
   }
 
 }

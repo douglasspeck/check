@@ -1,3 +1,11 @@
+<?php
+
+if(!isset($_SESSION)) {
+    session_start();
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
     <?php
@@ -11,8 +19,8 @@
         <main>
             <section id="profile-section">
                 <section>
-                    <h2>Olá, Marcelo!</h2>
-                    <p>@mfirer - Aluno desde dezembro de 2022.</p>
+                    <h2>Olá, <?php $_SESSION['student_name']?>!</h2>
+                    <p>@<?php $_SESSION['username']?> - Aluno desde dezembro de 2022.</p>
                 </section>
                 <section id="statistics">
                     <article>
