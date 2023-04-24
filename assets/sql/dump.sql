@@ -1,6 +1,6 @@
 create table if not exists student (
 	id_student integer not null auto_increment,
-	student_name varchar(50) not null,
+	student_name varchar(35) not null,
 	user_name varchar(20) not null,
 	email_student varchar(50) not null unique,
 	password varchar(64) not null,
@@ -37,7 +37,7 @@ create table if not exists activities (
 	sequence tinyint unsigned not null,
 	activity tinyint unsigned not null,
 	item varchar(2) null,
-	parameters text null, 
+	parameters json null, 
 	primary key (id_activity)
 ) default charset = utf8;
 
