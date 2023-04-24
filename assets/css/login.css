@@ -1,22 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&family=Roboto:wght@100;300;400;500;700;900&family=Source+Sans+Pro:wght@200;300;400;600;700;900&display=swap');
 
-#login * {
+.page-login * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: 'poppins', sans-serif;
 }
 
-#login {
+#page-login {
   width: 100vw;
   height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: #eeeeee;
+  overflow: hidden;
 }
 
-#login .container {
+#page-login .container {
   background-color: white;
   padding: 6px;
   width: 350px;
@@ -31,21 +32,21 @@
   transition: .3s;
 }
 
-#login form {
+#page-login form {
   position: absolute;
   margin-top: 100px;
-  /*transition: 0.3s;*/
+  transition: 0.3s;
   width: 300px;
   height: 400px;
   display: flex;
   flex-direction: column;
 }
 
-#login button:active {
+#page-login button:active {
   opacity: 0.75;
 }
 
-#login .clear {
+#page-login .clear {
     background-color: transparent;
     border: none;
     margin-top: 10px;
@@ -56,14 +57,14 @@
     font-size: 13px;
 }
 
-#login .buttonsForm {
+#page-login .buttonsForm {
   margin-top: 25px;
   position: relative;
   border-radius: 30px;
   box-shadow: 0 0 7px 0 rgba(0,0,0,0.3);
 }
 
-#login .buttonsForm #btnSignin {
+#page-login .buttonsForm #btnSignin {
     cursor: pointer;
     background: transparent;
     border: none;
@@ -72,7 +73,7 @@
     padding: 10px 40px 10px 44px;
   }
 
-#login .buttonsForm #btnSignup {
+#page-login .buttonsForm #btnSignup {
     cursor: pointer;
     background: transparent;
     border: none;
@@ -81,7 +82,7 @@
     padding: 10px 25px 10px 6px;
   }
 
-#login .btnColor {
+#page-login .btnColor {
   position: absolute;
   width: 130px;
   height: 100%;
@@ -90,7 +91,7 @@
   transition: .3s;
 }
 
-#login input[type="text"], input[type="email"], input[type="password"] {
+#page-login input[type="text"], input[type="email"], input[type="password"] {
   border: none;
   background-color: whitesmoke;
   border-radius: 60px;
@@ -101,7 +102,7 @@
   margin-bottom: 15px;
 }
 
-#login button[type="submit"] {
+#page-login button[type="submit"] {
   background: #eb6841;
   color: white;
   border-radius: 30px;
@@ -114,37 +115,71 @@
   cursor: pointer;
 }
 
-#login button[type="submit"]:hover {
+#page-login button[type="submit"]:hover {
     background: #da5229;
 }
 
-#login .divCheckbox {
+#page-login .divCheckbox {
   margin: 0 0 5px 5px;
   font-size: 13px;
   color: rgba(0,0,0,0.7);
 }
 
-#login .divCheckbox2 {
+#page-login .divCheckbox2 {
     margin: 5px 0 5px 5px;
     font-size: 12px;
     color: rgba(0,0,0,0.7);
   }
 
-#login a {
+#page-login a {
   color: rgba(0, 73, 209, 0.7);
 }
 
-#login #signin {
+#page-login #signin {
   left: 25px;
 }
 
-#login #signup {
+#page-login #signup {
   left: 450px;
 }
 
-#login label {
+#page-login label {
     position: relative;
     font-size: 13.7px;
     top: 4px;
     color: rgb(0,0,0,0.6);
+}
+
+#page-login .material-icons {
+  position: absolute;
+  transform: scale(0.85);
+  left: 7px;
+}
+
+#page-login #mail-signin {
+  top: 6px;
+}
+
+#page-login #lock-signin {
+  top: 57px;
+}
+
+#page-login #person-signup {
+  top: 6px;
+}
+
+#page-login #alternate-signup {
+  top: 57px;
+}
+
+#page-login #mail-signup {
+  top: 108px;
+}
+
+#page-login #lock-signup {
+  top: 159px;
+}
+
+#page-login #lockconfirm-signup {
+  top: 210px;
 }
