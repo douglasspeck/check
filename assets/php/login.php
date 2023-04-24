@@ -12,7 +12,7 @@ if(isset($_POST['signin']))
 
   $quant = count($data);
 
-  if($quant >= 1) {
+  if($quant === 1) {
 
     echo "Encontrado no banco de dados.";
     /*$usuario = $sql_query->fetch_assoc();
