@@ -30,7 +30,6 @@ function fetchAll(mysqli $db, $table, $dataset=0){
             }
         }
     }
-    echo $sql . "<br>";
 
     $data = $db->query($sql);
     if ($results->num_rows > 0) {
@@ -39,7 +38,7 @@ function fetchAll(mysqli $db, $table, $dataset=0){
         }
     }
 
-    print_r($data);
+    echo($data);
 
     return $data;
 }
