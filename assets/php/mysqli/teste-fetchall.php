@@ -33,8 +33,8 @@ function fetchAll($table, $dataset=0){
     echo $sql . "<br>";
 
     $data = $db->query($sql);
-    if ($results->num_rows > 0) {
-        while ($row = $results->fetch_assoc()) {
+    if ($data->num_rows > 0) {
+        while ($row = $data->fetch_assoc()) {
             $data[] = $row;
         }
     }
