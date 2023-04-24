@@ -17,7 +17,7 @@
   overflow: hidden;
 }
 
-#incorrect {
+#page-login .incorrect {
   color: red;
   position: absolute;
   top: 30px;

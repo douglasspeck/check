@@ -19,14 +19,13 @@ if(isset($_POST['signin']))
       session_start();
     }
 
-    $_SESSION['id_student'] = $user['id_student'];
     $_SESSION['student_name'] = $user['student_name'];
     $_SESSION['username'] = $user['username'];
 
     header("Location: ../../home.php");
 
   } else {
-    echo "<a id=\"incorrect\">Falha ao logar! Email ou senha incorretos.";
+    echo "<a class=\"incorrect\">Falha ao logar! Email ou senha incorretos.</a>";
   }
 
 }
@@ -42,6 +41,17 @@ if(isset($_POST['signup']))
   ];
 
   newLine($db, $table, $dataset);
+
+  $user = (fetchAll($db, $table, $dataset))->fetch_assoc();
+
+    if(!isset($_SESSION)) {
+      session_start();
+    }
+
+    $_SESSION['student_name'] = $user['student_name'];
+    $_SESSION['username'] = $user['username'];
+
+    header("Location: ../../home.php");
 }
 
 ?>
