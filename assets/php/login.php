@@ -10,10 +10,7 @@ if(isset($_POST['signin']))
       ['password', $_POST['password1']]
   ];
 
-  $sql_query = $mysqli->query(fetchAll(/*$db, */$table, $dataset));
-  $data = $sql_query->fetch_all(MYSQLI_ASSOC);
   $quant = count($data);
-    
 
   if($quant >= 1) {
 

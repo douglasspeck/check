@@ -18,8 +18,8 @@ $db = connect($db_host, $db_name, $db_user, $db_pass);
 
 // Em fetchAll() o parâmetro $dataset é opicional e não é fornecido para que seja retornado todos os registros
 // Por outro lado, $dataset pode ser um array de elementos na forma ['coluna', $valor] para filtrá-los
-function fetchAll(/*mysqli $db, */$table, $dataset=0){
-    /*$data = [];*/
+function fetchAll(mysqli $db, $table, $dataset=0){
+    $data = [];
     $sql = "SELECT * FROM $table";
     if($dataset ==! 0) {
         $sql = $sql . " WHERE ";
@@ -30,13 +30,13 @@ function fetchAll(/*mysqli $db, */$table, $dataset=0){
             }
         }
     }
-    /*$data = $db->query($sql);
+    $results = $db->query($sql);
     if ($results->num_rows > 0) {
         while ($row = $results->fetch_assoc()) {
             $data[] = $row;
         }
-    }*/
-    return $sql;
+    }
+    return $data;
 }
 
 function getSequence(mysqli $db, $notebook, $sequence){
