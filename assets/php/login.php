@@ -15,23 +15,23 @@ if(isset($_POST['signin']))
   echo $quant;
   print_r($quant);
 
-  if($quant >= 0) {
+  /*if($quant == 0) {
 
     echo "Encontrado no banco de dados.";
-    /*$usuario = $sql_query->fetch_assoc();
+    $usuario = $sql_query->fetch_assoc();
 
     if(!isset($_SESSION)) {
       session_start();
     }
 
     $_SESSION['id_student'] = $usuario['id_student'];
-    $_SESSION['student_name'] = $usuario['student_name'];*/
+    $_SESSION['student_name'] = $usuario['student_name'];
 
     header("Location: ../../home.php");
 
   } else {
     echo "Falha ao logar! Email ou senha incorretos.";
-  }
+  }*/
 
 }
 
