@@ -36,6 +36,7 @@ function fetchAll(mysqli $db, $table, $dataset=0){
             $data[] = $row;
         }
     }
+    return $sql;
     return $data;
 }
 
