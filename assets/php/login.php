@@ -23,7 +23,7 @@ if($quantidade == 1) {
   $_SESSION['id_student'] = $usuario['id_student'];
   $_SESSION['student_name'] = $usuario['student_name'];
 
-  header("Location: home.php");
+  header("Location: ../../home.php");
 
 } else {
   echo "Falha ao logar! Email ou senha incorretos.";
