@@ -16,6 +16,7 @@ $result = newLine($db, $table, $dataset);
 if ($result) {
   echo "Registro adicionado com sucesso!";
 } else {
+  echo $sql;
   die("Erro ao adicionar registro: " . $db->error);
 }
 
