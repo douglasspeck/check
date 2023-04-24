@@ -20,6 +20,18 @@ document.querySelector('#btnSignup')
     btnColor.style.left = "110px"
 })
 
+//username validation
+const usernameInput = document.getElementById("username");
+usernameInput.addEventListener("input", function(event) {
+  const regex = /^[a-zA-Z0-9]+$/;
+  if (regex.test(usernameInput.value)) {
+    usernameInput.setCustomValidity("");
+  } else {
+    const errorMessage = "Nome de usuário inválido. Use apenas letras e números sem espaços.";
+    usernameInput.setCustomValidity(errorMessage);
+  }
+});
+
 // password validation in sign up
 const password = document.getElementById('password');
 const confirm = document.getElementById('confirm');
