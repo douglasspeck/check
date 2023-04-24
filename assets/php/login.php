@@ -2,7 +2,7 @@
 
 require_once 'mysqli/db.php';
 
-if(isset($_POST['signin']))
+if(isset($_POST['signup']))
 {
   $student_name = $_POST['student_name'];
   $user_name = $_POST['username'];
