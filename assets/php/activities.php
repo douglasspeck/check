@@ -8,7 +8,7 @@
             
             foreach ($el['parameters'] as $par) {
 
-                echo ' ' . $par['name'] . '=' . $par['value'];
+                echo ' ' . $par . '=' . $par;
 
             }
 

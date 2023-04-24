@@ -6,7 +6,7 @@
 
         $type       = $activity['type'];
         $elements   = $activity['elements'];
-        $example    = $activity['example'];
+        $example    = isset($activity['example']) ? $activity['example'] : false;
         
         $activities = [
             'fill_gap'
