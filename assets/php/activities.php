@@ -8,7 +8,7 @@
             
             foreach ($el['parameters'] as $par) {
 
-                echo ' ' . $par . '=' . $par;
+                echo ' ' . $par['name'] . '=' . $par['value'];
 
             }
 
@@ -20,9 +20,7 @@
 
     function fill_gap($elements, $ex) {
 
-        //count($elements) != 2 ? err(601) : echo_elements($elements);
-
-        echo_elements($elements);
+        count($elements) != 2 ? err(601) : echo_elements($elements);
 
     }
 
