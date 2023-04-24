@@ -2,6 +2,35 @@
 
 require_once 'mysqli/db.php';
 
+if(isset($_POST['signin']))
+{
+  $email_student = $_POST['email_student'];
+  $password = $_POST['password'];
+
+  $sql_code = "SELECT * FROM student WHERE email_student = '" . $_POST['email_student'] . "' AND password = '" . $_POST['password'] . "'";
+  $sql_query = $mysqli->query($sql_code) or die("Falaha na execução do código SQL: " . $mysqli->error);
+
+  $quantidade = $sql_query->num_rows;
+
+if($quantidade == 1) {
+
+  $usuario = $sql_query->fetch_assoc();
+
+  if(!isset($_SESSION)) {
+    session_start();
+  }
+
+  $_SESSION['id_student'] = $usuario['id_student'];
+  $_SESSION['student_name'] = $usuario['student_name'];
+
+  header("Location: home.php");
+
+} else {
+  echo "Falha ao logar! Email ou senha incorretos.";
+}
+
+}
+
 if(isset($_POST['signup']))
 {
   $table = 'student';
