@@ -37,7 +37,6 @@ function fetchAll(mysqli $db, $table, $dataset=0){
         }
     }
     return $sql;
-    return $data;
 }
 
 function getSequence(mysqli $db, $notebook, $sequence){
