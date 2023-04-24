@@ -18,7 +18,7 @@ $db = connect($db_host, $db_name, $db_user, $db_pass);
 
 // O parâmetro $dataset é opicional e não é fornecido para que seja retornado a tabela com todos os registros
 // Por outro lado, $dataset pode ser um array de elementos na forma ['coluna', $valor]
-function fetchAll($table, $dataset=0){
+function fetchAll(mysqli $db, $table, $dataset=0){
     $data = [];
     $sql = "SELECT * FROM $table";
     if($dataset ==! 0) {
@@ -49,6 +49,6 @@ $dataset = [
     ['password', '123456789'/*$_POST['password']*/]
 ];
 
-fetchAll('student', $dataset);
+fetchAll($db, 'student', $dataset);
 
 ?>
