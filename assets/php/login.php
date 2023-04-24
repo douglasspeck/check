@@ -6,11 +6,11 @@ if(isset($_POST['signin']))
 {
   $table = 'student';
   $dataset = [
-      ['email_student', $_POST['email_student']],
-      ['password', $_POST['password']]
+      ['email_student', $_POST['email_student1']],
+      ['password', $_POST['password1']]
   ];
 
-  $sql_query = $mysqli->query(fetchAll($db, $table, $dataset));
+  $sql_query = $mysqli->query(fetchAll(/*$db, */$table, $dataset));
   $quant = $sql_query->num_rows;
 
   if($quant >= 1) {
@@ -70,7 +70,7 @@ if(isset($_POST['signup']))
     <form action="login.php" id="signin" method="POST">
       <input
         type="email"
-        name="email_student"
+        name="email_student1"
         placeholder="Email"
         autocomplete="email"
         maxlength=50
@@ -78,7 +78,7 @@ if(isset($_POST['signup']))
         <span class="material-icons" id="mail-signin">mail</span>
       <input
         type="password"
-        name="password"
+        name="password1"
         placeholder="Senha"
         autocomplete="current-password"
         required />

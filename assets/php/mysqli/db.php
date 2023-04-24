@@ -18,7 +18,7 @@ $db = connect($db_host, $db_name, $db_user, $db_pass);
 
 // Em fetchAll() o parâmetro $dataset é opicional e não é fornecido para que seja retornado todos os registros
 // Por outro lado, $dataset pode ser um array de elementos na forma ['coluna', $valor] para filtrá-los
-function fetchAll(mysqli $db, $table, $dataset=0){
+function fetchAll(/*mysqli $db, */$table, $dataset=0){
     /*$data = [];*/
     $sql = "SELECT * FROM $table";
     if($dataset ==! 0) {
