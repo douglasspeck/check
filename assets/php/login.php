@@ -9,10 +9,8 @@ if(isset($_POST['signin']))
       ['email_student', $_POST['email_student']],
       ['password', $_POST['password']]
   ];
-  
-  fetchAll($db, $table, $dataset);
 
-  $sql_query = $mysqli->query($sql);
+  $sql_query = $mysqli->query(fetchAll($db, $table, $dataset));
   $quant = $sql_query->num_rows;
 
   if($quant >= 1) {
