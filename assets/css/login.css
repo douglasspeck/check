@@ -17,11 +17,12 @@
   overflow: hidden;
 }
 
-a #incorrect {
-  position: absolute;
-  text-align: center;
-  display: flex;
+#incorrect {
   color: red;
+  position: absolute;
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 #page-login .container {

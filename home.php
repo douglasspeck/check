@@ -19,8 +19,8 @@ if(!isset($_SESSION)) {
         <main>
             <section id="profile-section">
                 <section>
-                    <h2>Olá, <?php $_SESSION['student_name']?>!</h2>
-                    <p>@<?php $_SESSION['username']?> - Aluno desde dezembro de 2022.</p>
+                    <h2>Olá, <?php echo ($_SESSION['student_name'])?>!</h2>
+                    <p>@<?php echo ($_SESSION['username'])?> - Aluno desde dezembro de 2022.</p>
                 </section>
                 <section id="statistics">
                     <article>

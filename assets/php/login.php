@@ -26,7 +26,7 @@ if(isset($_POST['signin']))
     header("Location: ../../home.php");
 
   } else {
-    echo "<a id=\"incorrect\">Falha ao logar! Email ou senha incorretos.<\a>";
+    echo "<a id=\"incorrect\">Falha ao logar! Email ou senha incorretos.";
   }
 
 }

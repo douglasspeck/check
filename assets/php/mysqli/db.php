@@ -36,7 +36,7 @@ function fetchAll(mysqli $db, $table, $dataset=0){
             $data[] = $row;
         }
     }*/
-    return $results
+    return $results // o resultado é a consulta
 ;
 }
 
