@@ -12,14 +12,7 @@ if(isset($_POST['signup']))
     ['password', $_POST['password']],
   ];
 
-$result = newLine($db, $table, $dataset);
-if ($result) {
-  echo "Registro adicionado com sucesso!";
-} else {
-  echo $sql;
-  die("Erro ao adicionar registro: " . $db->error);
-}
-
+  newLine($db, $table, $dataset);
 }
 
 ?>
