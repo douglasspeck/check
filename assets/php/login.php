@@ -4,21 +4,21 @@ require_once 'mysqli/db.php';
 
 if(isset($_POST['signup']))
 {
-  $student_name = $_POST['student_name'];
-  $user_name = $_POST['username'];
-  $email_student = $_POST['email_student'];
-  $password = $_POST['password'];
-  
   $table = 'student';
   $dataset = [
     ['student_name',$_POST['student_name']],
     ['username', $_POST['username']],
     ['email_student', $_POST['email_student']],
     ['password', $_POST['password']],
-    ['registration_date', 'CURDATE()']
   ];
 
-  newLine($db, $table, $dataset);
+$result = newLine($db, $table, $dataset);
+if ($result) {
+  echo "Registro adicionado com sucesso!";
+} else {
+  die("Erro ao adicionar registro: " . $db->error);
+}
+
 }
 
 ?>
