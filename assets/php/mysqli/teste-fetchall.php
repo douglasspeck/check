@@ -30,7 +30,7 @@ function fetchAll($table, $dataset=0){
             }
         }
     }
-    echo $sql;
+    echo $sql . "<br>";
 
     $data = $db->query($sql);
     if ($results->num_rows > 0) {
@@ -38,6 +38,9 @@ function fetchAll($table, $dataset=0){
             $data[] = $row;
         }
     }
+
+    print_r($data);
+
     return $data;
 }
 
