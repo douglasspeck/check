@@ -31,12 +31,13 @@ function fetchAll(mysqli $db, $table, $dataset=0){
         }
     }
     $results = $db->query($sql);
-    if ($results->num_rows > 0) {
+    /*if ($results->num_rows > 0) {
         while ($row = $results->fetch_assoc()) {
             $data[] = $row;
         }
-    }
-    return $data;
+    }*/
+    return $results
+;
 }
 
 function getSequence(mysqli $db, $notebook, $sequence){
