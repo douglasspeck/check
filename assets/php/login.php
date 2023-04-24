@@ -11,7 +11,9 @@ if(isset($_POST['signin']))
   ];
 
   $sql_query = $mysqli->query(fetchAll(/*$db, */$table, $dataset));
-  $quant = $sql_query->num_rows;
+  $data = $sql_query->fetch_all(MYSQLI_ASSOC);
+  $quant = count($data);
+    
 
   if($quant >= 1) {
 
