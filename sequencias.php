@@ -4,6 +4,8 @@
         error_reporting(E_ALL);
         ini_set('display_errors', 'On');
 
+        include 'assets/php/errors.php';
+
         require_once 'assets/php/mysqli/db.php';
 
         $notebook = isset($_GET['notebook']) ? $_GET['notebook'] : 1;
@@ -19,49 +21,18 @@
         <main>
             <?php
 
+                include 'assets/php/create_activity.php';
+
                 $data = getSequence($db, $notebook, $sequence);
 
                 echo '<h1>Sequência 1</h1>
                 <section class="gallery">';
 
-                for ($i =0; $i < count($data); $i++) {
+                for ($i = 0; $i < count($data); $i++) {
 
                     $item = json_decode($data[$i]['parameters'],true);
-    
-                    if (array_key_exists('figure', $item)) {
-    
-                        $fig = $item["figure"];
-    
-                        $figure = '<figure shape=' . $fig['shape'] . ' sections=' . $fig['sections'];
-                        
-                        if (array_key_exists('fill', $fig)) {$figure .= ' fill=' . $fig['fill'];}
-                        if (array_key_exists('paint', $fig)) {$figure .= ' paint';}
-                        
-                        $figure .= '></figure>';
-    
-                        echo $figure;
-    
-                    }
-    
-                    if (array_key_exists('fraction', $item)) {
-    
-                        $fra = $item["fraction"];
-    
-                        $fraction = '<fraction';
-                        
-                        if (array_key_exists('int', $fra)) {$fraction .= ' int=' . $fra['int'];}
-                        
-                        if (array_key_exists('num', $fra)) {$fraction .= ' num=' . $fra['num'];}
-                        
-                        if (array_key_exists('den', $fra)) {$fraction .= ' den=' . $fra['den'];}
-    
-                        $fraction .= '></fraction>';
-    
-                        echo $fraction;
-                    
-                    }
-    
-                    echo '</article>';
+
+                    create_activity($item);
 
                 }
 
@@ -72,3 +43,37 @@
         <?php include 'assets/php/scripts.php' ?>
     </body>
 </html>
+
+<!--
+
+Array (
+
+    [0] => Array (
+        [id_activity] => 1
+        [parameters] => {
+            type:1,
+            elements:[
+                {shape: rect,sections: 2,fill: 1},
+                [{num: 1,den: 2},{num: 5,fill: 2},{num: 8}]
+            ],
+            example: true
+        }
+    )
+    
+    [1] => Array ( [id_activity] => 2 [parameters] => {type:1, elements:[{shape: rect,sections: 3,fill: 1},{num: 1,den: 3}], example: true} )
+    
+    [2] => Array ( [id_activity] => 3 [parameters] => {type:1, elements:[{shape: square,sections: 4,fill: 1},{num: 1}]} )
+    
+    [3] => Array ( [id_activity] => 4 [parameters] => {type:1, elements:[{shape: rect,sections: 5,fill: 1},{num: 1}]} )
+    
+    [4] => Array ( [id_activity] => 5 [parameters] => {type:1, elements:[{shape: rect,sections: 6,fill: 1},{num: 1}]} )
+    
+    [5] => Array ( [id_activity] => 6 [parameters] => {type:1, elements:[{shape: rect,sections: 7,fill: 1},{num: 1}]} )
+    
+    [6] => Array ( [id_activity] => 7 [parameters] => {type:1, elements:[{shape: rect,sections: 8,fill: 1},{num: 1}]} )
+    
+    [7] => Array ( [id_activity] => 8 [parameters] => {type:1, elements:[{shape: square,sections: 9,fill: 1},{num: 1}]} )
+
+)
+
+-->
