@@ -16,9 +16,20 @@ function connect($db_host, $db_name, $db_user, $db_pass){
 
 $db = connect($db_host, $db_name, $db_user, $db_pass);
 
-function fetchAll(mysqli $db, $table){
+// Em fetchAll() o parâmetro $dataset é opicional e não é fornecido para que seja retornado todos os registros
+// Por outro lado, $dataset pode ser um array de elementos na forma ['coluna', $valor] para filtrá-los
+function fetchAll(mysqli $db, $table, $dataset=0){
     $data = [];
-    $sql = "SELECT * FROM " . $table;
+    $sql = "SELECT * FROM $table";
+    if($dataset ==! 0) {
+        $sql = $sql . " WHERE ";
+        for($i = 0; $i < count($dataset); $i++) {
+            $sql = $sql . $dataset[$i][0] . " = '" . $dataset[$i][1] . "'";
+            if ($i < count($dataset) - 1) {
+                $sql = $sql . " AND ";
+            }
+        }
+    }
     $data = $db->query($sql);
     if ($results->num_rows > 0) {
         while ($row = $results->fetch_assoc()) {
