@@ -59,7 +59,11 @@ function newLine(mysqli $db, $table, $dataset) {
     $values = [];
     foreach($dataset as $data) {
       $columns[] = $data[0];
-      $values[] = "'" . $data[1] . "'";
+      if (strpos($data[1], 'mysql_function:') !== false) {
+        $values[] = str_replace('mysql_function:', '', $data[1]);
+      } else {
+        $values[] = "'" . $data[1] . "'";
+      }
     }
     $column_names = implode(',', $columns);
     $column_values = implode(',', $values);

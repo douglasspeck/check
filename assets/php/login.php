@@ -38,6 +38,7 @@ if(isset($_POST['signup']))
     ['username', $_POST['username']],
     ['email_student', $_POST['email_student']],
     ['password', $_POST['password']],
+    ['registration_date', 'mysql_function:CURRENT_DATE']
   ];
 
   newLine($db, $table, $dataset);
