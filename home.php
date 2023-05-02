@@ -4,7 +4,9 @@ if(!isset($_SESSION)) {
     session_start();
 }
 
-$date_formatted = new DateTime($_SESSION['registration_date']);
+$date = new DateTime($_SESSION['registration_date']);
+$formatter = new IntlDateFormatter('pt_BR', IntlDateFormatter::LONG, IntlDateFormatter::NONE);
+$formatter->setPattern("MMMM 'de' y");
 
 ?>
 
@@ -22,7 +24,7 @@ $date_formatted = new DateTime($_SESSION['registration_date']);
             <section id="profile-section">
                 <section>
                     <h2><?php echo "Olá, " . ($_SESSION['student_name']) . "!"?></h2>
-                    <p><?php echo "@" . ($_SESSION['username']) . " - Aluno desde " . $date_formatted->format('F \d\e Y') . "."?></p>
+                    <p><?php echo "@" . ($_SESSION['username']) . " - Aluno desde " . $formatter->format($date) . "."?></p>
                 </section>
                 <section id="statistics">
                     <article>
