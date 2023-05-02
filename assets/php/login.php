@@ -21,6 +21,7 @@ if(isset($_POST['signin']))
 
     $_SESSION['student_name'] = $user['student_name'];
     $_SESSION['username'] = $user['username'];
+    $_SESSION['registration_date'] = $user['registration_date'];
 
     header("Location: ../../home.php");
 
@@ -43,7 +44,7 @@ if(isset($_POST['signup']))
 
   newLine($db, $table, $dataset);
 
-$last_element = array_pop($dataset);
+  $last_element = array_pop($dataset);
 
   $user = (fetchAll($db, $table, $dataset))->fetch_assoc();
 
@@ -53,6 +54,7 @@ $last_element = array_pop($dataset);
 
   $_SESSION['student_name'] = $user['student_name'];
   $_SESSION['username'] = $user['username'];
+  $_SESSION['registration_date'] = $user['registration_date'];
 
   header("Location: ../../home.php");
 }

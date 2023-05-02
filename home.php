@@ -4,6 +4,8 @@ if(!isset($_SESSION)) {
     session_start();
 }
 
+$date_formatted = new DateTime($_SESSION['registration_date']);
+
 ?>
 
 <!DOCTYPE html>
@@ -19,8 +21,8 @@ if(!isset($_SESSION)) {
         <main>
             <section id="profile-section">
                 <section>
-                    <h2>Olá, <?php echo ($_SESSION['student_name'])?>!</h2>
-                    <p>@<?php echo ($_SESSION['username'])?> - Aluno desde dezembro de 2022.</p>
+                    <h2><?php echo "Olá, " . ($_SESSION['student_name']) . "!"?></h2>
+                    <p><?php echo "@" . ($_SESSION['username']) . " - Aluno desde " . $date_formatted->format('F \d\e Y') . "."?></p>
                 </section>
                 <section id="statistics">
                     <article>
