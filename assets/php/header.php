@@ -20,6 +20,7 @@
             <a class="active" href="' . $home . '">Home</a>
             <a href="">Trilhas</a>
             <a href="">Perfil</a>
+            <a href="index.php?logout=true">Sair</a>
         </nav>
     </header>';
 

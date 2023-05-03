@@ -1,16 +1,16 @@
 <?php
 
-if($logged == false) {
-    header("Location: login.php");
-}
-
 if(!isset($_SESSION)) {
     session_start();
 }
 
-$date = new DateTime($_SESSION['registration_date']);
-$formatter = new IntlDateFormatter('pt_BR', IntlDateFormatter::LONG, IntlDateFormatter::NONE);
-$formatter->setPattern("MMMM 'de' y");
+if($_SESSION['logged'] == false) {
+    header("Location: login.php");
+}
+
+$date = $_SESSION['registration_date'];
+//$formatter = new IntlDateFormatter('pt_BR', IntlDateFormatter::LONG, IntlDateFormatter::NONE);
+//$formatter->setPattern("MMMM 'de' y");
 
 ?>
 
@@ -28,7 +28,7 @@ $formatter->setPattern("MMMM 'de' y");
             <section id="profile-section">
                 <section>
                     <h2><?php echo "Olá, " . ($_SESSION['student_name']) . "!"?></h2>
-                    <p><?php echo "@" . ($_SESSION['username']) . " - Aluno desde " . $formatter->format($date) . "."?></p>
+                    <p><?php echo "@" . ($_SESSION['username']) . " - Aluno desde " . $date . "."?></p>
                 </section>
                 <section id="statistics">
                     <article>

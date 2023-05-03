@@ -1,34 +1,43 @@
 <?php
 
-require_once 'mysqli/db.php';
+require_once 'assets/php/mysqli/db.php';
+
+if(!isset($_SESSION)) {
+  session_start();
+}
+
+if($_SESSION['logged'] === true) {
+  header("Location: home.php");
+}
 
 if(isset($_POST['signin']))
 {
   $table = 'student';
   $dataset = [
-      ['email_student', $_POST['email_student1']],
-      ['password', $_POST['password1']]
+    ['email_student', $_POST['email_student1']],
+    ['password', $_POST['password1']]
   ];
-
+  
   $quant = fetchAll($db, $table, $dataset)->num_rows;
-
+  
   if($quant == 1) {
     $user = (fetchAll($db, $table, $dataset))->fetch_assoc();
-
+    
     if(!isset($_SESSION)) {
       session_start();
     }
-
+    
     $_SESSION['student_name'] = $user['student_name'];
     $_SESSION['username'] = $user['username'];
     $_SESSION['registration_date'] = $user['registration_date'];
-
-    header("Location: ../../home.php");
-
+    
+    $_SESSION['logged'] = true;
+    header("Location: home.php");
+    
   } else {
     echo "<a class=\"incorrect\">Falha ao logar! Email ou senha incorretos.</a>";
   }
-
+  
 }
 
 if(isset($_POST['signup']))
@@ -41,22 +50,22 @@ if(isset($_POST['signup']))
     ['password', $_POST['password']],
     ['registration_date', 'mysql_function:CURRENT_DATE']
   ];
-
+  
   newLine($db, $table, $dataset);
-
+  
   $last_element = array_pop($dataset);
-
+  
   $user = (fetchAll($db, $table, $dataset))->fetch_assoc();
-
+  
   if(!isset($_SESSION)) {
     session_start();
   }
-
+  
   $_SESSION['student_name'] = $user['student_name'];
   $_SESSION['username'] = $user['username'];
   $_SESSION['registration_date'] = $user['registration_date'];
-
-  header("Location: ../../home.php");
+  
+  header("Location: home.php");
 }
 
 ?>
@@ -69,7 +78,7 @@ if(isset($_POST['signup']))
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login</title>
-  <link rel="stylesheet" href="../css/login.css">
+  <link rel="stylesheet" href="assets/css/login.css">
   <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet" />
 </head>
 <body class="page-login" id="page-login">
@@ -159,6 +168,6 @@ if(isset($_POST['signup']))
     </form>
   </div>
 
-  <script src="../js/login.js"></script>
+  <script src="assets/js/login.js"></script>
 </body>
 </html>
