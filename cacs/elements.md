@@ -1,5 +1,7 @@
 # Tipos de Elementos
 
+Os elementos são objetos cujas propriedades estão descritas abaixo:
+
 ## Lacunas Numéricas
 
 **``input:``**
@@ -80,6 +82,26 @@
 | ``shape`` | ❌ | Determina a forma da figura. | ``"circle"``, ``"rect"``, ``"square"``, ``"triangle"`` |
 | ``size`` | ❌ | Determina o tamanho da região vetorial (``<svg>``) criada, em *pixels*. || ``width="{INT}px"``, ``height="{INT}px"``, ``viewbox="0 0 {INT} {INT}"`` |
 | ``sections`` | ❌ | Determina o número de seções (``<path>``) em que a figura será dividida. |
+
+---
+
+## Conjuntos de Figuras
+
+```js
+{
+    subset_count: INT,
+    [ style: [BOOL,BOOL,...] ]
+    figures: [
+        {
+            id: INT,
+            shape: INT,
+            fill: INT,
+            location: [...] // Array decomprimento igual a subset_count + 1
+        },
+        ...
+    ]
+}
+```
 
 ---
 

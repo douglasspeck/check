@@ -11,6 +11,6 @@
 
 function homeResumeButton() {
     let resumeButton = document.getElementById("home-resume-button");
-    let activity = "/~fracoes/sequencias/2.php";
+    let activity = "/~fracoes/sequencias.php";
     resumeButton.addEventListener("click",()=>{location.href = activity});
 }

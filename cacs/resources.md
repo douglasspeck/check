@@ -1,23 +1,159 @@
 # Tipos de Recursos
 
-1. **Hachurar Figuras:** Clique em uma seção da figura muda o estado da mesma para ```hachurado```.
+As atividades possuem uma estrutura geral de objeto na forma:
 
-2. **Associar:** Clique em um conjunto + Clique em outro conjunto gera uma conexão.
+```js
+[
+    notebook: INT,
+    sequence: INT,
+    activity: INT,
+    [ item: INT ],
+    parameters: {
+        type: INT,
+        elements: [
+            OBJECT,
+            ...
+        ],
+        [ example: BOOL ]
+    }
+]
+```
 
-3. **Preencher subconjuntos:** Clicar no elemento do conjunto maior seleciona ele como um "pincel". Cada figura sólida deve ter um ID próprio e uma classe (esta última de acordo com o formato). Pelo ID, a função selecionaria ela como pincel, preenchendo o subconjunto selecionado em sequência com uma figura de mesma classe e ID. Após a ação, a figura sólida é hachurada. Ao clicar na figura gerada no subconjunto, a mesma é removida e a figura original tem sua hachura removida.
+Além disso, podem ter outros parâmetros relacionados ao tipo de atividade:
 
-4. **Contornar subconjuntos:** Com base em uma "paleta de padrões", o usuário pode hachurar as figuras de maneiras diferentes, destacando as mesmas em diferentes subconjuntos de acordo com o padrão de sua hachura.
+---
 
-5. **Preencher Lacuna:** Simples lacunas feitas com `<input type="number"/>`. É importante gerar algum tipo de seta ou legenda que associe a lacuna com o objeto a ser contado, incluindo exercícios de *Contar Figuras Sólidas por Conjunto* e *Contar Figuras Sólidas por Tipo*.
-    - Lacunas numéricas
-    - Frações Comuns
-    - Frações Mistas
+## Preencher Lacuna
 
-6. **Preencher Fração por Extenso:** Simples lacunas feitas com `<input type="text"/>`.
+Preencha uma lacuna numérica ou de fração baseada na figura correspondente.
 
-7. **Preencher subconjuntos de acordo com fração:** Com base em uma "paleta de figuras sólidas", o usuário pode preencher os subconjuntos de maneiras diferentes.
+```js
+{
+    ...
+    type: 1,
+    elements: [
+        {...},  // Figura ou Conjunto de Figuras
+        {...}   // Lacuna numérica ou de fração
+    ],
+    ...
+}
+```
 
-8. **Preencher o contorno com subconjuntos de acordo com a fração:** O usuário pode clicar no subconjunto e em seguida no contorno para adicionar um novo subconjunto ao mesmo (tentar incluira a possibilidade de arrastar). Clicar em um subconjunto já adicionado exclui o mesmo.
+---
+
+## Hachurar Figuras
+
+Clique em uma seção da figura muda o estado da mesma para ```hachurado```.
+
+```js
+{
+    ...
+    type: 2,
+    elements: [figura, fraction],
+    ...
+}
+```
+
+---
+
+## Associar
+
+Clique em um conjunto + Clique em outro conjunto gera uma conexão.
+
+```js
+{
+    ...
+    type: 3,
+    elements: [
+        [...],  // primeiro grupo
+        [...]   // segundo grupo
+    ],
+    ...
+}
+```
+
+---
+
+## Contar figuras em subconjuntos
+
+Preencher lacunas numéricas vinculadas a subconjuntos do conjunto principal.
+
+```js
+{
+    ...
+    type: 4,
+    elements: {
+        set: {...},
+        inputs: [
+            {...},  // Lacuna numérica (com ou sem label) ou Subconjunto.
+            ...
+        ]
+    },
+    ...
+}
+```
+
+---
+
+## Formar subconjuntos
+
+Clicando nas figuras do conjunto principal, o usuário copia o formato e estilo de hachura e pode colar sobre os subconjuntos.
+
+```js
+{
+    ...
+    type: 5,
+    elements: {
+        set: {...},
+        inputs: [
+            {...},  // Lacuna numérica (com ou sem label) ou Subconjunto.
+            ...
+        ]
+    },
+    ...
+}
+```
+
+---
+
+## Formar subconjuntos
+
+Clicando nas figuras dos subconjuntos, o usuário copia o estilo de hachura e pode colar sobre os elementos do conjunto principal.
+
+```js
+{
+    ...
+    type: 6,
+    elements: {
+        set: {...},
+        inputs: [
+            {...},  // Lacuna numérica (com ou sem label) ou Subconjunto.
+            ...
+        ]
+    },
+    ...
+}
+```
+
+---
+
+## Preencher Fração por Extenso
+
+Simples lacunas feitas com `<input type="text"/>`.
+
+---
+
+## Preencher subconjuntos de acordo com fração
+
+Com base em uma "paleta de figuras sólidas", o usuário pode preencher os subconjuntos de maneiras diferentes.
+
+---
+
+## Preencher o contorno com subconjuntos de acordo com a fração
+
+O usuário pode clicar no subconjunto e em seguida no contorno para adicionar um novo subconjunto ao mesmo (tentar incluira a possibilidade de arrastar). Clicar em um subconjunto já adicionado exclui o mesmo.
+
+---
 
 - Circular sinal da desigualdade
 - Conjunto de Frações
