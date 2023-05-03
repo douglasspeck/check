@@ -1,5 +1,9 @@
 <?php
 
+if($logged == false) {
+    header("Location: login.php");
+}
+
 if(!isset($_SESSION)) {
     session_start();
 }

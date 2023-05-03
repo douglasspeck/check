@@ -1,1 +1,1 @@
-<?php header("Location: home.php") ?>
+<?php echo 'landing page' ?>
