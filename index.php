@@ -5,8 +5,7 @@
     }
 
     if ($_GET['logout'] == true) {
-        unset($_SESSION['logged']);
-        // We should include a logout function
+        session_destroy();
     }
 
 ?>
