@@ -72,18 +72,15 @@ if(isset($_POST['signup']))
 
   $md5 = md5($_SESSION['id_student']);
 
-  $assunto = 'Confirmação de Email Pendente';
+  $subject = 'Confirmação de Email Pendente';
   $link = 'http://ime.unicamp.br/~fracoes/assets/php/emailconfirm.php?h=' . $md5;
-  $mensagem = '<html><body><div style="color: #333; font-size: 16px; font-family: \'poppins\', sans-serif;">
-  <img src="https://www.ime.unicamp.br/~fracoes/assets/img/check.png" alt="Logo da Plataforma" width="200" height="50"><p>check</p>
-  <p>Olá, ' . $_SESSION['student_name'] . '</p>
-  <p>Seja muito bem-vindo(a)!</p>
-  <p>Clique no botão abaixo para confirmar seu endereço de email.</p>
-  <a href="' . $link . '" style="background-color: #eb6841; color: white; padding: 12px 20px 12px 20px; text-align: center; text-decoration: none; display: inline-block; border-radius: 30px;">Confirmar cadastro</a>
-  </div></body></html>';
-  $header = 'Check Frações';
+  $message = 'Olá, ' . $_SESSION['student_name'] . '
+  Seja muito bem-vindo(a)!
+  Clique no link abaixo para confirmar seu endereço de email.' .
+  $link;
+  $header = 'From: Check Frações - check@email.com';
 
-  mail($_SESSION['email_student'], $assunto, $mensagem, $header);
+  mail($_SESSION['email_student'], $subject, $message, $header);
 
 }
 
