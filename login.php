@@ -13,31 +13,32 @@ if(isset($_SESSION['logged']) && $_SESSION['logged'] === true) {
 if(isset($_POST['signin']))
 {
   $table = 'student';
-  $dataset = [
-    ['email_student', addslashes($_POST['email_student'])],
-    ['password', addslashes($_POST['password'])]
-  ];
   
-  $quant = fetchAll($db, $table, $dataset)->num_rows;
+  $user = fetchAll($db, $table, [['email_student', addslashes($_POST['email_student'])]])->fetch_assoc();
   
-  if($quant == 1) {
-    $user = (fetchAll($db, $table, $dataset))->fetch_assoc();
-    
-    if(!isset($_SESSION)) {
-      session_start();
+  if($user) {
+
+    if(password_verify(addslashes($_POST['password']), $user['password'])) {
+
+      if(!isset($_SESSION)) {
+        session_start();
+      }
+
+      $_SESSION['id_student'] = $user['id_student'];
+      $_SESSION['student_name'] = $user['student_name'];
+      $_SESSION['username'] = $user['username'];
+      $_SESSION['email_student'] = $user['email_student'];
+      $_SESSION['registration_date'] = $user['registration_date'];
+
+      $_SESSION['logged'] = true;
+      header("Location: home.php");
+
+    } else {
+      echo "<a class=\"incorrect\">Senha incorreta</a>";
     }
-    
-    $_SESSION['student_name'] = $user['student_name'];
-    $_SESSION['username'] = $user['username'];
-    $_SESSION['registration_date'] = $user['registration_date'];
-    
-    $_SESSION['logged'] = true;
-    header("Location: home.php");
-    
   } else {
-    echo "<a class=\"incorrect\">Falha ao logar! Email ou senha incorretos.</a>";
+    echo "<a class=\"incorrect\">Email não encontrado</a>";
   }
-  
 }
 
 if(isset($_POST['signup']))
@@ -47,7 +48,7 @@ if(isset($_POST['signup']))
     ['student_name', addslashes($_POST['student_name'])],
     ['username', addslashes($_POST['username'])],
     ['email_student', addslashes($_POST['email_student'])],
-    ['password', addslashes($_POST['password'])],
+    ['password', password_hash($_POST['password'], PASSWORD_DEFAULT)],
     ['registration_date', 'mysql_function:CURRENT_DATE']
   ];
   
