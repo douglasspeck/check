@@ -61,22 +61,27 @@ if(isset($_POST['signup']))
     session_start();
   }
   
+  $_SESSION['id_student'] = $user['id_student'];
   $_SESSION['student_name'] = $user['student_name'];
   $_SESSION['username'] = $user['username'];
-  $_SESSION['registration_date'] = $user['registration_date'];
   $_SESSION['email_student'] = $user['email_student'];
+  $_SESSION['registration_date'] = $user['registration_date'];
   
   $_SESSION['logged'] = true;
   header("Location: home.php");
 
-  $md5 = md5($_SESSION['username']);
+  $md5 = md5($_SESSION['id_student']);
 
   $assunto = 'Confirmação de Email Pendente';
   $link = 'http://ime.unicamp.br/~fracoes/assets/php/emailconfirm.php?h=' . $md5;
-  $mensagem = 'Olá, ' . $_SESSION['student_name'] . '</br>
-    Seja muito bem vindo(a)!</br>
-    Clique no link para confirmar seu cadastro: ' . $link;
-  $header = 'Email enviado por Check';
+  $mensagem = '<html><body><div style="color: #333; font-size: 16px; font-family: \'poppins\', sans-serif;">
+  <img src="assets/img/check.png" alt="Logo da Plataforma" width="200" height="50">
+  <p>Olá, ' . $_SESSION['student_name'] . '</p>
+  <p>Seja muito bem-vindo(a)!</p>
+  <p>Clique no botão abaixo para confirmar seu endereço de email.</p>
+  <a href="' . $link . '" style="background-color: #eb6841; color: white; padding: 12px 20px 12px 20px; text-align: center; text-decoration: none; display: inline-block; border-radius: 30px;">Confirmar cadastro</a>
+  </div></body></html>';
+  $header = 'Check Frações';
 
   mail($_SESSION['email_student'], $assunto, $mensagem, $header);
 
