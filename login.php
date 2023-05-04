@@ -14,8 +14,8 @@ if(isset($_POST['signin']))
 {
   $table = 'student';
   $dataset = [
-    ['email_student', $_POST['email_student']],
-    ['password', $_POST['password']]
+    ['email_student', addslashes($_POST['email_student'])],
+    ['password', addslashes($_POST['password'])]
   ];
   
   $quant = fetchAll($db, $table, $dataset)->num_rows;
@@ -44,10 +44,10 @@ if(isset($_POST['signup']))
 {
   $table = 'student';
   $dataset = [
-    ['student_name',$_POST['student_name']],
-    ['username', $_POST['username']],
-    ['email_student', $_POST['email_student']],
-    ['password', $_POST['password']],
+    ['student_name', addslashes($_POST['student_name'])],
+    ['username', addslashes($_POST['username'])],
+    ['email_student', addslashes($_POST['email_student'])],
+    ['password', addslashes($_POST['password'])],
     ['registration_date', 'mysql_function:CURRENT_DATE']
   ];
   
@@ -75,7 +75,7 @@ if(isset($_POST['signup']))
   $subject = 'Confirmação de Email Pendente';
   $link = 'http://ime.unicamp.br/~fracoes/assets/php/email_confirm.php?h=' . $md5;
   $message = 'Olá, ' . $_SESSION['student_name'] . '
-  
+
   Seja muito bem-vindo(a)!
   Sua conta ' . $_SESSION['username'] . ' foi criada com sucesso.
 
