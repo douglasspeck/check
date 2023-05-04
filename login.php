@@ -75,7 +75,7 @@ if(isset($_POST['signup']))
   $assunto = 'Confirmação de Email Pendente';
   $link = 'http://ime.unicamp.br/~fracoes/assets/php/emailconfirm.php?h=' . $md5;
   $mensagem = '<html><body><div style="color: #333; font-size: 16px; font-family: \'poppins\', sans-serif;">
-  <img src="assets/img/check.png" alt="Logo da Plataforma" width="200" height="50">
+  <img src="https://www.ime.unicamp.br/~fracoes/assets/img/check.png" alt="Logo da Plataforma" width="200" height="50"><p>check</p>
   <p>Olá, ' . $_SESSION['student_name'] . '</p>
   <p>Seja muito bem-vindo(a)!</p>
   <p>Clique no botão abaixo para confirmar seu endereço de email.</p>
