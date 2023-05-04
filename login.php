@@ -64,9 +64,22 @@ if(isset($_POST['signup']))
   $_SESSION['student_name'] = $user['student_name'];
   $_SESSION['username'] = $user['username'];
   $_SESSION['registration_date'] = $user['registration_date'];
+  $_SESSION['email_student'] = $user['email_student'];
   
   $_SESSION['logged'] = true;
   header("Location: home.php");
+
+  $md5 = md5($_SESSION['username']);
+
+  $assunto = 'Confirmação de Email Pendente';
+  $link = 'http://ime.unicamp.br/~fracoes/assets/php/emailconfirm.php?h=' . $md5;
+  $mensagem = 'Olá, ' . $_SESSION['student_name'] . '</br>
+    Seja muito bem vindo(a)!</br>
+    Clique no link para confirmar seu cadastro: ' . $link;
+  $header = 'Email enviado por Check';
+
+  mail($_SESSION['email_student'], $assunto, $mensagem, $header);
+
 }
 
 ?>
