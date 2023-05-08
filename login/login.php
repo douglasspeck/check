@@ -106,6 +106,20 @@ if(isset($_POST['signup-teacher']))
     $_SESSION['logged'] = true;
     header("Location: ../home-teacher.php");
 
+    $md5 = md5($_SESSION['id_teacher']);
+
+    $subject = 'Confirmação de Email Pendente';
+    $link = 'http://ime.unicamp.br/~fracoes/login/emailconfirm.php?h=' . $md5;
+    $message = 'Olá, ' . $_SESSION['teacher_name'] . '
+
+    Seja muito bem-vindo(a)!
+    Sua conta ' . $_SESSION['username'] . ' foi criada com sucesso.
+
+    Clique no link abaixo para confirmar seu endereço de email.' .
+    $link;
+    $header = 'From: Check Frações noreply-check@unicamp.br';
+
+    mail($_SESSION['email_teacher'], $subject, $message, $header);
 
 }
 
