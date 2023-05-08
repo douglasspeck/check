@@ -3,85 +3,111 @@
 require_once '../assets/php/mysqli/db.php';
 
 if(!isset($_SESSION)) {
-  session_start();
+    session_start();
 }
 
 if(isset($_SESSION['logged']) && $_SESSION['logged']) {
-  header("Location: ../home.php");
+    header("Location: ../home.php");
 }
 
 if(isset($_POST['signin']))
 {
-  $table = 'student';
-  $dataset = [
-    ['email_student', addslashes($_POST['email_student'])]
-  ];
+    $table = 'student';
+    $dataset = [
+        ['email_student', addslashes($_POST['email_student'])]
+    ];
 
-  $user = fetchAll($db, $table, $dataset)->fetch_assoc();
-  
-  if($user) {
+    $user = fetchAll($db, $table, $dataset)->fetch_assoc();
+    
+    if($user) {
 
-    if(password_verify(addslashes($_POST['password']), $user['password'])) {
+        if(password_verify(addslashes($_POST['password']), $user['password'])) {
 
-      $_SESSION['id_student'] = $user['id_student'];
-      $_SESSION['student_name'] = $user['student_name'];
-      $_SESSION['username'] = $user['username'];
-      $_SESSION['email_student'] = $user['email_student'];
-      $_SESSION['registration_date'] = $user['registration_date'];
+        $_SESSION['id_student'] = $user['id_student'];
+        $_SESSION['student_name'] = $user['student_name'];
+        $_SESSION['username'] = $user['username'];
+        $_SESSION['email_student'] = $user['email_student'];
+        $_SESSION['registration_date'] = $user['registration_date'];
 
-      $_SESSION['logged'] = true;
-      header("Location: ../home.php");
+        $_SESSION['logged'] = true;
+        header("Location: ../home.php");
 
+        } else {
+        echo "<a class=\"incorrect\">Senha incorreta</a>";
+        }
     } else {
-      echo "<a class=\"incorrect\">Senha incorreta</a>";
+        echo "<a class=\"incorrect\">Usuário ou Email não encontrado</a>";
     }
-  } else {
-    echo "<a class=\"incorrect\">Usuário ou Email não encontrado</a>";
-  }
 }
 
-if(isset($_POST['signup']))
+if(isset($_POST['signup-student']))
 {
-  $table = 'student';
-  $dataset = [
-    ['student_name', addslashes($_POST['student_name'])],
-    ['username', addslashes($_POST['username'])],
-    ['email_student', addslashes($_POST['email_student'])],
-    ['password', password_hash($_POST['password'], PASSWORD_DEFAULT)]
-  ];
-  
-  newLine($db, $table, $dataset);
-  
-  $user = (fetchAll($db, $table, $dataset))->fetch_assoc();
-  
-  $_SESSION['id_student'] = $user['id_student'];
-  $_SESSION['student_name'] = $user['student_name'];
-  $_SESSION['username'] = $user['username'];
-  $_SESSION['email_student'] = $user['email_student'];
-  $_SESSION['registration_date'] = $user['registration_date'];
-  
-  $_SESSION['logged'] = true;
-  header("Location: ../home.php");
+    $table = 'student';
+    $dataset = [
+        ['student_name', addslashes($_POST['student_name'])],
+        ['username', addslashes($_POST['username'])],
+        ['email_student', addslashes($_POST['email_student'])],
+        ['password', password_hash($_POST['password'], PASSWORD_DEFAULT)]
+    ];
+    
+    newLine($db, $table, $dataset);
+    
+    $user = (fetchAll($db, $table, $dataset))->fetch_assoc();
+    
+    $_SESSION['id_student'] = $user['id_student'];
+    $_SESSION['student_name'] = $user['student_name'];
+    $_SESSION['username'] = $user['username'];
+    $_SESSION['email_student'] = $user['email_student'];
+    $_SESSION['registration_date'] = $user['registration_date'];
+    
+    $_SESSION['logged'] = true;
+    header("Location: ../home.php");
 
-  $md5 = md5($_SESSION['id_student']);
+    $md5 = md5($_SESSION['id_student']);
 
-  $subject = 'Confirmação de Email Pendente';
-  $link = 'http://ime.unicamp.br/~fracoes/login/emailconfirm.php?h=' . $md5;
-  $message = 'Olá, ' . $_SESSION['student_name'] . '
+    $subject = 'Confirmação de Email Pendente';
+    $link = 'http://ime.unicamp.br/~fracoes/login/emailconfirm.php?h=' . $md5;
+    $message = 'Olá, ' . $_SESSION['student_name'] . '
 
-  Seja muito bem-vindo(a)!
-  Sua conta ' . $_SESSION['username'] . ' foi criada com sucesso.
+    Seja muito bem-vindo(a)!
+    Sua conta ' . $_SESSION['username'] . ' foi criada com sucesso.
 
-  Clique no link abaixo para confirmar seu endereço de email.' .
-  $link;
-  $header = 'From: Check Frações noreply-check@unicamp.br';
+    Clique no link abaixo para confirmar seu endereço de email.' .
+    $link;
+    $header = 'From: Check Frações noreply-check@unicamp.br';
 
-  mail($_SESSION['email_student'], $subject, $message, $header);
+    mail($_SESSION['email_student'], $subject, $message, $header);
 
 }
 
-// se houver cadastro do professor
-// ............................................
+if(isset($_POST['signup-teacher']))
+{
+    $table = 'teacher';
+    $dataset = [
+        ['teacher_name', addslashes($_POST['teacher_name'])],
+        ['surname', addslashes($_POST['surname'])],
+        ['username', addslashes($_POST['username'])],
+        ['id_teacher', addslashes($_POST['id_teacher'])],
+        ['email_teacher', addslashes($_POST['email_teacher'])],
+        ['password', password_hash($_POST['password'], PASSWORD_DEFAULT)]
+    ];
+
+    newLine($db, $table, $dataset);
+    
+    $user = (fetchAll($db, $table, $dataset))->fetch_assoc();
+
+    $_SESSION['id_teacher'] = $user['id_teacher'];
+    $_SESSION['teacher_name'] = $user['teacher_name'];
+    $_SESSION['surname'] = $user['surname'];
+    $_SESSION['username'] = $user['username'];
+    $_SESSION['email_teacher'] = $user['email_teacher'];
+    $_SESSION['registration_date'] = $user['registration_date'];
+
+    $_SESSION['logged'] = true;
+    header("Location: ../home-teacher.php");
+
+
+}
 
 ?>
 
@@ -220,7 +246,7 @@ if(isset($_POST['signup']))
                 />
                 <span>Li e concordo com os termos da <a href="https://privacidade.dados.unicamp.br/" tabindex="-1" target="_blank">Política de Privacidade</a></span>
             </div>
-            <button type="submit" tabindex="-1" name="signup">Cadastrar-se</button>
+            <button type="submit" tabindex="-1" name="signup-student">Cadastrar-se</button>
             <div class="signin-link">
                 <p>Já é cadastrado? <div class="other-form" id="enter-account1">Fazer Login</div></p>
             </div>
@@ -268,8 +294,8 @@ if(isset($_POST['signup']))
         <div>
             <input
                 type="text"
-                id="cod_teacher"
-                name="cod_teacher"
+                id="id_teacher"
+                name="id_teacher"
                 placeholder="Registro do Professor"
                 pattern="[0-9]{10}"
                 maxlength=10
@@ -323,7 +349,7 @@ if(isset($_POST['signup']))
             />
             <span>Li e concordo com os termos da <a href="https://privacidade.dados.unicamp.br/" tabindex="-1" target="_blank">Política de Privacidade</a></span>
         </div>
-        <button type="submit" tabindex="-1" name="signup">Cadastrar-se</button>
+        <button type="submit" tabindex="-1" name="signup-teacher">Cadastrar-se</button>
         <div class="signin-link">
             <p>Já é cadastrado? <div class="other-form" id="enter-account2">Fazer Login</div></p>
         </div>

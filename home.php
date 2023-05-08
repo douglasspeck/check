@@ -8,8 +8,6 @@ if($_SESSION['logged'] == false) {
     header("Location: login/login.php");
 }
 
-$date = $_SESSION['registration_date'];
-
 ?>
 
 <!DOCTYPE html>
