@@ -50,7 +50,6 @@ main {
 }
 
 img {
-    background: url(../IMG/placeholder.jpeg);
     background-size: cover;
     background-position: center;
 }

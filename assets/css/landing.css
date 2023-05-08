@@ -1,0 +1,19 @@
+#landing section {
+    width: 100%;
+    margin: 5vh 0;
+}
+
+#landing section:first-of-type {
+    margin: 0;
+}
+
+#landing h1, #landing h2 {
+    text-align: left;
+    justify-content: left;
+    font-family: Courier;
+    transform: scaleY(1.25);
+    font-weight: 100;
+    font-size: 2em;
+    font-family: 'Courier New', Courier, monospace;
+    margin-bottom: 0.5em;
+}

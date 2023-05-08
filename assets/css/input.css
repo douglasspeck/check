@@ -1,4 +1,4 @@
-input:not([raw]), select:not([raw]), button:not([raw]) {
+input:not([raw]), select:not([raw]), button:not([raw]), .button {
     border-radius: calc(var(--x) * 0.5);
     -moz-appearance: textfield;
     appearance: none;
@@ -25,7 +25,7 @@ input:focus-visible, select:focus-visible {
     outline: none;
 }
 
-button {
+button, .button {
     cursor: pointer;
     background-color: var(--a2);
     color: #fff;
@@ -33,6 +33,7 @@ button {
     padding: calc(var(--x) * 0.5);
 }
 
-button:not(.ir):hover {
+button:not(.ir):hover, .button:hover {
     background-color: var(--a3);
+    color: #fff !important;
 }
