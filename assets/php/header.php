@@ -1,11 +1,15 @@
 <?php
 
+    if(!isset($_SESSION)) {
+        session_start();
+    }
+
     include 'url.php';
 
     if ($isLocal === 1) {
-        $home = "/";
+        $index = "/";
     } else {
-        $home = "/~fracoes";
+        $index = "/~fracoes";
     }
 
     if (substr_count($link,"/") > 4 - $isLocal) {
@@ -15,12 +19,23 @@
     }
 
     echo '<header id="menu">
-        <a id="check" href="' . $home . '">' . file_get_contents($check) . 'check</a>
+        <a id="check" href="' . $index . '">' . file_get_contents($check) . 'check</a>
         <nav>
-            <a class="active" href="' . $home . '">Home</a>
-            <a href="">Trilhas</a>
-            <a href="">Perfil</a>
-            <a href="index.php?logout=true">Sair</a>
+            <a class="active" href="' . $index . '">Home</a>
+            <a href="#sobre">Sobre</a>
+            <a href="#devlog">DevLog</a>
+            <a href="#contato">Contato</a>
+            <details>
+                <summary class="button">Trilhas</summary>
+                <div>';
+    echo $_SESSION['logged'] === true ? '
+                    <a href="sequencias.php">Retomar</a>
+                    <a href="home.php">Painel</a>
+                    <a href="">Perfil</a>
+                    <a href="' . $index . '?logout=true">Logout</a>' : '
+                    <a href="login.php">Login</a>';
+    echo '</div>
+            </details>
         </nav>
     </header>';
 
