@@ -19,6 +19,6 @@
     <title>Document</title>
 </head>
 <body>
-    <a href="login.php">login</a>
+    <a href="login/login.php">login</a>
 </body>
 </html>
