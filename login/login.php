@@ -122,7 +122,7 @@ if(isset($_POST['signup-teacher']))
     $_SESSION['logged'] = true;
     header("Location: ../home-teacher.php");
 
-    $md5 = md5($_SESSION['id_teacher']);
+    /*$md5 = md5($_SESSION['id_teacher']);
 
     $subject = 'Confirmação de Email Pendente';
     $link = 'http://ime.unicamp.br/~fracoes/login/emailconfirm.php?h=' . $md5;
@@ -135,7 +135,7 @@ if(isset($_POST['signup-teacher']))
     $link;
     $header = 'From: Check Frações noreply-check@unicamp.br';
 
-    mail($_SESSION['email_teacher'], $subject, $message, $header);
+    mail($_SESSION['email_teacher'], $subject, $message, $header);*/
 
 }
 
