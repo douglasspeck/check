@@ -12,29 +12,44 @@ if(isset($_SESSION['logged']) && $_SESSION['logged']) {
 
 if(isset($_POST['signin']))
 {
-    $table = 'student';
-    $dataset = [
+    $dataset_student = [
         ['email_student', addslashes($_POST['username_or_email'])],
         ['username', addslashes($_POST['username_or_email'])]
     ];
 
-    $user = fetchAll($db, $table, 0, $dataset)->fetch_assoc();
+    $dataset_teacher = [
+        ['email_teacher', addslashes($_POST['username_or_email'])],
+        ['username', addslashes($_POST['username_or_email'])]
+    ];
+
+    $student = fetchAll($db, 'student', 0, $dataset_student)->fetch_assoc();
+    $teacher = fetchAll($db, 'teacher', 0, $dataset_teacher)->fetch_assoc();
     
-    if($user) {
+    if($student || $teacher) {
 
-        if(password_verify(addslashes($_POST['password']), $user['password'])) {
+        if($student && password_verify(addslashes($_POST['password']), $student['password'])) {
 
-        $_SESSION['id_student'] = $user['id_student'];
-        $_SESSION['student_name'] = $user['student_name'];
-        $_SESSION['username'] = $user['username'];
-        $_SESSION['email_student'] = $user['email_student'];
-        $_SESSION['registration_date'] = $user['registration_date'];
+            $_SESSION['id_student'] = $student['id_student'];
+            $_SESSION['student_name'] = $student['student_name'];
+            $_SESSION['username'] = $student['username'];
+            $_SESSION['email_student'] = $student['email_student'];
+            $_SESSION['registration_date'] = $student['registration_date'];
 
-        $_SESSION['logged'] = true;
-        header("Location: ../home.php");
+            $_SESSION['logged'] = true;
+            header("Location: ../home.php");
+
+        } else if ($teacher && password_verify(addslashes($_POST['password']), $teacher['password'])) {
+            $_SESSION['id_teacher'] = $teacher['id_teacher'];
+            $_SESSION['teacher_name'] = $teacher['teacher_name'];
+            $_SESSION['username'] = $teacher['username'];
+            $_SESSION['email_teacher'] = $teacher['email_teacher'];
+            $_SESSION['registration_date'] = $teacher['registration_date'];
+            
+            $_SESSION['logged'] = true;
+            header("Location: ../home-teacher.php");
 
         } else {
-        echo "<a class=\"incorrect\">Senha incorreta</a>";
+            echo "<a class=\"incorrect\">Senha incorreta</a>";
         }
     } else {
         echo "<a class=\"incorrect\">Usuário ou Email não encontrado</a>";
