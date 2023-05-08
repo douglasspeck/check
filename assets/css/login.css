@@ -1,0 +1,195 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&family=Roboto:wght@100;300;400;500;700;900&family=Source+Sans+Pro:wght@200;300;400;600;700;900&display=swap');
+
+.page-login * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'poppins', sans-serif;
+}
+
+#page-login {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #eeeeee;
+  overflow: hidden;
+}
+
+#page-login .incorrect {
+  color: red;
+  position: absolute;
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+#page-login .container {
+  background-color: white;
+  padding: 6px;
+  width: 350px;
+  height: 345px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  border-radius: 15px;
+  box-shadow: 0px 0px 10px rgba(0,0,0,0.6);
+  transition: .3s;
+}
+
+#page-login form {
+  position: absolute;
+  margin-top: 100px;
+  transition: 0.3s;
+  width: 300px;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+}
+
+#page-login button:active {
+  opacity: 0.75;
+}
+
+#page-login .clear {
+    background-color: transparent;
+    border: none;
+    margin-top: 10px;
+    color: rgba(0,0,0,0.7);
+    text-decoration: underline;
+    display: flex;
+    justify-content: center;
+    font-size: 13px;
+}
+
+#page-login .buttonsForm {
+  margin-top: 25px;
+  position: relative;
+  border-radius: 30px;
+  box-shadow: 0 0 7px 0 rgba(0,0,0,0.3);
+}
+
+#page-login .buttonsForm #btnSignin {
+  color: black;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  font-size: 15px;
+  position: relative;
+  padding: 10px 40px 10px 44px;
+  }
+
+#page-login .buttonsForm #btnSignup {
+  color: black;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  font-size: 15px;
+  position: relative;
+  padding: 10px 25px 10px 6px;
+  }
+
+#page-login .btnColor {
+  position: absolute;
+  width: 130px;
+  height: 100%;
+  background: #edc951;
+  border-radius: 30px;
+  transition: .3s;
+}
+
+#page-login input[type="text"], input[type="email"], input[type="password"] {
+  border: none;
+  background-color: whitesmoke;
+  border-radius: 60px;
+  padding: 8px 0 8px 35px;
+  outline: none;
+  width: 100%;
+  height: 36px;
+  margin-bottom: 15px;
+}
+
+#page-login button[type="submit"] {
+  background: #eb6841;
+  color: white;
+  border-radius: 30px;
+  width: 100%;
+  border: none;
+  outline: none;
+  padding: 8px 0 8px 15px;
+  font-size: 15px;
+  margin-top: 15px;
+  cursor: pointer;
+}
+
+#page-login button[type="submit"]:hover {
+    background: #da5229;
+}
+
+#page-login .divCheckbox {
+  margin: 0 0 5px 5px;
+  font-size: 13px;
+  color: rgba(0,0,0,0.7);
+}
+
+#page-login .divCheckbox2 {
+    margin: 5px 0 5px 5px;
+    font-size: 12px;
+    color: rgba(0,0,0,0.7);
+  }
+
+#page-login a {
+  color: rgba(0, 73, 209, 0.7);
+}
+
+#page-login #signin {
+  left: 25px;
+}
+
+#page-login #signup {
+  left: 450px;
+}
+
+#page-login label {
+    position: relative;
+    font-size: 13.7px;
+    top: 4px;
+    color: rgb(0,0,0,0.6);
+}
+
+#page-login .material-icons {
+  position: absolute;
+  transform: scale(0.85);
+  left: 7px;
+}
+
+#page-login #mail-signin {
+  top: 6px;
+}
+
+#page-login #lock-signin {
+  top: 57px;
+}
+
+#page-login #person-signup {
+  top: 6px;
+}
+
+#page-login #alternate-signup {
+  top: 57px;
+}
+
+#page-login #mail-signup {
+  top: 108px;
+}
+
+#page-login #lock-signup {
+  top: 159px;
+}
+
+#page-login #lockconfirm-signup {
+  top: 210px;
+}

@@ -5,8 +5,12 @@ if(!isset($_SESSION)) {
 }
 
 if($_SESSION['logged'] == false) {
-    header("Location: login/login.php");
+    header("Location: login.php");
 }
+
+$date = $_SESSION['registration_date'];
+//$formatter = new IntlDateFormatter('pt_BR', IntlDateFormatter::LONG, IntlDateFormatter::NONE);
+//$formatter->setPattern("MMMM 'de' y");
 
 ?>
 
@@ -23,12 +27,8 @@ if($_SESSION['logged'] == false) {
         <main>
             <section id="profile-section">
                 <section>
-                    <h2>Olá, <?php echo ($_SESSION['student_name'])?>!</h2>
-                    <script>
-                        var jsDate = new Date("<?php echo $_SESSION['registration_date']; ?>");
-                        var formattedDate = jsDate.toLocaleDateString('pt-BR', { year: 'numeric', month: 'long'});
-                        document.write("@<?php echo $_SESSION['username']?> - Aluno desde " + formattedDate + ".");
-                    </script>
+                    <h2><?php echo "Olá, " . ($_SESSION['student_name']) . "!"?></h2>
+                    <p><?php echo "@" . ($_SESSION['username']) . " - Aluno desde " . $date . "."?></p>
                 </section>
                 <section id="statistics">
                     <article>
