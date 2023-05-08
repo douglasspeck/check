@@ -32,18 +32,18 @@ if($_SESSION['logged'] == false) {
                 </section>
                 <section id="statistics">
                     <article>
-                        <h3>atividades concluídas</h3>
-                        <p>14</p>
+                        <h3>------- -------</h3>
+                        <p>--</p>
                         <span class="chart"></span>
                     </article>
                     <article>
-                        <h3>sequências finalizadas</h3>
-                        <p>3</p>
+                        <h3>--------- ---------</h3>
+                        <p>-</p>
                         <span class="chart"></span>
                     </article>
                     <article>
-                        <h3>constância</h3>
-                        <p>2 dias</p>
+                        <h3>-------------</h3>
+                        <p>- ----</p>
                     </article>
                 </section>
             </section>

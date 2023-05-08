@@ -14,10 +14,11 @@ if(isset($_POST['signin']))
 {
     $table = 'student';
     $dataset = [
-        ['email_student', addslashes($_POST['email_student'])]
+        ['email_student', addslashes($_POST['username_or_email'])],
+        ['username', addslashes($_POST['username_or_email'])]
     ];
 
-    $user = fetchAll($db, $table, $dataset)->fetch_assoc();
+    $user = fetchAll($db, $table, 0, $dataset)->fetch_assoc();
     
     if($user) {
 
@@ -143,7 +144,7 @@ if(isset($_POST['signup-teacher']))
             <div>      
                 <input
                     type="text"
-                    name="email_student"
+                    name="username_or_email"
                     placeholder="Usuário ou Email"
                     autocomplete="email"
                     maxlength=50
@@ -180,7 +181,7 @@ if(isset($_POST['signup-teacher']))
             <button type="submit" tabindex="-1" name="signin">Entrar</button>
             <a id="forgotpass-link" tabindex="-1" href="forgotpass.php">Esqueci minha senha</a>
             <div class="signup-link">
-                <p>Não tem uma conta? <div class="other-form" id="create-account">Cadastre-se</div></p>
+                <p>Não tem uma conta?&nbsp;<div class="other-form" id="create-account">Cadastre-se</div></p>
             </div>
         </form>
 
@@ -262,7 +263,7 @@ if(isset($_POST['signup-teacher']))
             </div>
             <button type="submit" tabindex="-1" name="signup-student">Cadastrar-se</button>
             <div class="signin-link">
-                <p>Já é cadastrado? <div class="other-form" id="enter-account1">Fazer Login</div></p>
+                <p>Já é cadastrado?&nbsp;<div class="other-form" id="enter-account1">Fazer Login</div></p>
             </div>
         </form>
 
@@ -365,7 +366,7 @@ if(isset($_POST['signup-teacher']))
         </div>
         <button type="submit" tabindex="-1" name="signup-teacher">Cadastrar-se</button>
         <div class="signin-link">
-            <p>Já é cadastrado? <div class="other-form" id="enter-account2">Fazer Login</div></p>
+            <p>Já é cadastrado?&nbsp;<div class="other-form" id="enter-account2">Fazer Login</div></p>
         </div>
         </div>
         </form>
