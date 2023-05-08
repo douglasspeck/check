@@ -17,15 +17,23 @@ $db = connect($db_host, $db_name, $db_user, $db_pass);
 
 // O parâmetro opcional $dataset é um array de elementos na forma ['coluna', $valor] para busca
 
-function fetchAll(mysqli $db, $table, $dataset=0){
+function fetchAll(mysqli $db, $table, $dataset_and=0, $dataset_or=0){
     $data = [];
     $sql = "SELECT * FROM $table";
-    if($dataset ==! 0) {
+    if($dataset_and ==! 0) {
         $sql = $sql . " WHERE ";
-        for($i = 0; $i < count($dataset); $i++) {
-            $sql = $sql . $dataset[$i][0] . " = '" . $dataset[$i][1] . "'";
-            if ($i < count($dataset) - 1) {
+        for($i = 0; $i < count($dataset_and); $i++) {
+            $sql = $sql . $dataset_and[$i][0] . " = '" . $dataset_and[$i][1] . "'";
+            if ($i < count($dataset_and) - 1) {
                 $sql = $sql . " AND ";
+            }
+        }
+    } else if ($dataset_or ==! 0) {
+        $sql = $sql . " WHERE ";
+        for($i = 0; $i < count($dataset_or); $i++) {
+            $sql = $sql . $dataset_or[$i][0] . " = '" . $dataset_or[$i][1] . "'";
+            if ($i < count($dataset_or) - 1) {
+                $sql = $sql . " OR ";
             }
         }
     }
