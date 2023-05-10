@@ -1,0 +1,218 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&family=Roboto:wght@100;300;400;500;700;900&family=Source+Sans+Pro:wght@200;300;400;600;700;900&display=swap');
+
+.login-page * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'poppins', sans-serif;
+}
+
+#login-page {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #eeeeee;
+    overflow: hidden;
+}
+
+#login-page .incorrect {
+    color: red;
+    position: absolute;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#login-page .form-container {
+    background-color: white;
+    padding: 6px;
+    width: 350px;
+    height: 380px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    border-radius: 15px;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.6);
+    transition: .3s;
+}
+
+#login-page h2 {
+    text-align: center;
+    font-size: 22px;
+    margin: 25px;
+}
+
+#login-page form {
+    position: absolute;
+    transition: .3s;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+}
+
+#login-page #signup-student {
+    margin-top: 100px;
+    left: 450px;
+}
+  
+#login-page #signup-teacher {
+    margin-top: 100px;
+    left: 900px;
+    flex-wrap: wrap;
+}
+
+#login-page input[type="text"], input[type="email"], input[type="password"] {
+    border: none;
+    background-color: whitesmoke;
+    border-radius: 60px;
+    padding: 8px 0 8px 35px;
+    outline: none;
+    width: 300px;
+    height: 36px;
+    margin-bottom: 15px;
+}
+
+#login-page .checkbox {
+    margin: 0 0 5px 5px;
+    font-size: 13px;
+    color: rgba(0,0,0,0.7);
+}
+
+#login-page .checkbox-terms {
+    margin: 5px 0 5px 5px;
+    font-size: 12px;
+    color: rgba(0,0,0,0.7);
+}
+
+#login-page button[type="submit"] {
+    background: #eb6841;
+    color: white;
+    border-radius: 30px;
+    width: 100%;
+    border: none;
+    outline: none;
+    margin-top: 18px;
+    padding: 8px 15px 8px 15px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+#login-page button[type="submit"]:hover {
+    background: #da5229;
+}
+
+#login-page .form-buttons {
+    left: 425px;
+    margin-top: 25px;
+    position: relative;
+    border-radius: 30px;
+    box-shadow: 0 0 7px 0 rgba(0,0,0,0.3);
+    transition: .3s;
+}
+
+#login-page #form-column2 {
+    position: absolute;
+    left: 325px;
+}
+
+#login-page .form-buttons #btn-student {
+    color: black;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    font-size: 15px;
+    position: relative;
+    padding: 10px 40px 10px 44px;
+}
+
+#login-page .form-buttons #btn-teacher {
+    color: black;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    font-size: 15px;
+    position: relative;
+    padding: 10px 25px 10px 6px;
+}
+
+#login-page .btn-color {
+    position: absolute;
+    width: 129px;
+    height: 100%;
+    background: #edc951;
+    border-radius: 30px;
+    transition: .3s;
+}
+
+#login-page #forgotpass-link {
+    background-color: transparent;
+    border: none;
+    margin: 18px;
+    color: rgba(0,0,0,0.7);
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    font-size: 13px;
+}
+
+#login-page #forgotpass-link:hover {
+    text-decoration: underline;
+}
+
+#login-page .signup-link {
+    border: none;
+    color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    font-size: 13px;
+}
+
+#login-page #create-account {
+    color: #eb6841;
+    text-decoration: underline;
+    border: none;
+    background: none;
+}
+
+#login-page #create-account:hover {
+    color: #da5229;
+}
+
+#login-page .signin-link {
+    margin: 18px;
+    border: none;
+    color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    font-size: 13px;
+}
+
+#login-page #enter-account1, #enter-account2 {
+    color: #eb6841;
+    text-decoration: underline;
+    border: none;
+    background: none;
+}
+
+#login-page #enter-account:hover, #enter-account2:hover {
+    color: #da5229;
+}
+
+#login-page .other-form {
+    cursor: pointer;
+}
+
+#login-page a {
+    color: rgba(0, 73, 209, 0.7);
+}
+
+#login-page .material-icons {
+    position: absolute;
+    transform: scale(0.85);
+    left: 7px;
+    margin-top: 6px;
+}

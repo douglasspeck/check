@@ -10,34 +10,35 @@ function connect($db_host, $db_name, $db_user, $db_pass){
         . $db->connect_errno
         . "');</script>";
     }
-
     return $db;
 }
 
 $db = connect($db_host, $db_name, $db_user, $db_pass);
 
-// Em fetchAll() o parâmetro $dataset é opicional e não é fornecido para que seja retornado todos os registros
-// Por outro lado, $dataset pode ser um array de elementos na forma ['coluna', $valor] para filtrá-los
-function fetchAll(mysqli $db, $table, $dataset=0){
+// O parâmetro opcional $dataset é um array de elementos na forma ['coluna', $valor] para busca
+
+function fetchAll(mysqli $db, $table, $dataset_and=0, $dataset_or=0){
     $data = [];
     $sql = "SELECT * FROM $table";
-    if($dataset ==! 0) {
+    if($dataset_and ==! 0) {
         $sql = $sql . " WHERE ";
-        for($i = 0; $i < count($dataset); $i++) {
-            $sql = $sql . $dataset[$i][0] . " = '" . $dataset[$i][1] . "'";
-            if ($i < count($dataset) - 1) {
+        for($i = 0; $i < count($dataset_and); $i++) {
+            $sql = $sql . $dataset_and[$i][0] . " = '" . $dataset_and[$i][1] . "'";
+            if ($i < count($dataset_and) - 1) {
                 $sql = $sql . " AND ";
+            }
+        }
+    } else if ($dataset_or ==! 0) {
+        $sql = $sql . " WHERE ";
+        for($i = 0; $i < count($dataset_or); $i++) {
+            $sql = $sql . $dataset_or[$i][0] . " = '" . $dataset_or[$i][1] . "'";
+            if ($i < count($dataset_or) - 1) {
+                $sql = $sql . " OR ";
             }
         }
     }
     $results = $db->query($sql);
-    /*if ($results->num_rows > 0) {
-        while ($row = $results->fetch_assoc()) {
-            $data[] = $row;
-        }
-    }*/
-    return $results // o resultado é a consulta
-;
+    return $results;
 }
 
 function getSequence(mysqli $db, $notebook, $sequence){
@@ -83,7 +84,7 @@ function update(mysqli $db, $table, $dataset, $id){
     $db->query($sql);
 }
 
-// need update function
+// essa função precisa ser adaptada
 function delete(mysqli $db, $id){
     $sql = "DELETE FROM aula_db.clientes WHERE (`id` = $id)";
     $db->query($sql);
