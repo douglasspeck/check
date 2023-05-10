@@ -10,8 +10,7 @@ if(isset($_SESSION['logged']) && $_SESSION['logged']) {
     header("Location: home.php");
 }
 
-if(isset($_POST['signin']))
-{
+if(isset($_POST['signin'])) {
     $dataset_student = [
         ['email_student', addslashes($_POST['username_or_email'])],
         ['username', addslashes($_POST['username_or_email'])]
@@ -56,17 +55,17 @@ if(isset($_POST['signin']))
     }
 }
 
-if(isset($_POST['signup-student']))
-{
+if(isset($_POST['signup-student'])) {
     $table = 'student';
     $dataset = [
         ['student_name', addslashes($_POST['student_name'])],
         ['username', addslashes($_POST['username'])],
         ['email_student', addslashes($_POST['email_student'])],
-        ['password', password_hash($_POST['password'], PASSWORD_DEFAULT)]
+        ['password', password_hash($_POST['password'], PASSWORD_DEFAULT)],
+        ['registration_date', date('Y-m-d')]
     ];
     
-    newLine($db, $table, $dataset);
+    echo (newLine($db, $table, $dataset));
     
     $user = (fetchAll($db, $table, $dataset))->fetch_assoc();
     
@@ -77,7 +76,7 @@ if(isset($_POST['signup-student']))
     $_SESSION['registration_date'] = $user['registration_date'];
     
     $_SESSION['logged'] = true;
-    header("Location: ../home.php");
+    header("Location: home.php");
 
     $md5 = md5($_SESSION['id_student']);
 
@@ -96,8 +95,7 @@ if(isset($_POST['signup-student']))
 
 }
 
-if(isset($_POST['signup-teacher']))
-{
+if(isset($_POST['signup-teacher'])) {
     $table = 'teacher';
     $dataset = [
         ['teacher_name', addslashes($_POST['teacher_name'])],
