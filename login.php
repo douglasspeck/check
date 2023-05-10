@@ -1,13 +1,13 @@
 <?php
 
-require_once '../assets/php/mysqli/db.php';
+require_once 'assets/php/mysqli/db.php';
 
 if(!isset($_SESSION)) {
     session_start();
 }
 
 if(isset($_SESSION['logged']) && $_SESSION['logged']) {
-    header("Location: ../home.php");
+    header("Location: home.php");
 }
 
 if(isset($_POST['signin']))
