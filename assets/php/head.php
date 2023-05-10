@@ -47,12 +47,12 @@
             <!-- Stylesheets -->
             <link rel="preload" as="style" onload="this.remove();" href="';
             if ($isLocal === 0) {
-                echo '/~ra260138';
+                echo '/~fracoes';
             };
             echo '/assets/php/stylesheets.php?t=' . date('YmdHis') . '" type="text/css">
             <link rel="stylesheet" href="';
             if ($isLocal === 0) {
-                echo '/~ra260138';
+                echo '/~fracoes';
             };
             echo '/assets/php/stylesheets.php?t=' . date('YmdHis') . '" type="text/css">';
 
