@@ -6,7 +6,7 @@
 
     if ($_GET['logout'] == true) {
         session_destroy();
-        header("Location: /");
+        header("Location: /~fracoes");
     }
 
 ?>
