@@ -5,7 +5,7 @@ if(!isset($_SESSION)) {
 }
 
 if($_SESSION['logged'] == false) {
-    header("Location: login/login.php");
+    header("Location: login.php");
 }
 
 ?>

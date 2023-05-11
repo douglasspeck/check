@@ -35,7 +35,7 @@ if(isset($_POST['signin'])) {
             $_SESSION['registration_date'] = $student['registration_date'];
 
             $_SESSION['logged'] = true;
-            header("Location: ../home.php");
+            header("Location: home.php");
 
         } else if ($teacher && password_verify(addslashes($_POST['password']), $teacher['password'])) {
             $_SESSION['id_teacher'] = $teacher['id_teacher'];
@@ -45,7 +45,7 @@ if(isset($_POST['signin'])) {
             $_SESSION['registration_date'] = $teacher['registration_date'];
             
             $_SESSION['logged'] = true;
-            header("Location: ../home-teacher.php");
+            header("Location: home-teacher.php");
 
         } else {
             echo "<a class=\"incorrect\">Senha incorreta</a>";
@@ -81,7 +81,7 @@ if(isset($_POST['signup-student'])) {
     $md5 = md5($_SESSION['id_student']);
 
     $subject = 'Confirmação de Email Pendente';
-    $link = 'http://ime.unicamp.br/~fracoes/login/emailconfirm.php?h=' . $md5;
+    $link = 'http://ime.unicamp.br/~fracoes/emailconfirm.php?h=' . $md5;
     $message = 'Olá, ' . $_SESSION['student_name'] . '
 
     Seja muito bem-vindo(a)!
@@ -89,7 +89,7 @@ if(isset($_POST['signup-student'])) {
 
     Clique no link abaixo para confirmar seu endereço de email.' .
     $link;
-    $header = 'From: Check Frações noreply-check@unicamp.br';
+    $header = 'From: Check Frações noreply@check.com';
 
     mail($_SESSION['email_student'], $subject, $message, $header);
 
@@ -103,7 +103,8 @@ if(isset($_POST['signup-teacher'])) {
         ['username', addslashes($_POST['username'])],
         ['id_teacher', addslashes($_POST['id_teacher'])],
         ['email_teacher', addslashes($_POST['email_teacher'])],
-        ['password', password_hash($_POST['password'], PASSWORD_DEFAULT)]
+        ['password', password_hash($_POST['password'], PASSWORD_DEFAULT)],
+        ['registration_date', date('Y-m-d')]
     ];
 
     newLine($db, $table, $dataset);
@@ -118,12 +119,12 @@ if(isset($_POST['signup-teacher'])) {
     $_SESSION['registration_date'] = $user['registration_date'];
 
     $_SESSION['logged'] = true;
-    header("Location: ../home-teacher.php");
+    header("Location: home-teacher.php");
 
     /*$md5 = md5($_SESSION['id_teacher']);
 
     $subject = 'Confirmação de Email Pendente';
-    $link = 'http://ime.unicamp.br/~fracoes/login/emailconfirm.php?h=' . $md5;
+    $link = 'http://ime.unicamp.br/~fracoes/emailconfirm.php?h=' . $md5;
     $message = 'Olá, ' . $_SESSION['teacher_name'] . '
 
     Seja muito bem-vindo(a)!
@@ -131,7 +132,7 @@ if(isset($_POST['signup-teacher'])) {
 
     Clique no link abaixo para confirmar seu endereço de email.' .
     $link;
-    $header = 'From: Check Frações noreply-check@unicamp.br';
+    $header = 'From: Check Frações noreply@check.com';
 
     mail($_SESSION['email_teacher'], $subject, $message, $header);*/
 

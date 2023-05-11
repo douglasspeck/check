@@ -73,7 +73,7 @@ if(!empty($h) /*&& $student > 0*/) {
     <body class="emailconfirm" id="emailconfirm">
         <div class="container">
             <h1>Confirmação de email realizada com sucesso!</h1>
-            <p>O seu email foi confirmado com sucesso. <a href="../home.php">Clique aqui</a> para acessar a plataforma.</p>
+            <p>O seu email foi confirmado com sucesso. <a href="home.php">Clique aqui</a> para acessar a plataforma.</p>
         </div>
     </body>
     </html>
