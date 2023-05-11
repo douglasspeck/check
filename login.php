@@ -48,10 +48,20 @@ if(isset($_POST['signin'])) {
             header("Location: home-teacher.php");
 
         } else {
-            echo "<a class=\"incorrect\">Senha incorreta</a>";
+            echo '<script>
+            document.addEventListener("DOMContentLoaded", function(event) {
+                const messageError = "Senha incorreta";
+                alertErrorLogin(messageError);
+            });
+            </script>';
         }
     } else {
-        echo "<a class=\"incorrect\">Usuário ou Email não encontrado</a>";
+        echo '<script>
+        document.addEventListener("DOMContentLoaded", function(event) {
+            const messageError = "Usuário ou Email não encontrado";
+            alertErrorLogin(messageError);
+        });
+        </script>';
     }
 }
 

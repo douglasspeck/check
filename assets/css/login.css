@@ -17,12 +17,35 @@
     overflow: hidden;
 }
 
-#login-page .incorrect {
-    color: red;
+#login-page .error-login-message {
     position: absolute;
     top: 30px;
-    left: 50%;
-    transform: translateX(-50%);
+    padding: 6px 30px;
+    background-color: rgba(255, 0, 0, 0.12);
+    color: red;
+    font-size: 14px;
+    border-radius: 3px;
+    animation: slide-top 3s cubic-bezier(0.25, 0.45, 0.45, 0.95) both;
+    
+}
+
+@keyframes slide-top {
+    0% {
+        transform: translateY(-5px);
+        opacity: 0;
+    }
+    5% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    95%{
+        transform: translateY(0);
+        opacity: 1;
+    }
+    100%{
+        transform: translateY(-5px);
+        opacity: 0;
+    }
 }
 
 #login-page .form-container {

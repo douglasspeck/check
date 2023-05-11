@@ -56,6 +56,14 @@ document.querySelector('#enter-account2')
     btnColor.style.left = "0px"
 })
 
+// alert error login
+function alertErrorLogin(messageError) {
+  const message = document.createElement("div");
+  message.classList.add("error-login-message");
+  message.innerText = messageError;
+  document.body.appendChild(message);
+}
+
 // username validation in sign up
 const usernameInput = document.getElementById("username");
 usernameInput.addEventListener("input", function(event) {
