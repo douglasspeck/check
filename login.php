@@ -92,13 +92,15 @@ if(isset($_POST['signup-student'])) {
 
     $subject = 'Confirmação de Email Pendente';
     $link = 'http://ime.unicamp.br/~fracoes/emailconfirm.php?h=' . $md5;
-    $message = 'Olá, ' . $_SESSION['student_name'] . '
+    $message = 
+'Olá, ' . $_SESSION['student_name'] . '
 
-    Seja muito bem-vindo(a)!
-    Sua conta ' . $_SESSION['username'] . ' foi criada com sucesso.
+Seja muito bem-vindo(a)!
+Sua conta @' . $_SESSION['username'] . ' foi criada com sucesso.
 
-    Clique no link abaixo para confirmar seu endereço de email.' .
-    $link;
+Clique no link para confirmar seu endereço de email. 
+
+' . $link;
     $header = 'From: Check Frações noreply@check.com';
 
     mail($_SESSION['email_student'], $subject, $message, $header);
@@ -131,20 +133,22 @@ if(isset($_POST['signup-teacher'])) {
     $_SESSION['logged'] = true;
     header("Location: home-teacher.php");
 
-    /*$md5 = md5($_SESSION['id_teacher']);
+    $md5 = md5($_SESSION['id_teacher']);
 
     $subject = 'Confirmação de Email Pendente';
     $link = 'http://ime.unicamp.br/~fracoes/emailconfirm.php?h=' . $md5;
-    $message = 'Olá, ' . $_SESSION['teacher_name'] . '
+    $message = 
+'Olá, ' . $_SESSION['teacher_name'] . '
 
-    Seja muito bem-vindo(a)!
-    Sua conta ' . $_SESSION['username'] . ' foi criada com sucesso.
+Seja muito bem-vindo(a)!
+Sua conta @' . $_SESSION['username'] . ' foi criada com sucesso.
 
-    Clique no link abaixo para confirmar seu endereço de email.' .
-    $link;
+Clique no link para confirmar seu endereço de email. 
+
+' . $link;
     $header = 'From: Check Frações noreply@check.com';
 
-    mail($_SESSION['email_teacher'], $subject, $message, $header);*/
+    mail($_SESSION['email_teacher'], $subject, $message, $header);
 
 }
 
@@ -175,7 +179,7 @@ if(isset($_POST['signup-teacher'])) {
                     required
                     tabindex="-1"
                 />
-                <span class="material-icons">mail</span>
+                <span class="material-icons">person</span>
             </div>
             <div>
                 <input
