@@ -185,18 +185,13 @@ Clique no link para confirmar seu endereço de email.
                 <input
                     type="password"
                     name="password"
+                    id="password-login"
                     placeholder="Senha"
-
-                    <?php
-                    if(isset($_POST['signin']) && isset($_POST['remember-password'])) {
-                        echo "autocomplete=\"current-password\"";
-                    }
-                    ?>
-
                     required
                     tabindex="-1"
                 />
                 <span class="material-icons">lock</span>
+                <span class="material-icons" id="visibility-icon-login" onclick="showHide('password-login', 'visibility-icon-login')">visibility</span>
             </div>
             <div class="checkbox">
                 <input
@@ -209,7 +204,7 @@ Clique no link para confirmar seu endereço de email.
             <button type="submit" tabindex="-1" name="signin">Entrar</button>
             <a id="forgotpass-link" tabindex="-1" href="forgotpass.php">Esqueci minha senha</a>
             <div class="signup-link">
-                <p>Não tem uma conta?&nbsp;<div class="other-form" id="create-account">Cadastre-se</div></p>
+                <p>Não tem uma conta?&nbsp;<div id="create-account">Cadastre-se</div></p>
             </div>
         </form>
 
@@ -227,6 +222,7 @@ Clique no link para confirmar seu endereço de email.
                     placeholder="Nome do Aluno"
                     pattern="[A-Za-z'\s+]+"
                     maxlength=35
+                    autocomplete="off"
                     required
                     tabindex="-1"
                 />
@@ -240,6 +236,7 @@ Clique no link para confirmar seu endereço de email.
                     placeholder="Nome de Usuário"
                     pattern="^[a-zA-Z0-9_]+$"
                     maxlength=20
+                    autocomplete="off"
                     required
                     tabindex="-1"
                 />
@@ -250,8 +247,8 @@ Clique no link para confirmar seu endereço de email.
                     type="email"
                     name="email_student"
                     placeholder="Email"
-                    autocomplete="email"
                     maxlength=50
+                    autocomplete="off"
                     required
                     tabindex="-1"
                 />
@@ -261,25 +258,27 @@ Clique no link para confirmar seu endereço de email.
                 <input
                     type="password"
                     name="password"
-                    id="password"
+                    id="password-student"
                     placeholder="Senha"
                     minlength="8"
                     required
                     tabindex="-1"
                 />
                 <span class="material-icons">lock</span>
+                <span class="material-icons" id="visibility-icon-student-1" onclick="showHide('password-student', 'visibility-icon-student-1')">visibility</span>
             </div>
             <div>
                 <input
                     type="password"
                     name="password_confirm"
-                    id="confirm"
+                    id="confirm-student"
                     placeholder="Confirmar senha"
                     minlength="8"
                     required
                     tabindex="-1"
                 />
                 <span class="material-icons">lock</span>
+                <span class="material-icons" id="visibility-icon-student-2" onclick="showHide('confirm-student', 'visibility-icon-student-2')">visibility</span>
             </div>  
             <div class="checkbox-terms">
                 <input
@@ -291,12 +290,12 @@ Clique no link para confirmar seu endereço de email.
             </div>
             <button type="submit" tabindex="-1" name="signup-student">Cadastrar-se</button>
             <div class="signin-link">
-                <p>Já é cadastrado?&nbsp;<div class="other-form" id="enter-account1">Fazer Login</div></p>
+                <p>Já é cadastrado?&nbsp;<div id="enter-account-1">Fazer Login</div></p>
             </div>
         </form>
 
         <form action="login.php" id="signup-teacher" method="POST">
-        <div id="form-column1">
+        <div id="form-column-1">
         <div>
             <input 
                 type="text"
@@ -304,6 +303,7 @@ Clique no link para confirmar seu endereço de email.
                 placeholder="Nome do Professor"
                 pattern="[A-Za-z'\s+]+"
                 maxlength=35
+                autocomplete="off"
                 required
                 tabindex="-1"
             />
@@ -317,6 +317,7 @@ Clique no link para confirmar seu endereço de email.
                 placeholder="Apelido (opcional)"
                 pattern="[A-Za-z'\s+]+"
                 maxlength=20
+                autocomplete="off"
                 tabindex="-1"
             />
             <span class="material-icons" id="person2-signup-teacher">person_4</span>
@@ -329,6 +330,7 @@ Clique no link para confirmar seu endereço de email.
                 placeholder="Nome de Usuário"
                 pattern="^[a-zA-Z0-9_]+$"
                 maxlength=20
+                autocomplete="off"
                 required
                 tabindex="-1"
             />
@@ -336,54 +338,43 @@ Clique no link para confirmar seu endereço de email.
         </div>
         <div>
             <input
-                type="text"
-                id="id_teacher"
-                name="id_teacher"
-                placeholder="Registro do Professor"
-                pattern="[0-9]{10}"
-                maxlength=10
-                required
-                tabindex="-1"
-            />
-            <span class="material-icons">pin</span>
-        </div>
-        <div>
-            <input
                 type="email"
                 name="email_teacher"
                 placeholder="Email"
-                autocomplete="email"
                 maxlength=50
+                autocomplete="off"
                 required
                 tabindex="-1"
             />
             <span class="material-icons">mail</span>
         </div>
         </div>
-        <div id="form-column2">
+        <div id="form-column-2">
         <div>
             <input
                 type="password"
                 name="password"
-                id="password"
+                id="password-teacher"
                 placeholder="Senha"
                 minlength="8"
                 required
                 tabindex="-1"
             />
             <span class="material-icons">lock</span>
+            <span class="material-icons" id="visibility-icon-teacher-1" onclick="showHide('password-teacher', 'visibility-icon-teacher-1')">visibility</span>
         </div>
         <div>
             <input
                 type="password"
                 name="password_confirm"
-                id="confirm"
+                id="confirm-teacher"
                 placeholder="Confirmar senha"
                 minlength="8"
                 required
                 tabindex="-1"
             />
             <span class="material-icons">lock</span>
+            <span class="material-icons" id="visibility-icon-teacher-2" onclick="showHide('confirm-teacher', 'visibility-icon-teacher-2')">visibility</span>
         <div class="checkbox-terms">
             <input
                 type="checkbox"
@@ -394,7 +385,7 @@ Clique no link para confirmar seu endereço de email.
         </div>
         <button type="submit" tabindex="-1" name="signup-teacher">Cadastrar-se</button>
         <div class="signin-link">
-            <p>Já é cadastrado?&nbsp;<div class="other-form" id="enter-account2">Fazer Login</div></p>
+            <p>Já é cadastrado?&nbsp;<div id="enter-account-2">Fazer Login</div></p>
         </div>
         </div>
         </form>

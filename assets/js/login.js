@@ -34,7 +34,7 @@ document.querySelector('#btn-teacher')
     btnColor.style.left = "103px"
 })
 
-document.querySelector('#enter-account1')
+document.querySelector('#enter-account-1')
   .addEventListener('click', () => {
     container.style.width = "350px"
     container.style.height = "380px"
@@ -45,7 +45,7 @@ document.querySelector('#enter-account1')
     btnColor.style.left = "0px"
 })
 
-document.querySelector('#enter-account2')
+document.querySelector('#enter-account-2')
   .addEventListener('click', () => {
     container.style.width = "350px"
     container.style.height = "380px"
@@ -64,6 +64,20 @@ function alertErrorLogin(messageError) {
   document.body.appendChild(message);
 }
 
+// show/hide password
+function showHide(id_input, id_icon) {
+  const inputPassword = document.getElementById(id_input);
+  const iconShowPassword = document.getElementById(id_icon);
+  
+  if(inputPassword.type === 'password'){
+    inputPassword.setAttribute('type', 'text');
+    iconShowPassword.innerText = 'visibility_off'
+  } else {
+    inputPassword.setAttribute('type', 'password');
+    iconShowPassword.innerText = 'visibility'
+  }
+}
+
 // username validation in sign up
 const usernameInput = document.getElementById("username");
 usernameInput.addEventListener("input", function(event) {
@@ -77,8 +91,8 @@ usernameInput.addEventListener("input", function(event) {
 });
 
 // password validation in sign up
-const password = document.getElementById('password');
-const confirm = document.getElementById('confirm');
+const password = document.getElementById('password-student');
+const confirm = document.getElementById('confirm-student');
 
 function validate(item) {
     item.setCustomValidity('');
