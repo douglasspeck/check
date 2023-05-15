@@ -4,6 +4,10 @@ require_once 'assets/php/mysqli/db.php';
 
 $h = $_GET['h'];
 
+if(!isset($_SESSION)) {
+    session_start();
+}
+
 if (isset($_SESSION['id_student'])) {
     $table_update = 'student';
     $id_user = 'id_student';
