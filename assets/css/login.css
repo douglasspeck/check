@@ -202,14 +202,14 @@ input[type="password"] {
 #enter-account-1,
 #enter-account-2 {
     color: #eb6841;
-    text-decoration: underline;
     border: none;
     background: none;
 }
 
 #create-account:hover,
-#enter-account1:hover,
-#enter-account2:hover {
+#enter-account-1:hover,
+#enter-account-2:hover {
+    text-decoration: underline;
     color: #da5229;
     cursor: pointer;
 }
@@ -226,35 +226,11 @@ input[type="password"] {
     user-select: none;
 }
 
-#visibility-icon-login {
-    transform: scale(0.7);
-    color: rgba(0, 0, 0, 0.4);
-    margin-top: 6px;
-    left: 265px;
-    cursor: pointer;
-}
-#visibility-icon-student-1 {
-    transform: scale(0.7);
-    color: rgba(0, 0, 0, 0.4);
-    margin-top: 6px;
-    left: 265px;
-    cursor: pointer;
-}
-#visibility-icon-student-2 {
-    transform: scale(0.7);
-    color: rgba(0, 0, 0, 0.4);
-    margin-top: 6px;
-    left: 265px;
-    cursor: pointer;
-}
-#visibility-icon-teacher-1 {
-    transform: scale(0.7);
-    color: rgba(0, 0, 0, 0.4);
-    margin-top: 6px;
-    left: 265px;
-    cursor: pointer;
-}
-#visibility-icon-teacher-2 {
+#visibility-icon-login.material-icons,
+#visibility-icon-student-1.material-icons,
+#visibility-icon-student-2.material-icons,
+#visibility-icon-teacher-1.material-icons,
+#visibility-icon-teacher-2.material-icons {
     transform: scale(0.7);
     color: rgba(0, 0, 0, 0.4);
     margin-top: 6px;
