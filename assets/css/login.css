@@ -89,7 +89,7 @@
     flex-wrap: wrap;
 }
 
-#login-page input[type="text"],
+input[type="text"],
 input[type="email"],
 input[type="password"] {
     border: none;
@@ -189,7 +189,7 @@ input[type="password"] {
     text-decoration: underline;
 }
 
-#login-page .signin-link,
+.signin-link,
 .signup-link {
     border: none;
     color: rgba(0, 0, 0, 0.7);
@@ -198,7 +198,7 @@ input[type="password"] {
     font-size: 13px;
 }
 
-#login-page #create-account,
+#create-account,
 #enter-account-1,
 #enter-account-2 {
     color: #eb6841;
@@ -207,7 +207,7 @@ input[type="password"] {
     background: none;
 }
 
-#login-page #create-account:hover,
+#create-account:hover,
 #enter-account1:hover,
 #enter-account2:hover {
     color: #da5229;
@@ -226,7 +226,7 @@ input[type="password"] {
     user-select: none;
 }
 
-#login-page #visibility-icon-login,
+#visibility-icon-login,
 #visibility-icon-student-1,
 #visibility-icon-student-2,
 #visibility-icon-teacher-1,
