@@ -134,7 +134,6 @@ if(isset($_POST['signup-teacher'])) {
             ['teacher_name', addslashes($_POST['teacher_name'])],
             ['surname', addslashes($_POST['surname'])],
             ['username', addslashes($_POST['username'])],
-            ['id_teacher', addslashes($_POST['id_teacher'])],
             ['email_teacher', addslashes($_POST['email_teacher'])],
             ['password', password_hash($_POST['password'], PASSWORD_DEFAULT)],
             ['registration_date', date('Y-m-d')]
