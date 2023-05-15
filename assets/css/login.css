@@ -23,7 +23,7 @@
     padding: 6px 30px;
     background-color: rgba(255, 0, 0, 0.12);
     color: red;
-    font-size: 14px;
+    font-size: 13px;
     border-radius: 3px;
     animation: slide-top 3s cubic-bezier(0.25, 0.45, 0.45, 0.95) both;
     
@@ -50,6 +50,7 @@
 
 #login-page .form-container {
     background-color: white;
+    top: 20px;
     padding: 6px;
     width: 350px;
     height: 380px;
@@ -103,7 +104,7 @@
 
 #login-page .checkbox {
     margin: 0 0 5px 5px;
-    font-size: 13px;
+    font-size: 12px;
     color: rgba(0,0,0,0.7);
 }
 

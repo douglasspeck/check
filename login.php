@@ -25,9 +25,7 @@ if(isset($_POST['signin'])) {
     $teacher = fetchAll($db, 'teacher', 0, $dataset_teacher)->fetch_assoc();
     
     if($student || $teacher) {
-
         if($student && password_verify(addslashes($_POST['password']), $student['password'])) {
-
             $_SESSION['id_student'] = $student['id_student'];
             $_SESSION['student_name'] = $student['student_name'];
             $_SESSION['username'] = $student['username'];
@@ -67,32 +65,36 @@ if(isset($_POST['signin'])) {
 
 if(isset($_POST['signup-student'])) {
     $table = 'student';
-    $dataset = [
-        ['student_name', addslashes($_POST['student_name'])],
-        ['username', addslashes($_POST['username'])],
-        ['email_student', addslashes($_POST['email_student'])],
-        ['password', password_hash($_POST['password'], PASSWORD_DEFAULT)],
-        ['registration_date', date('Y-m-d')]
-    ];
-    
-    echo (newLine($db, $table, $dataset));
-    
-    $user = (fetchAll($db, $table, $dataset))->fetch_assoc();
-    
-    $_SESSION['id_student'] = $user['id_student'];
-    $_SESSION['student_name'] = $user['student_name'];
-    $_SESSION['username'] = $user['username'];
-    $_SESSION['email_student'] = $user['email_student'];
-    $_SESSION['registration_date'] = $user['registration_date'];
-    
-    $_SESSION['logged'] = true;
-    header("Location: home.php");
+    $username_repeat = (fetchAll($db, $table, [['username', addslashes($_POST['username'])]], 0))->num_rows;
+    $email_repeat = (fetchAll($db, $table, [['email_student', addslashes($_POST['email_student'])]], 0))->num_rows;
 
-    $md5 = md5($_SESSION['id_student']);
+    if($username_repeat === 0 && $email_repeat === 0) {
+        $dataset = [
+            ['student_name', addslashes($_POST['student_name'])],
+            ['username', addslashes($_POST['username'])],
+            ['email_student', addslashes($_POST['email_student'])],
+            ['password', password_hash($_POST['password'], PASSWORD_DEFAULT)],
+            ['registration_date', date('Y-m-d')]
+        ];
+        
+        echo (newLine($db, $table, $dataset));
+        
+        $user = (fetchAll($db, $table, $dataset, 0))->fetch_assoc();
+        
+        $_SESSION['id_student'] = $user['id_student'];
+        $_SESSION['student_name'] = $user['student_name'];
+        $_SESSION['username'] = $user['username'];
+        $_SESSION['email_student'] = $user['email_student'];
+        $_SESSION['registration_date'] = $user['registration_date'];
+        
+        $_SESSION['logged'] = true;
+        header("Location: home.php");
 
-    $subject = 'Confirmação de Email Pendente';
-    $link = 'http://ime.unicamp.br/~fracoes/emailconfirm.php?h=' . $md5;
-    $message = 
+        $md5 = md5($_SESSION['id_student']);
+
+        $subject = 'Confirmação de Email Pendente';
+        $link = 'http://ime.unicamp.br/~fracoes/emailconfirm.php?h=' . $md5;
+        $message = 
 'Olá, ' . $_SESSION['student_name'] . '
 
 Seja muito bem-vindo(a)!
@@ -101,43 +103,62 @@ Sua conta @' . $_SESSION['username'] . ' foi criada com sucesso.
 Clique no link para confirmar seu endereço de email. 
 
 ' . $link;
-    $header = 'From: Check Frações noreply@check.com';
+        $header = 'From: Check Frações noreply@check.com';
 
-    mail($_SESSION['email_student'], $subject, $message, $header);
+        mail($_SESSION['email_student'], $subject, $message, $header);
 
+    } else if ($email_repeat > 0) {
+        echo '<script>
+        document.addEventListener("DOMContentLoaded", function(event) {
+            const messageError = "Email já cadastrado";
+            alertErrorLogin(messageError);
+        });
+        </script>';
+    } else if ($username_repeat > 0) {
+        echo '<script>
+        document.addEventListener("DOMContentLoaded", function(event) {
+            const messageError = "Nome de Usuário indisponível";
+            alertErrorLogin(messageError);
+        });
+        </script>';
+    }
 }
 
 if(isset($_POST['signup-teacher'])) {
     $table = 'teacher';
-    $dataset = [
-        ['teacher_name', addslashes($_POST['teacher_name'])],
-        ['surname', addslashes($_POST['surname'])],
-        ['username', addslashes($_POST['username'])],
-        ['id_teacher', addslashes($_POST['id_teacher'])],
-        ['email_teacher', addslashes($_POST['email_teacher'])],
-        ['password', password_hash($_POST['password'], PASSWORD_DEFAULT)],
-        ['registration_date', date('Y-m-d')]
-    ];
+    $username_repeat = (fetchAll($db, $table, [['username', addslashes($_POST['username'])]], 0))->num_rows;
+    $email_repeat = (fetchAll($db, $table, [['email_teacher', addslashes($_POST['email_teacher'])]], 0))->num_rows;
 
-    newLine($db, $table, $dataset);
-    
-    $user = (fetchAll($db, $table, $dataset))->fetch_assoc();
+    if($username_repeat === 0 && $email_repeat === 0) {
+        $dataset = [
+            ['teacher_name', addslashes($_POST['teacher_name'])],
+            ['surname', addslashes($_POST['surname'])],
+            ['username', addslashes($_POST['username'])],
+            ['id_teacher', addslashes($_POST['id_teacher'])],
+            ['email_teacher', addslashes($_POST['email_teacher'])],
+            ['password', password_hash($_POST['password'], PASSWORD_DEFAULT)],
+            ['registration_date', date('Y-m-d')]
+        ];
 
-    $_SESSION['id_teacher'] = $user['id_teacher'];
-    $_SESSION['teacher_name'] = $user['teacher_name'];
-    $_SESSION['surname'] = $user['surname'];
-    $_SESSION['username'] = $user['username'];
-    $_SESSION['email_teacher'] = $user['email_teacher'];
-    $_SESSION['registration_date'] = $user['registration_date'];
+        newLine($db, $table, $dataset);
+        
+        $user = (fetchAll($db, $table, $dataset, 0))->fetch_assoc();
 
-    $_SESSION['logged'] = true;
-    header("Location: home-teacher.php");
+        $_SESSION['id_teacher'] = $user['id_teacher'];
+        $_SESSION['teacher_name'] = $user['teacher_name'];
+        $_SESSION['surname'] = $user['surname'];
+        $_SESSION['username'] = $user['username'];
+        $_SESSION['email_teacher'] = $user['email_teacher'];
+        $_SESSION['registration_date'] = $user['registration_date'];
 
-    $md5 = md5($_SESSION['id_teacher']);
+        $_SESSION['logged'] = true;
+        header("Location: home-teacher.php");
 
-    $subject = 'Confirmação de Email Pendente';
-    $link = 'http://ime.unicamp.br/~fracoes/emailconfirm.php?h=' . $md5;
-    $message = 
+        $md5 = md5($_SESSION['id_teacher']);
+
+        $subject = 'Confirmação de Email Pendente';
+        $link = 'http://ime.unicamp.br/~fracoes/emailconfirm.php?h=' . $md5;
+        $message = 
 'Olá, ' . $_SESSION['teacher_name'] . '
 
 Seja muito bem-vindo(a)!
@@ -146,10 +167,25 @@ Sua conta @' . $_SESSION['username'] . ' foi criada com sucesso.
 Clique no link para confirmar seu endereço de email. 
 
 ' . $link;
-    $header = 'From: Check Frações noreply@check.com';
+        $header = 'From: Check Frações noreply@check.com';
 
-    mail($_SESSION['email_teacher'], $subject, $message, $header);
+        mail($_SESSION['email_teacher'], $subject, $message, $header);
 
+    } else if ($email_repeat > 0) {
+        echo '<script>
+        document.addEventListener("DOMContentLoaded", function(event) {
+            const messageError = "Email já cadastrado";
+            alertErrorLogin(messageError);
+        });
+        </script>';
+    } else if ($username_repeat > 0) {
+        echo '<script>
+        document.addEventListener("DOMContentLoaded", function(event) {
+            const messageError = "Nome de Usuário indisponível";
+            alertErrorLogin(messageError);
+        });
+        </script>';
+    }
 }
 
 ?>

@@ -28,33 +28,24 @@ document.querySelector('#btn-student')
 document.querySelector('#btn-teacher')
   .addEventListener('click', () => {
     container.style.width = "675px"
-    container.style.height = "380px"
+    container.style.height = "365px"
     formSignupStudent.style.left = "-450px"
     formSignupTeacher.style.left = "25px"
     btnColor.style.left = "103px"
 })
 
-document.querySelector('#enter-account-1')
-  .addEventListener('click', () => {
-    container.style.width = "350px"
-    container.style.height = "380px"
-    formSignin.style.left = "25px"
-    buttonsForm.style.left = "425px"
-    formSignupStudent.style.left = "450px"
-    formSignupTeacher.style.left = "900px"
-    btnColor.style.left = "0px"
-})
-
-document.querySelector('#enter-account-2')
-  .addEventListener('click', () => {
-    container.style.width = "350px"
-    container.style.height = "380px"
-    formSignin.style.left = "25px"
-    buttonsForm.style.left = "425px"
-    formSignupStudent.style.left = "450px"
-    formSignupTeacher.style.left = "900px"
-    btnColor.style.left = "0px"
-})
+document.querySelectorAll('#enter-account-1, #enter-account-2')
+  .forEach(element => {
+    element.addEventListener('click', () => {
+      container.style.width = "350px"
+      container.style.height = "380px"
+      formSignin.style.left = "25px"
+      buttonsForm.style.left = "425px"
+      formSignupStudent.style.left = "450px"
+      formSignupTeacher.style.left = "900px"
+      btnColor.style.left = "0px"
+    })
+  })
 
 // alert error login
 function alertErrorLogin(messageError) {
