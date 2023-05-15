@@ -90,8 +90,8 @@
 }
 
 #login-page input[type="text"],
-#login-page input[type="email"],
-#login-page input[type="password"] {
+input[type="email"],
+input[type="password"] {
     border: none;
     background-color: whitesmoke;
     border-radius: 18px;
@@ -190,7 +190,7 @@
 }
 
 #login-page .signin-link,
-#login-page .signup-link {
+.signup-link {
     border: none;
     color: rgba(0, 0, 0, 0.7);
     display: flex;
@@ -199,8 +199,8 @@
 }
 
 #login-page #create-account,
-#login-page #enter-account-1,
-#login-page #enter-account-2 {
+#enter-account-1,
+#enter-account-2 {
     color: #eb6841;
     text-decoration: underline;
     border: none;
@@ -208,8 +208,8 @@
 }
 
 #login-page #create-account:hover,
-#login-page #enter-account1:hover,
-#login-page #enter-account2:hover {
+#enter-account1:hover,
+#enter-account2:hover {
     color: #da5229;
     cursor: pointer;
 }
@@ -227,10 +227,10 @@
 }
 
 #login-page #visibility-icon-login,
-#login-page #visibility-icon-student-1,
-#login-page #visibility-icon-student-2,
-#login-page #visibility-icon-teacher-1,
-#login-page #visibility-icon-teacher-2 {
+#visibility-icon-student-1,
+#visibility-icon-student-2,
+#visibility-icon-teacher-1,
+#visibility-icon-teacher-2 {
     transform: scale(0.7);
     color: rgba(0, 0, 0, 0.4);
     margin-top: 6px;
