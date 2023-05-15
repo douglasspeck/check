@@ -4,7 +4,7 @@ create table if not exists student (
 	username varchar(20) not null unique,
 	email_student varchar(50) not null unique,
 	password varchar(64) not null,
-	registration_date date not null default current_timestamp,
+	registration_date date not null,
 	email_status boolean,
 	primary key (id_student)
 ) default charset = utf8;
@@ -23,13 +23,13 @@ create table if not exists profile_se (
 ) default charset = utf8;
 
 create table if not exists teacher (
-	id_teacher integer not null,
+	id_teacher integer not null auto_increment,
 	teacher_name varchar(35) not null,
 	surname varchar(20) null,
 	username varchar(20) not null unique,
 	email_teacher varchar(50) not null unique,
 	password varchar(64) not null,
-	registration_date date not null default current_timestamp,
+	registration_date date not null,
 	email_status boolean,
 	primary key (id_teacher)
 ) default charset = utf8;

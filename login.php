@@ -7,7 +7,7 @@ if(!isset($_SESSION)) {
 }
 
 if(isset($_SESSION['logged']) && $_SESSION['logged']) {
-    header("Location: home.php");
+    header("Location: painel.php");
 }
 
 if(isset($_POST['signin'])) {
@@ -33,7 +33,7 @@ if(isset($_POST['signin'])) {
             $_SESSION['registration_date'] = $student['registration_date'];
 
             $_SESSION['logged'] = true;
-            header("Location: home.php");
+            header("Location: painel.php");
 
         } else if ($teacher && password_verify(addslashes($_POST['password']), $teacher['password'])) {
             $_SESSION['id_teacher'] = $teacher['id_teacher'];
@@ -43,7 +43,7 @@ if(isset($_POST['signin'])) {
             $_SESSION['registration_date'] = $teacher['registration_date'];
             
             $_SESSION['logged'] = true;
-            header("Location: home-teacher.php");
+            header("Location: painel.php");
 
         } else {
             echo '<script>
@@ -88,7 +88,7 @@ if(isset($_POST['signup-student'])) {
         $_SESSION['registration_date'] = $user['registration_date'];
         
         $_SESSION['logged'] = true;
-        header("Location: home.php");
+        header("Location: painel.php");
 
         $md5 = md5($_SESSION['id_student']);
 
@@ -152,7 +152,7 @@ if(isset($_POST['signup-teacher'])) {
         $_SESSION['registration_date'] = $user['registration_date'];
 
         $_SESSION['logged'] = true;
-        header("Location: home-teacher.php");
+        header("Location: painel.php");
 
         $md5 = md5($_SESSION['id_teacher']);
 
