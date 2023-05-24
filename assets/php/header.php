@@ -30,7 +30,7 @@
                 <div>';
     echo $_SESSION['logged'] === true ? '
                     <a href="sequencias.php">Retomar</a>
-                    <a href="home.php">Painel</a>
+                    <a href="painel.php">Painel</a>
                     <a href="">Perfil</a>
                     <a href="' . $index . '?logout=true">Logout</a>' : '
                     <a href="login.php">Login</a>';

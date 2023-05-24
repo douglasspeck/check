@@ -7,7 +7,7 @@ if(!isset($_SESSION)) {
 }
 
 if(isset($_SESSION['logged']) && $_SESSION['logged']) {
-    header("Location: home.php");
+    header("Location: painel.php");
 }
 
 if(isset($_POST['signin'])) {
@@ -25,9 +25,7 @@ if(isset($_POST['signin'])) {
     $teacher = fetchAll($db, 'teacher', 0, $dataset_teacher)->fetch_assoc();
     
     if($student || $teacher) {
-
         if($student && password_verify(addslashes($_POST['password']), $student['password'])) {
-
             $_SESSION['id_student'] = $student['id_student'];
             $_SESSION['student_name'] = $student['student_name'];
             $_SESSION['username'] = $student['username'];
@@ -35,7 +33,7 @@ if(isset($_POST['signin'])) {
             $_SESSION['registration_date'] = $student['registration_date'];
 
             $_SESSION['logged'] = true;
-            header("Location: home.php");
+            header("Location: painel.php");
 
         } else if ($teacher && password_verify(addslashes($_POST['password']), $teacher['password'])) {
             $_SESSION['id_teacher'] = $teacher['id_teacher'];
@@ -45,7 +43,7 @@ if(isset($_POST['signin'])) {
             $_SESSION['registration_date'] = $teacher['registration_date'];
             
             $_SESSION['logged'] = true;
-            header("Location: home-teacher.php");
+            header("Location: painel.php");
 
         } else {
             echo '<script>
@@ -67,85 +65,126 @@ if(isset($_POST['signin'])) {
 
 if(isset($_POST['signup-student'])) {
     $table = 'student';
-    $dataset = [
-        ['student_name', addslashes($_POST['student_name'])],
-        ['username', addslashes($_POST['username'])],
-        ['email_student', addslashes($_POST['email_student'])],
-        ['password', password_hash($_POST['password'], PASSWORD_DEFAULT)],
-        ['registration_date', date('Y-m-d')]
-    ];
-    
-    echo (newLine($db, $table, $dataset));
-    
-    $user = (fetchAll($db, $table, $dataset))->fetch_assoc();
-    
-    $_SESSION['id_student'] = $user['id_student'];
-    $_SESSION['student_name'] = $user['student_name'];
-    $_SESSION['username'] = $user['username'];
-    $_SESSION['email_student'] = $user['email_student'];
-    $_SESSION['registration_date'] = $user['registration_date'];
-    
-    $_SESSION['logged'] = true;
-    header("Location: home.php");
+    $username_repeat = (fetchAll($db, $table, [['username', addslashes($_POST['username'])]], 0))->num_rows;
+    $email_repeat = (fetchAll($db, $table, [['email_student', addslashes($_POST['email_student'])]], 0))->num_rows;
 
-    $md5 = md5($_SESSION['id_student']);
+    if($username_repeat === 0 && $email_repeat === 0) {
+        $dataset = [
+            ['student_name', addslashes($_POST['student_name'])],
+            ['username', addslashes($_POST['username'])],
+            ['email_student', addslashes($_POST['email_student'])],
+            ['password', password_hash($_POST['password'], PASSWORD_DEFAULT)],
+            ['registration_date', date('Y-m-d')]
+        ];
+        
+        newLine($db, $table, $dataset);
+        
+        $user = (fetchAll($db, $table, $dataset, 0))->fetch_assoc();
+        
+        $_SESSION['id_student'] = $user['id_student'];
+        $_SESSION['student_name'] = $user['student_name'];
+        $_SESSION['username'] = $user['username'];
+        $_SESSION['email_student'] = $user['email_student'];
+        $_SESSION['registration_date'] = $user['registration_date'];
+        
+        $_SESSION['logged'] = true;
+        header("Location: painel.php");
 
-    $subject = 'Confirmação de Email Pendente';
-    $link = 'http://ime.unicamp.br/~fracoes/emailconfirm.php?h=' . $md5;
-    $message = 'Olá, ' . $_SESSION['student_name'] . '
+        $md5 = md5($_SESSION['id_student']);
 
-    Seja muito bem-vindo(a)!
-    Sua conta ' . $_SESSION['username'] . ' foi criada com sucesso.
+        $subject = 'Confirmação de Email Pendente';
+        $link = 'http://ime.unicamp.br/~fracoes/emailconfirm.php?h=' . $md5;
+        $message = 
+'Olá, ' . $_SESSION['student_name'] . '
 
-    Clique no link abaixo para confirmar seu endereço de email.' .
-    $link;
-    $header = 'From: Check Frações noreply@check.com';
+Seja muito bem-vindo(a)!
+Sua conta @' . $_SESSION['username'] . ' foi criada com sucesso.
 
-    mail($_SESSION['email_student'], $subject, $message, $header);
+Clique no link para confirmar seu endereço de email. 
 
+' . $link;
+        $header = 'From: Check Frações noreply@check.com';
+
+        mail($_SESSION['email_student'], $subject, $message, $header);
+
+    } else if ($email_repeat > 0) {
+        echo '<script>
+        document.addEventListener("DOMContentLoaded", function(event) {
+            const messageError = "Email já cadastrado";
+            alertErrorLogin(messageError);
+        });
+        </script>';
+    } else if ($username_repeat > 0) {
+        echo '<script>
+        document.addEventListener("DOMContentLoaded", function(event) {
+            const messageError = "Nome de Usuário indisponível";
+            alertErrorLogin(messageError);
+        });
+        </script>';
+    }
 }
 
 if(isset($_POST['signup-teacher'])) {
     $table = 'teacher';
-    $dataset = [
-        ['teacher_name', addslashes($_POST['teacher_name'])],
-        ['surname', addslashes($_POST['surname'])],
-        ['username', addslashes($_POST['username'])],
-        ['id_teacher', addslashes($_POST['id_teacher'])],
-        ['email_teacher', addslashes($_POST['email_teacher'])],
-        ['password', password_hash($_POST['password'], PASSWORD_DEFAULT)],
-        ['registration_date', date('Y-m-d')]
-    ];
+    $username_repeat = (fetchAll($db, $table, [['username', addslashes($_POST['username'])]], 0))->num_rows;
+    $email_repeat = (fetchAll($db, $table, [['email_teacher', addslashes($_POST['email_teacher'])]], 0))->num_rows;
 
-    newLine($db, $table, $dataset);
-    
-    $user = (fetchAll($db, $table, $dataset))->fetch_assoc();
+    if($username_repeat === 0 && $email_repeat === 0) {
+        $dataset = [
+            ['teacher_name', addslashes($_POST['teacher_name'])],
+            ['surname', addslashes($_POST['surname'])],
+            ['username', addslashes($_POST['username'])],
+            ['email_teacher', addslashes($_POST['email_teacher'])],
+            ['password', password_hash($_POST['password'], PASSWORD_DEFAULT)],
+            ['registration_date', date('Y-m-d')]
+        ];
 
-    $_SESSION['id_teacher'] = $user['id_teacher'];
-    $_SESSION['teacher_name'] = $user['teacher_name'];
-    $_SESSION['surname'] = $user['surname'];
-    $_SESSION['username'] = $user['username'];
-    $_SESSION['email_teacher'] = $user['email_teacher'];
-    $_SESSION['registration_date'] = $user['registration_date'];
+        newLine($db, $table, $dataset);
+        
+        $user = (fetchAll($db, $table, $dataset, 0))->fetch_assoc();
 
-    $_SESSION['logged'] = true;
-    header("Location: home-teacher.php");
+        $_SESSION['id_teacher'] = $user['id_teacher'];
+        $_SESSION['teacher_name'] = $user['teacher_name'];
+        $_SESSION['surname'] = $user['surname'];
+        $_SESSION['username'] = $user['username'];
+        $_SESSION['email_teacher'] = $user['email_teacher'];
+        $_SESSION['registration_date'] = $user['registration_date'];
 
-    /*$md5 = md5($_SESSION['id_teacher']);
+        $_SESSION['logged'] = true;
+        header("Location: painel.php");
 
-    $subject = 'Confirmação de Email Pendente';
-    $link = 'http://ime.unicamp.br/~fracoes/emailconfirm.php?h=' . $md5;
-    $message = 'Olá, ' . $_SESSION['teacher_name'] . '
+        $md5 = md5($_SESSION['id_teacher']);
 
-    Seja muito bem-vindo(a)!
-    Sua conta ' . $_SESSION['username'] . ' foi criada com sucesso.
+        $subject = 'Confirmação de Email Pendente';
+        $link = 'http://ime.unicamp.br/~fracoes/emailconfirm.php?h=' . $md5;
+        $message = 
+'Olá, ' . $_SESSION['teacher_name'] . '
 
-    Clique no link abaixo para confirmar seu endereço de email.' .
-    $link;
-    $header = 'From: Check Frações noreply@check.com';
+Seja muito bem-vindo(a)!
+Sua conta @' . $_SESSION['username'] . ' foi criada com sucesso.
 
-    mail($_SESSION['email_teacher'], $subject, $message, $header);*/
+Clique no link para confirmar seu endereço de email. 
 
+' . $link;
+        $header = 'From: Check Frações noreply@check.com';
+
+        mail($_SESSION['email_teacher'], $subject, $message, $header);
+
+    } else if ($email_repeat > 0) {
+        echo '<script>
+        document.addEventListener("DOMContentLoaded", function(event) {
+            const messageError = "Email já cadastrado";
+            alertErrorLogin(messageError);
+        });
+        </script>';
+    } else if ($username_repeat > 0) {
+        echo '<script>
+        document.addEventListener("DOMContentLoaded", function(event) {
+            const messageError = "Nome de Usuário indisponível";
+            alertErrorLogin(messageError);
+        });
+        </script>';
+    }
 }
 
 ?>
@@ -175,24 +214,19 @@ if(isset($_POST['signup-teacher'])) {
                     required
                     tabindex="-1"
                 />
-                <span class="material-icons">mail</span>
+                <span class="material-icons">person</span>
             </div>
             <div>
                 <input
                     type="password"
                     name="password"
+                    id="password-login"
                     placeholder="Senha"
-
-                    <?php
-                    if(isset($_POST['signin']) && isset($_POST['remember-password'])) {
-                        echo "autocomplete=\"current-password\"";
-                    }
-                    ?>
-
                     required
                     tabindex="-1"
                 />
                 <span class="material-icons">lock</span>
+                <span class="material-icons" id="visibility-icon-login" onclick="showHide('password-login', 'visibility-icon-login')">visibility</span>
             </div>
             <div class="checkbox">
                 <input
@@ -205,7 +239,7 @@ if(isset($_POST['signup-teacher'])) {
             <button type="submit" tabindex="-1" name="signin">Entrar</button>
             <a id="forgotpass-link" tabindex="-1" href="forgotpass.php">Esqueci minha senha</a>
             <div class="signup-link">
-                <p>Não tem uma conta?&nbsp;<div class="other-form" id="create-account">Cadastre-se</div></p>
+                <p>Não tem uma conta?&nbsp;<div id="create-account">Cadastre-se</div></p>
             </div>
         </form>
 
@@ -223,6 +257,7 @@ if(isset($_POST['signup-teacher'])) {
                     placeholder="Nome do Aluno"
                     pattern="[A-Za-z'\s+]+"
                     maxlength=35
+                    autocomplete="off"
                     required
                     tabindex="-1"
                 />
@@ -231,11 +266,12 @@ if(isset($_POST['signup-teacher'])) {
             <div>
                 <input
                     type="text"
-                    id="username"
+                    id="username-1"
                     name="username"
                     placeholder="Nome de Usuário"
                     pattern="^[a-zA-Z0-9_]+$"
                     maxlength=20
+                    autocomplete="off"
                     required
                     tabindex="-1"
                 />
@@ -246,8 +282,8 @@ if(isset($_POST['signup-teacher'])) {
                     type="email"
                     name="email_student"
                     placeholder="Email"
-                    autocomplete="email"
                     maxlength=50
+                    autocomplete="off"
                     required
                     tabindex="-1"
                 />
@@ -257,25 +293,27 @@ if(isset($_POST['signup-teacher'])) {
                 <input
                     type="password"
                     name="password"
-                    id="password"
+                    id="password-student"
                     placeholder="Senha"
                     minlength="8"
                     required
                     tabindex="-1"
                 />
                 <span class="material-icons">lock</span>
+                <span class="material-icons" id="visibility-icon-student-1" onclick="showHide('password-student', 'visibility-icon-student-1')">visibility</span>
             </div>
             <div>
                 <input
                     type="password"
                     name="password_confirm"
-                    id="confirm"
+                    id="confirm-student"
                     placeholder="Confirmar senha"
                     minlength="8"
                     required
                     tabindex="-1"
                 />
                 <span class="material-icons">lock</span>
+                <span class="material-icons" id="visibility-icon-student-2" onclick="showHide('confirm-student', 'visibility-icon-student-2')">visibility</span>
             </div>  
             <div class="checkbox-terms">
                 <input
@@ -287,12 +325,12 @@ if(isset($_POST['signup-teacher'])) {
             </div>
             <button type="submit" tabindex="-1" name="signup-student">Cadastrar-se</button>
             <div class="signin-link">
-                <p>Já é cadastrado?&nbsp;<div class="other-form" id="enter-account1">Fazer Login</div></p>
+                <p>Já é cadastrado?&nbsp;<div id="enter-account-1">Fazer Login</div></p>
             </div>
         </form>
 
         <form action="login.php" id="signup-teacher" method="POST">
-        <div id="form-column1">
+        <div id="form-column-1">
         <div>
             <input 
                 type="text"
@@ -300,6 +338,7 @@ if(isset($_POST['signup-teacher'])) {
                 placeholder="Nome do Professor"
                 pattern="[A-Za-z'\s+]+"
                 maxlength=35
+                autocomplete="off"
                 required
                 tabindex="-1"
             />
@@ -313,6 +352,7 @@ if(isset($_POST['signup-teacher'])) {
                 placeholder="Apelido (opcional)"
                 pattern="[A-Za-z'\s+]+"
                 maxlength=20
+                autocomplete="off"
                 tabindex="-1"
             />
             <span class="material-icons" id="person2-signup-teacher">person_4</span>
@@ -320,11 +360,12 @@ if(isset($_POST['signup-teacher'])) {
         <div>
             <input
                 type="text"
-                id="username"
+                id="username-2"
                 name="username"
                 placeholder="Nome de Usuário"
                 pattern="^[a-zA-Z0-9_]+$"
                 maxlength=20
+                autocomplete="off"
                 required
                 tabindex="-1"
             />
@@ -332,54 +373,43 @@ if(isset($_POST['signup-teacher'])) {
         </div>
         <div>
             <input
-                type="text"
-                id="id_teacher"
-                name="id_teacher"
-                placeholder="Registro do Professor"
-                pattern="[0-9]{10}"
-                maxlength=10
-                required
-                tabindex="-1"
-            />
-            <span class="material-icons">pin</span>
-        </div>
-        <div>
-            <input
                 type="email"
                 name="email_teacher"
                 placeholder="Email"
-                autocomplete="email"
                 maxlength=50
+                autocomplete="off"
                 required
                 tabindex="-1"
             />
             <span class="material-icons">mail</span>
         </div>
         </div>
-        <div id="form-column2">
+        <div id="form-column-2">
         <div>
             <input
                 type="password"
                 name="password"
-                id="password"
+                id="password-teacher"
                 placeholder="Senha"
                 minlength="8"
                 required
                 tabindex="-1"
             />
             <span class="material-icons">lock</span>
+            <span class="material-icons" id="visibility-icon-teacher-1" onclick="showHide('password-teacher', 'visibility-icon-teacher-1')">visibility</span>
         </div>
         <div>
             <input
                 type="password"
                 name="password_confirm"
-                id="confirm"
+                id="confirm-teacher"
                 placeholder="Confirmar senha"
                 minlength="8"
                 required
                 tabindex="-1"
             />
             <span class="material-icons">lock</span>
+            <span class="material-icons" id="visibility-icon-teacher-2" onclick="showHide('confirm-teacher', 'visibility-icon-teacher-2')">visibility</span>
         <div class="checkbox-terms">
             <input
                 type="checkbox"
@@ -390,7 +420,7 @@ if(isset($_POST['signup-teacher'])) {
         </div>
         <button type="submit" tabindex="-1" name="signup-teacher">Cadastrar-se</button>
         <div class="signin-link">
-            <p>Já é cadastrado?&nbsp;<div class="other-form" id="enter-account2">Fazer Login</div></p>
+            <p>Já é cadastrado?&nbsp;<div id="enter-account-2">Fazer Login</div></p>
         </div>
         </div>
         </form>

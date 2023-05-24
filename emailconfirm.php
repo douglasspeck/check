@@ -1,18 +1,23 @@
 <?php
 
-require_once '../assets/php/mysqli/db.php';
+require_once 'assets/php/mysqli/db.php';
 
 $h = $_GET['h'];
 
-/*if(!isset($_SESSION)) {
+if(!isset($_SESSION)) {
     session_start();
 }
 
-$student = fetchAll($db, 'student', ['id_student', md5($h)])->num_rows;
-$teacher = fetchAll($db, 'teacher', ['id_teacher', md5($h)])->num_rows;*/
+if (isset($_SESSION['id_student'])) {
+    $table_update = 'student';
+    $id_user = 'id_student';
+} else if (isset($_SESSION['id_teacher'])) {
+    $table_update = 'teacher';
+    $id_user = 'id_teacher';
+}
 
-if(!empty($h) /*&& $student > 0*/) {
-    $db->query("UPDATE student SET email_status='1' WHERE MD5(id_student)='$h'");
+if(!empty($h)) {
+    $db->query("UPDATE $table_update SET email_status='1' WHERE MD5($id_user)='$h'");
 ?>
 
     <!DOCTYPE html>
@@ -38,7 +43,7 @@ if(!empty($h) /*&& $student > 0*/) {
                 background-color: #eeeeee;
             }
                 
-            #emailconfirm .container {
+            #emailconfirm .emailconfirm-container {
                 width: 75vw;
                 max-width: 500px;
                 margin: 0 auto;
@@ -71,14 +76,13 @@ if(!empty($h) /*&& $student > 0*/) {
         </style>
     </head>
     <body class="emailconfirm" id="emailconfirm">
-        <div class="container">
+        <div class="emailconfirm-container">
             <h1>Confirmação de email realizada com sucesso!</h1>
-            <p>O seu email foi confirmado com sucesso. <a href="home.php">Clique aqui</a> para acessar a plataforma.</p>
+            <p>O seu email foi confirmado com sucesso. <a href="painel.php">Clique aqui</a> para acessar a plataforma.</p>
         </div>
     </body>
     </html>
 
 <?php
-} /*else if(!empty($h) && $teacher > 0) {
-    $db->query("UPDATE teacher SET email_status='1' WHERE MD5(id_teacher)='$h'");*/
+}
 ?>

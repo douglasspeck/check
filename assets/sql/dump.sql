@@ -4,7 +4,7 @@ create table if not exists student (
 	username varchar(20) not null unique,
 	email_student varchar(50) not null unique,
 	password varchar(64) not null,
-	registration_date date not null default current_timestamp,
+	registration_date date not null,
 	email_status boolean,
 	primary key (id_student)
 ) default charset = utf8;
@@ -23,13 +23,13 @@ create table if not exists profile_se (
 ) default charset = utf8;
 
 create table if not exists teacher (
-	id_teacher integer not null,
+	id_teacher integer not null auto_increment,
 	teacher_name varchar(35) not null,
 	surname varchar(20) null,
 	username varchar(20) not null unique,
 	email_teacher varchar(50) not null unique,
 	password varchar(64) not null,
-	registration_date date not null default current_timestamp,
+	registration_date date not null,
 	email_status boolean,
 	primary key (id_teacher)
 ) default charset = utf8;
@@ -38,8 +38,31 @@ create table if not exists activities (
 	id_activity integer not null auto_increment,
 	notebook tinyint unsigned not null,
 	sequence tinyint unsigned not null,
-	activity tinyint unsigned not null,
+	activity tinyint not null,
 	item varchar(2) null,
-	parameters json not null, 
+	parameters longtext not null, 
 	primary key (id_activity)
+) default charset = utf8;
+
+create table if not exists inputs_temp (
+	id_input_temp integer not null auto_increment,
+	id_activity integer not null,
+	id_student integer not null,
+	input_name varchar(255),
+  	input_value varchar(255),
+  	register_date timestamp,
+	primary key (id_input_temp),
+	constraint fk_student_inputstemp foreign key (id_student) references student (id_student),
+	constraint fk_activities_inputstemp foreign key (id_activity) references activities (id_activity)
+) default charset = utf8;
+
+create table if not exists inputs_def (
+	id_input_def integer not null auto_increment,
+	id_activity integer not null,
+	id_student integer not null,
+	input_name varchar(255),
+  	input_value varchar(255),
+	primary key (id_input),
+	constraint fk_student_inputsdef foreign key (id_student) references student (id_student),
+	constraint fk_activities_inputsdef foreign key (id_activity) references activities (id_activity)
 ) default charset = utf8;

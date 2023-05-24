@@ -13,6 +13,7 @@ window.onload = function(){
 
     generateFigures();
     generateFractions();
+    sendChange();
     generateSets();
     generateAssoc();
     homeResumeButton();
