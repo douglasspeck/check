@@ -5,7 +5,7 @@
     align-items: center;
     justify-content: end;
     column-gap: 0.5ch;
-    margin: auto;
+    margin: 5%;
 }
 
 .fraction.mixed {
