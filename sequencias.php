@@ -8,15 +8,15 @@
 
         require_once 'assets/php/mysqli/db.php';
 
-        $notebook = isset($_GET['notebook']) ? $_GET['notebook'] : 1;
-        $sequence = isset($_GET['sequence']) ? $_GET['sequence'] : 1;
+        $notebook = isset($_GET['n']) ? $_GET['n'] : 1;
+        $sequence = isset($_GET['s']) ? $_GET['s'] : 1;
 
         $title = 'Frações - Sequência ' . $sequence;
         $keywords = 'Check, CACs, Cadernos Auto-corretivos, Frações';
         $resources = [];
         include 'assets/php/head.php';
     ?>
-    <body id="home">
+    <body id="sequences">
         <?php include 'assets/php/header.php' ?>
         <main>
             <?php
@@ -25,7 +25,7 @@
 
                 $data = getSequence($db, $notebook, $sequence);
 
-                echo '<h1>Sequência 1</h1>
+                echo '<h1>Sequência ' . $sequence . '</h1>
                 <section class="gallery">';
 
                 for ($i = 0; $i < count($data); $i++) {
@@ -39,6 +39,12 @@
                 echo '</section>';
 
             ?>
+            <section class="toolBar">
+                <?php
+                    echo $sequence > 1 ? '<button class="prev-btn" onclick="prevPage(' . $notebook . ',' . $sequence . ');">Anterior</button>' : '';
+                    echo '<button class="next-btn" onclick="nextPage(' . $notebook . ',' . $sequence . ');">Próxima</button>';
+                ?>
+            </section>
         </main>
         <?php include 'assets/php/scripts.php' ?>
     </body>

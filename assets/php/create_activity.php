@@ -9,7 +9,8 @@
         $example    = isset($activity['example']) ? $activity['example'] : false;
         
         $activities = [
-            'fill_gap'
+            'fill_gap',
+            'paint_figures'
         ];
 
         echo '<article class="activity">';

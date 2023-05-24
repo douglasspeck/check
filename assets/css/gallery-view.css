@@ -4,6 +4,7 @@
     grid-template-rows: auto;
     gap: 50px;
     padding: 50px 0;
+    min-height: 50vh;
 }
 
 .gallery > article {
@@ -15,6 +16,7 @@
     padding: 10%;
     background-color: #fff;
     border-radius: 10px;
+    box-shadow: 1px 1px 3px var(--g1);
 }
 
 .gallery > .associate {
@@ -72,4 +74,11 @@
 
 .input label {
     font-weight: bold;
+}
+
+#sequences .toolBar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
 }
