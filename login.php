@@ -77,7 +77,7 @@ if(isset($_POST['signup-student'])) {
             ['registration_date', date('Y-m-d')]
         ];
         
-        echo (newLine($db, $table, $dataset));
+        newLine($db, $table, $dataset);
         
         $user = (fetchAll($db, $table, $dataset, 0))->fetch_assoc();
         
@@ -266,7 +266,7 @@ Clique no link para confirmar seu endereço de email.
             <div>
                 <input
                     type="text"
-                    id="username"
+                    id="username-1"
                     name="username"
                     placeholder="Nome de Usuário"
                     pattern="^[a-zA-Z0-9_]+$"
@@ -360,7 +360,7 @@ Clique no link para confirmar seu endereço de email.
         <div>
             <input
                 type="text"
-                id="username"
+                id="username-2"
                 name="username"
                 placeholder="Nome de Usuário"
                 pattern="^[a-zA-Z0-9_]+$"

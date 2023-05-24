@@ -28,6 +28,9 @@ function createFraction(el,id){
     if (n!==null && n!=='') {
         num.setAttribute("readonly","");
         num.setAttribute("value", n);
+    } else {
+        den.setAttribute("id", "num-fraction-"+id);
+        den.setAttribute("name", "num-fraction-"+id);
     }
     
     let den = document.createElement("input");
@@ -36,6 +39,9 @@ function createFraction(el,id){
     if (d!==null && d!=='') {
         den.setAttribute("readonly","");
         den.setAttribute("value", d);
+    } else {
+        den.setAttribute("id", "den-fraction-"+id);
+        den.setAttribute("name", "den-fraction-"+id);
     }
 
     if (int!==null && int!=='') {

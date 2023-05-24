@@ -1,3 +1,16 @@
+<?php
+
+if(!isset($_SESSION)) {
+    session_start();
+}
+
+if($_SESSION['logged'] == false) {
+    header("Location: login.php");
+} else {
+    if (isset($_SESSION['id_student'])) { 
+
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
     <?php
@@ -43,6 +56,11 @@
         <?php include 'assets/php/scripts.php' ?>
     </body>
 </html>
+
+<?php
+    }
+}
+?>
 
 <!--
 
