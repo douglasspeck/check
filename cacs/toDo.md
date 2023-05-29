@@ -21,4 +21,13 @@
 
 ## Correção de Bugs
 - Fallback para círculo sem divisões ainda não configurado;
-- Triângulos de 2 e 4 seções ainda não configurados;
+
+
+
+
+
+- Escrever "Exemplo" e destacar o que está preenchido
+- Fazer a página de "Esqueci minha senha"
+- Iniciar a correção
+- Botão "Corrigir" e Botão "Ver a Resposta" no fim da página
+- Página de "Equipe"
