@@ -10,7 +10,8 @@
         
         $activities = [
             'fill_gap',
-            'paint_figures'
+            'paint_figures',
+            'associate_elements'
         ];
 
         echo '<article class="activity">';

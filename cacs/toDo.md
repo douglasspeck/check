@@ -21,4 +21,20 @@
 
 ## Correção de Bugs
 - Fallback para círculo sem divisões ainda não configurado;
-- Triângulos de 2 e 4 seções ainda não configurados;
+
+
+
+
+
+- Escrever "Exemplo" e destacar o que está preenchido
+- Iniciar a correção
+- Botão "Corrigir" e Botão "Ver a Resposta" no fim da página
+- Página de "Equipe"
+- Professor, Aluno ou **Outro**
+- Especificar "Você é aluno?" -> Formulário Socioeconômico
+- Formulário Socioeconômico diferente para o professor
+- Instituição -> Escola
+- Marcar os indicadores do "Você se considera bom em matemática?"
+- Incluir o formulário socioeconômico no cadastro do aluno
+- Opção de acessar sem cadastro
+    - Pop up de cadastro explicando as vantagens do cadastro
