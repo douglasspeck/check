@@ -27,7 +27,14 @@
 
 
 - Escrever "Exemplo" e destacar o que está preenchido
-- Fazer a página de "Esqueci minha senha"
 - Iniciar a correção
 - Botão "Corrigir" e Botão "Ver a Resposta" no fim da página
 - Página de "Equipe"
+- Professor, Aluno ou **Outro**
+- Especificar "Você é aluno?" -> Formulário Socioeconômico
+- Formulário Socioeconômico diferente para o professor
+- Instituição -> Escola
+- Marcar os indicadores do "Você se considera bom em matemática?"
+- Incluir o formulário socioeconômico no cadastro do aluno
+- Opção de acessar sem cadastro
+    - Pop up de cadastro explicando as vantagens do cadastro
