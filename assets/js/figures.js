@@ -214,6 +214,8 @@ function createFigure(fig, id){
     svg.setAttribute("version","1.1");
     svg.setAttribute("id",`figure-${id}`);
 
+    svg.classList.add("figure");
+
     if (shape == 'rect') {
         createRect(svg, size, sections);
     }

@@ -1,7 +1,6 @@
 function generateSets() {
 
     let sets = document.getElementsByTagName("set");
-    let subsets = document.getElementsByTagName("subset");
 
     let id = 0;
 
@@ -13,25 +12,11 @@ function generateSets() {
 
     }
 
-    while (subsets.length > 0) {
-
-        let subset = subsets[0];
-        createSet(subset, id);
-        id++;
-
-    }
-
-}
-
-function dist(a,b) {
-
-    return Math.sqrt(Math.pow(a.x - b.x, 2) + Math.pow(a.y - b.y, 2));
-
 }
 
 function createSet(set, id){
     
-    let figures = JSON.parse(set.getAttribute('figures'));
+    let figures = set.getElementsByTagName("figures");
     
     let size = set.getAttribute('size');
     size = size ? size : 100; // default
