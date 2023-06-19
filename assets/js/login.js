@@ -38,7 +38,7 @@ document.querySelectorAll('#enter-account-1, #enter-account-2')
 .forEach(element => {
     element.addEventListener('click', () => {
         container.style.width = "350px"
-        container.style.height = "380px"
+        container.style.height = "355px"
         formSignin.style.left = "25px"
         buttonsForm.style.left = "425px"
         formSignupStudent.style.left = "450px"

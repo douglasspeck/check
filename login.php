@@ -228,16 +228,8 @@ Clique no link para confirmar seu endereço de email.
                 <span class="material-icons">lock</span>
                 <span class="material-icons" id="visibility-icon-login" onclick="showHide('password-login', 'visibility-icon-login')">visibility</span>
             </div>
-            <div class="checkbox">
-                <input
-                    type="checkbox"
-                    name="remember-password"
-                    tabindex="-1"
-                />
-                <span>Lembrar minha senha</span>
-            </div>
             <button type="submit" tabindex="-1" name="signin">Entrar</button>
-            <a id="forgotpass-link" tabindex="-1" href="forgotpass.php">Esqueci minha senha</a>
+            <a id="forgotpass-link" tabindex="-1" href="forgotpass.php" target="_blank">Esqueci minha senha</a>
             <div class="signup-link">
                 <p>Não tem uma conta?&nbsp;<div id="create-account">Cadastre-se</div></p>
             </div>
@@ -390,9 +382,9 @@ Clique no link para confirmar seu endereço de email.
                 type="password"
                 name="password"
                 id="password-teacher"
-                placeholder="Senha"
+               placeholder="Senha"
                 minlength="8"
-                required
+                required     
                 tabindex="-1"
             />
             <span class="material-icons">lock</span>

@@ -10,14 +10,14 @@ create table if not exists student (
 ) default charset = utf8;
 
 create table if not exists profile_se (
-	id_profilese integer not null,
+	id_profilese integer not null auto_increment,
 	id_student integer not null,
 	birth_year year(4) not null,
 	sex ENUM('Feminino', 'Masculino', 'Não-binário', 'Prefiro não informar') not null,
 	ethnicity ENUM('Branco', 'Preto', 'Pardo', 'Amarelo', 'Indígena') not null,
-	institution_type varchar(10) not null,
-	school_year varchar(10) not null,
-	performance_opinion boolean,
+	institution_type varchar(30) not null,
+	school_year varchar(30) not null,
+	performance_opinion integer not null,
 	primary key (id_profilese),
 	constraint fk_student_profilese foreign key (id_student) references student (id_student)
 ) default charset = utf8;

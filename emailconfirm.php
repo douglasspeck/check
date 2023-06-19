@@ -27,14 +27,14 @@ if(!empty($h)) {
         <style>
             @import url('https://fonts.googleapis.com/css2?family=Poppins&family=Roboto:wght@100;300;400;500;700;900&family=Source+Sans+Pro:wght@200;300;400;600;700;900&display=swap');
 
-            .emailconfirm * {
+            .emailconfirm-page * {
                 margin: 0;
                 padding: 0;
                 box-sizing: border-box;
                 font-family: 'poppins', sans-serif;
             }
 
-            #emailconfirm {
+            #emailconfirm-page {
                 width: 100vw;
                 height: 100vh;
                 display: flex;
@@ -43,7 +43,7 @@ if(!empty($h)) {
                 background-color: #eeeeee;
             }
                 
-            #emailconfirm .emailconfirm-container {
+            #emailconfirm-page .emailconfirm-container {
                 width: 75vw;
                 max-width: 500px;
                 margin: 0 auto;
@@ -55,27 +55,27 @@ if(!empty($h)) {
                 box-shadow: 0px 0px 10px rgba(0,0,0,0.6);
             }
             
-            #emailconfirm h1 {
+            #emailconfirm-page h1 {
                 font-size: 24px;
                 margin-bottom: 20px;
             }
             
-            #emailconfirm p {
+            #emailconfirm-page p {
                 font-size: 15px;
                 margin-bottom: 20px;
             }
             
-            #emailconfirm a {
+            #emailconfirm-page a {
                 color: #eb6841;
                 text-decoration: none;
             }
 
-            #emailconfirm a:hover {
+            #emailconfirm-page a:hover {
                 text-decoration: underline;
             }
         </style>
     </head>
-    <body class="emailconfirm" id="emailconfirm">
+    <body class="emailconfirm-page" id="emailconfirm-page">
         <div class="emailconfirm-container">
             <h1>Confirmação de email realizada com sucesso!</h1>
             <p>O seu email foi confirmado com sucesso. <a href="painel.php">Clique aqui</a> para acessar a plataforma.</p>
