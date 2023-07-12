@@ -19,15 +19,13 @@
 - [ ] Teste e Avaliação
 - [ ] Documentação
 
-## Correção de Bugs
-- Fallback para círculo sem divisões ainda não configurado;
-
-
 ## Conjuntos:
 1. Começar no canto inferior esquerdo;
 2. Plotar o primeiro subconjunto (poliminó);
 3. Ir para o canto superior direito;
 4. Plotar o segundo subconjunto (poliminó);
+    - Sempre seguir a mesma ordem de "tentativas": Direita, Cima, Esquerda, Baixo
+    - Desigualdade Isoperimétrica
 5. Ir para a primeira linha vaga de baixo para cima;
 6. Plotar o terceiro subconjunto (poliminó);
 7. Ir para a primeira linha vaga de cima para baixo;
