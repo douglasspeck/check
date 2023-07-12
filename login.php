@@ -88,7 +88,7 @@ if(isset($_POST['signup-student'])) {
         $_SESSION['registration_date'] = $user['registration_date'];
         
         $_SESSION['logged'] = true;
-        header("Location: painel.php");
+        header("Location: formulario.php");
 
         $md5 = md5($_SESSION['id_student']);
 
@@ -151,7 +151,7 @@ if(isset($_POST['signup-teacher'])) {
         $_SESSION['registration_date'] = $user['registration_date'];
 
         $_SESSION['logged'] = true;
-        header("Location: painel.php");
+        header("Location: formulario.php");
 
         $md5 = md5($_SESSION['id_teacher']);
 
