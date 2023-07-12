@@ -5,6 +5,7 @@
  * @since           0.2.0
  * 
  * @function        createFraction
+ * @description     Copies the given pseudo-element attributes to three input elements
  * @param           {Element}   el      The element to create the fraction within
  * @param           {Number}    id      The element's ID
  * 

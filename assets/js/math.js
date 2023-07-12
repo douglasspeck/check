@@ -7,8 +7,16 @@
  * 
  * @function    factors
  * @param       {Number}    number      The number to be factorized
- * 
  * @return      {Array}     The factors of the given number
+ * 
+ * @function    idThat
+ * @param       {Number}    n           The number to be converted
+ * @return      {String}    The same number, but converted to a "000"-type string
+ * 
+ * @function    dist
+ * @param       {Object}    a           First point
+ * @param       {Object}    b           Second point
+ * @return      {Number}    The numerical distance between the points
  * 
  */
 

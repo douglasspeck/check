@@ -5,7 +5,7 @@
  * @since           0.2.1
  * 
  * @function        window.onload
- * @description     Executes procedural functions on page load.
+ * @description     Executes functions on page load.
  * 
  */
 
