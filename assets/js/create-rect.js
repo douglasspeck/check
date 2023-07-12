@@ -1,4 +1,7 @@
-function createRect(el, size, sec, square) {
+function createRect(el, size, sec, square, posx, posy) {
+
+    let px = posx ? posx - size/2 : 0;
+    let py = posy ? posy - size/2 : 0;
 
     let f = factors(sec * 1);
     
@@ -13,8 +16,8 @@ function createRect(el, size, sec, square) {
 
         let path = document.createElementNS("http://www.w3.org/2000/svg", "path");
 
-        let x = (i % W) * w;
-        let y = Math.floor(i / W) * h;
+        let x = px + (i % W) * w;
+        let y = py + Math.floor(i / W) * h;
 
         let d = `M ${x} ${y + o} L ${x + w} ${y + o} L ${x + w} ${y + o + h} L ${x} ${y + o + h} Z`;
         

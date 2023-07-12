@@ -1,4 +1,4 @@
-function createTriangle(el, size, sec) {
+function createTriangle(el, size, sec, posx, posy) {
 
     let cx = size / 2;
     let h = cx * Math.sqrt(3);
@@ -63,6 +63,12 @@ function createTriangle(el, size, sec) {
 
             transform = (i+1) % 2 == 1 ? transform : transform + `rotate(${(2 - i) * 60},${cx},${cy})`;
             
+        }
+
+        else if (sec == 1) {
+
+            d = `M ${posx-cx} ${posy+h/2} L ${posx+cx} ${posy+h/2} L ${posx} ${posy-h/2} Z`;
+
         }
 
         let path = document.createElementNS("http://www.w3.org/2000/svg", "path");

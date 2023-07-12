@@ -15,6 +15,8 @@ function generateSets() {
 }
 
 function createSet(set, id){
+
+    console.log(`Set: ${id}`);
     
     let figures = set.getElementsByTagName("minifigure");
     
@@ -46,14 +48,14 @@ function createSet(set, id){
         cells.push([]);
     }
 
-    for (let i = 0; i < cols * cols * 2; i++) {
+    for (let i = 0; i < cols * rows; i++) {
 
-        cells_left.push(i-1);
+        cells_left.push(i);
 
         let cellx = (size/2) * ((i % cols) / cols + 1/(cols*2));
-        let celly = size * ((Math.ceil((i + 1) / cols) - 1) / (cols*2) + 1/(cols*4));
+        let celly = size * ((Math.ceil((i + 1) / cols) - 1) / rows + 1/(rows*2));
 
-        cells[Math.floor(i/4)].push({x: cellx, y: celly});
+        cells[Math.floor(i/cols)].push({x: cellx, y: celly});
 
     }
 
@@ -67,22 +69,35 @@ function createSet(set, id){
         
         subsets[s] = [];
 
-        subsets[s].push(fig);
+    }
+
+    for (var i = 0; i < figures.length; i++) {
+
+        let fig = figures[i];
+
+        let s = fig.getAttribute('subset');
+
+        for (var j = 0; j < fig.getAttribute('amount'); j++) {
+
+            subsets[s].push(fig.getAttribute('shape'));
+
+        }
 
     }
 
-    createSubsets(subsets, cells, rows, cols);
+    createSubsets(subsets, cells, rows);
+
+    console.log(cells);
 
     for (i = 0; i < cells.length; i++) {
         for (j = 0; j < cells[i].length; j++) {
 
             let c = cells[i][j];
 
-            if (c.fig) {
-
-                createCircle(svg, size/(cols*2 + 2), 1, c.x, c.y);
-
-            }
+            if (c.fig == 'circle') { createCircle(svg, size/(cols*2 + 2) - 10, 1, c.x, c.y); }
+            if (c.fig == 'square') { createSquare(svg, size/(cols*2 + 2) - 10, 1, c.x, c.y); }
+            if (c.fig == 'triangle') { createTriangle(svg, size/(cols*2 + 2) - 10, 1, c.x, c.y); }
+            if (c.fig == 'ast') { createCircle(svg, size/(cols*2 + 2) - 10, 1, c.x, c.y); }
 
         }
     }
@@ -93,9 +108,10 @@ function createSet(set, id){
     
 }
 
-function createSubsets(subsets, cells, rows, columns) {
+function createSubsets(subsets, cells, rows) {
 
     let currentRow;
+    let currentCol;
     let k1 = 0, k2 = 0;
 
     for (var i = 0; i < subsets.length; i++) {
@@ -125,36 +141,8 @@ function createSubsets(subsets, cells, rows, columns) {
             }
 
         }
-        
 
-        //     let middleness = 100;
-
-        //     let r = 0;
-
-        //     for (var j = 0; j < middleness; j++) { r += Math.random(); }
-
-        //     r /= middleness;
-
-        //     let n = Math.ceil(r * cells_left.length) - 1;
-
-        //     for (var j = 0; j < subsets[i].length; j++) {
-
-        //         if (cells_left[n]) {
-                    
-        //             cells[cells_left[n]].fig = subsets[i][j];
-        //             cells_left.splice(n, 1);
-
-        //         } else {
-
-        //             k = 1;
-
-        //             while (!cells_left[n-k]) { k++; }
-
-        //             cells[cells_left[n]].fig = subsets[i][j-k];
-
-        //         }
-
-        //     }
+        fillCells(cells, currentRow, currentCol, subsets[i]);
 
     }
 
@@ -169,6 +157,47 @@ function getEmptyCol(cells, currentRow) {
         if (!cells[currentRow][i].fig) {
             firstEmptyCell = i;
             break;
+        }
+
+    }
+
+    return firstEmptyCell;
+
+}
+
+function fillCells(cells, startRow, startCol, figures) {
+
+    cells[startRow][startCol].fig = figures[0];
+
+    let i = 1;
+
+    let currentRow = startRow;
+    let currentCol = startCol;
+    
+    while (i < figures.length) {
+        
+        if (cells[currentRow][currentCol+1] !== undefined && !cells[currentRow][currentCol+1].fig) {
+            cells[currentRow][currentCol+1].fig = figures[i];
+            currentCol++;
+            i++;
+        }
+        
+        if (currentRow > 1 && !cells[currentRow-1][currentCol].fig) {
+            cells[currentRow-1][currentCol].fig = figures[i];
+            currentRow--;
+            i++;
+        }
+        
+        if (currentCol > 1 && !cells[currentRow][currentCol-1].fig) {
+            cells[currentRow][currentCol-1].fig = figures[i];
+            currentCol--;
+            i++;
+        }
+        
+        if (cells[currentRow+1][currentCol] !== undefined && !cells[currentRow+1][currentCol].fig) {
+            cells[currentRow+1][currentCol].fig = figures[i];
+            currentRow++;
+            i++;
         }
 
     }
