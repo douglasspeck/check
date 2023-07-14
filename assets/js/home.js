@@ -14,3 +14,11 @@ function homeResumeButton() {
     let activity = "./sequencias.php";
     resumeButton.addEventListener("click",()=>{location.href = activity});
 }
+
+document.querySelector("main").onscroll = function(e) {
+  if( this.scrollTop > (window.innerHeight * 0.05)){
+    document.body.classList.add("has-scrolled");
+  } else {
+    document.body.classList.remove("has-scrolled");
+  }
+};

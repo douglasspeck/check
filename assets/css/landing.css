@@ -1,19 +1,461 @@
-#landing section {
+#landing {
+    background: url(../img/dotbg.svg) center center;
+    background-size: 25px auto;
+}
+
+#landing main a {
+    color: var(--c3);
+    position: relative;
+    display: inline-block;
+}
+
+#landing main a::after {
+    content: '';
+    position: absolute;
+    top: 80%;
+    right: 1%;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(var(--c2), var(--c3));
+    transition: all 300ms ease-in-out;
+}
+
+#landing main a:hover::after {
+    width: 98%;
+    left: 1%;
+}
+
+#landing cite {
+    font-style: normal;
+}
+
+#landing main > section {
+    width: 100%;
+    margin: 10vh 0;
+}
+
+#landing main > section > section {
     width: 100%;
     margin: 5vh 0;
 }
 
-#landing section:first-of-type {
+#landing main > section:first-of-type {
     margin: 0;
 }
 
-#landing h1, #landing h2 {
+#landing h1, #landing h2, #landing h3 {
     text-align: left;
     justify-content: left;
-    font-family: Courier;
-    transform: scaleY(1.25);
-    font-weight: 100;
+    transform: scaleY(1.15);
+    letter-spacing: 0.05ch;
+}
+
+#landing #banner {
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 10vw;
+    align-items: center;
+}
+
+#landing #banner .img-container {
+    display: flex;
+    margin-top: 0.5em;
+    align-items: flex-start;
+    justify-content: center;
+    position: relative;
+    transform: rotateX(30deg) rotateY(15deg);
+    transform-origin: 50% 50%;
+    transform-style: preserve-3d;
+}
+
+#landing #banner .img-container::before,
+#landing #banner .img-container::after {
+    content: '';
+    position: absolute;
+    width: 48vh;
+    height: 48vh;
+    border: 4px solid var(--c3);
+    border-radius: 10px;
+    transform: translate3D(5px, 0, 40px);
+    transform-style: preserve-3d;
+    top: 0;
+    left: 0;
+}
+
+#landing #banner .img-container::after {
+    transform: translate3D(-10px, 0, -20px);
+    transform-style: preserve-3d;
+    z-index: -1;
+    border: 4px solid var(--c1);
+    background-color: var(--c1);
+}
+
+#landing #banner .img-container img {
+    width: 48vh;
+    height: 48vh;
+    border-radius: 10px;
+    box-shadow: 1px 1px 3px var(--c1);
+}
+
+#landing #banner h1 {
+    font-size: 3.5em;
+    padding: 10vh 0 5vh;
+    font-weight: 800;
+}
+
+#landing #banner .full-line {
+    display: inline;
+    margin-left: -0.05ch;
+    font-size: calc(9vw);
+    color: var(--c3);
+}
+
+#landing h2 {
     font-size: 2em;
-    font-family: 'Courier New', Courier, monospace;
-    margin-bottom: 0.5em;
+    font-weight: 700;
+    position: relative;
+}
+
+#landing h3 {
+    font-size: 1.5em;
+    font-weight: 700;
+}
+
+#landing h2::before,
+#landing #sobre h3::before {
+    content: '>>';
+    font-weight: 500;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translateX(-150%);
+    color: var(--c4)
+}
+
+#landing #sobre h3::before {
+    content: 'echo (';
+    transform: translateX(calc(-100% - 0.75ch));
+}
+
+#landing #sobre h3::after {
+    content: ' )';
+    color: var(--c4)
+}
+
+/* #landing .carousel {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    margin-top: 3vh;
+    gap: 7vh;
+}
+
+#landing .carousel::-webkit-scrollbar {
+    display: none;
+}
+
+#landing .carousel p {
+    font-size: 16px;
+    text-align: center;
+    font-variant: small-caps;
+    font-weight: bold;
+}
+
+#landing .carousel .horse {
+    display: inline-block;
+    width: 15vw;
+    position: relative;
+}
+
+#landing .carousel .horse:not(:last-child)::after {
+    content: '⟹';
+    position: absolute;
+    top: 10vh;
+    left: 100%;
+    transform: translateX(1vh) translateY(-50%);
+    width: 5vh;
+    height: 5vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: var(--c3);
+}
+
+#landing .carousel .horse > img {
+    width: 15vw;
+    height: 20vh;
+    background-color: var(--c5);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+} */
+
+#landing .timeline > ul {
+    margin-top: 5vh;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 3vh;
+}
+
+#landing .timeline > ul > li {
+    display: flex;
+    height: 10vh;
+    width: 30vw;
+    border-radius: 10px;
+    align-items: center;
+    justify-content: center;
+    border: 4px solid var(--c2);
+    position: relative;
+    background-color: var(--c5);
+    font-weight: 600;
+    font-variant: small-caps;
+    font-size: 1.5em;
+}
+
+#landing .timeline > ul > li:nth-child(2n) {
+    align-self: flex-end;
+}
+
+#landing .timeline > ul > li:first-child::before {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 5vh;
+    height: 5vh;
+    top: 0;
+    left: 0;
+    transform: translate(-100%, -1vh);
+    border-bottom: 5px dashed var(--c2);
+    border-left: 5px dashed var(--c2);
+    pointer-events: none;
+}
+
+#landing .timeline > ul > li:nth-child(2n)::before {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 33vw;
+    height: 9vh;
+    top: 0;
+    left: 0;
+    transform: translate(-18vw, -100%);
+    border-top: 5px dashed var(--c2);
+    border-right: 5px dashed var(--c2);
+    pointer-events: none;
+}
+
+#landing .timeline > ul > li:nth-child(2n+1):not(:first-of-type)::before {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 33vw;
+    height: 9vh;
+    top: 0;
+    left: 0;
+    transform: translate(14.5vw, -100%);
+    border-top: 5px dashed var(--c2);
+    border-left: 5px dashed var(--c2);
+    pointer-events: none;
+}
+
+#landing #devlog > .devlog-container {
+    margin-top: 3vh;
+    background-color: var(--g0);
+    height: 60vh;
+    color: var(--g3);
+    padding: 3vh;
+    position: relative;
+    overflow: hidden;
+}
+
+#landing #devlog > .devlog-container::before {
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    box-shadow: inset 0px -60px 40px var(--g0);
+    z-index: 2;
+    pointer-events: none;
+}
+
+#landing #devlog > .devlog-container > a {
+    position: absolute;
+    bottom: 5vh;
+    right: 5vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3;
+    color: var(--g0);
+    margin: 0;
+    padding: 0 1ch;
+    background-color: var(--c4);
+    font-size: 24px;
+    font-family: 'Sono', monospace;
+    transform: none;
+    border: 2px solid var(--c4);
+    transition: all 0.3s linear;
+}
+
+#landing #devlog > .devlog-container > a:hover {
+    background-color: transparent;
+    border: 2px solid var(--g0);
+    color: var(--c4);
+}
+
+#landing #devlog > .devlog-container > a::after {
+    content: '';
+    display: none;
+}
+
+#landing #devlog .devlog-content {
+    height: 100%;
+}
+
+#landing #devlog .devlog-content * {
+    font-size: 16px;
+    font-family: 'Sono', monospace;
+    font-weight: 300;
+    list-style: none;
+}
+
+#landing #devlog .devlog-content *::before,
+#landing #devlog .devlog-content *::after {
+    padding-right: 1ch;
+    color: var(--c4);
+}
+
+#landing #devlog .devlog-content *:not(h3) {
+    padding-left: 2ch;
+    margin: .5em 0 0;
+}
+
+#landing #devlog .devlog-content > section:not(:first-of-type) > h3 {
+    margin-top: 2em;
+}
+
+#landing #devlog .devlog-content > section > h3::before {
+    content: '>';
+}
+
+#landing #devlog .devlog-content > section > h3::after {
+    content: '';
+}
+
+#landing #devlog .devlog-content > section > section > h4 {
+    color: var(--c4);
+}
+
+#landing #devlog .devlog-content > section > section > h4::before {
+    content: '[';
+    padding-right: 0;
+}
+
+#landing #devlog .devlog-content > section > section > h4::after {
+    content: ']';
+}
+
+#landing #devlog .devlog-content > section > section > ul > li::before {
+    content: '>';
+}
+
+#landing #devlog .devlog-content > section > section > ul > li > ul > li::before {
+    content: '∗';
+}
+
+#landing #equipe > .people {
+    display: flex;
+    align-items: top;
+    justify-content: space-evenly;
+}
+
+#landing #equipe > .people > .person {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 2vw;
+    width: 16vw;
+    height: 16vw;
+    background-color: #fff;
+    border-radius: 10px;
+    border: 3px solid var(--c3);
+    transition: all 0.5s ease-in-out;
+    position: relative;
+}
+
+#landing #equipe > .people > .person:hover {
+    border-radius: 0;
+    margin-top: 4vw;
+}
+
+#landing #equipe > .people > .person > img {
+    width: 16vw;
+    height: 16vw;
+    padding-bottom: 2.5vw;
+    z-index: 2;
+}
+
+#landing #equipe > .people > .person:hover > img {
+    border-radius: 0;
+    transform: translateY(-6vw) translateX(-0.25vw);
+    margin-bottom: -6vw;
+}
+
+#landing #equipe > .people > .person::before {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+#landing #equipe > .people > .person:hover::before {
+    top: -6vw;
+}
+
+#landing #equipe > .people > .person::after {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 16vw;
+    height: 16vw;
+    top: 2vw;
+    left: 2vw;
+    background-color: var(--c3);
+}
+
+#landing #equipe > .people > .person:hover::after {
+    top: -3.5vw;
+    left: 2.25vw;
+}
+
+#landing #equipe > .people > .person > .person-info {
+    opacity: 0;
+    transition: all 0.5s ease-in-out;
+}
+
+#landing #equipe > .people > .person:hover > .person-info {
+    opacity: 1;
+}
+
+#landing #equipe > .people > .person > .person-info > h3,
+#landing #equipe > .people > .person > .person-info > p {
+    font-size: 14px;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+}
+
+#landing #equipe > .people > .person > .person-info > a::after {
+    display: none;
 }
