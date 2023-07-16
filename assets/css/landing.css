@@ -112,11 +112,13 @@
 
 #landing h2 {
     font-size: 2em;
+    padding-top: 1em;
     font-weight: 700;
     position: relative;
 }
 
 #landing h3 {
+    padding-top: 1em;
     font-size: 1.5em;
     font-weight: 700;
 }
@@ -124,6 +126,7 @@
 #landing h2::before,
 #landing #sobre h3::before {
     content: '>>';
+    padding-top: 1em;
     font-weight: 500;
     position: absolute;
     top: 0;
@@ -370,6 +373,10 @@
     content: '∗';
 }
 
+#landing #equipe {
+    min-height: 35vw;
+}
+
 #landing #equipe > .people {
     display: flex;
     align-items: top;
@@ -440,12 +447,30 @@
 }
 
 #landing #equipe > .people > .person > .person-info {
+    display: none;
     opacity: 0;
-    transition: all 0.5s ease-in-out;
+    animation: appear 0.5s ease-in-out forwards;
 }
 
 #landing #equipe > .people > .person:hover > .person-info {
+    display: block;
     opacity: 1;
+    animation: appear 0.5s ease-in-out backwards;
+}
+
+@keyframes appear {
+    0% {
+        display: none;
+        opacity: 0;
+    }
+    10% {
+        display: block;
+        opacity: 0;
+    }
+    100% {
+        display: block;
+        opacity: 1;
+    }
 }
 
 #landing #equipe > .people > .person > .person-info > h3,
