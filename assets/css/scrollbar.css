@@ -18,3 +18,11 @@
 ::-webkit-scrollbar-thumb:hover {
   background-color: var(--c1);
 }
+
+@media screen and (orientation: portrait) {
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
+}

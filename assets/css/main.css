@@ -87,3 +87,26 @@ footer > p {
     font-size: 14px;
     line-height: 1;
 }
+
+@media screen and (orientation: portrait) {
+
+    main {
+        width: 90vw;
+        padding: 0 5vw;
+    }
+
+    body p {
+        font-size: 13px;
+    }
+
+}
+
+@media screen and (prefers-reduced-motion: reduce) {  
+    * {
+      /* Very short durations means JavaScript that relies on events still works */
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
+  

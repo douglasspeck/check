@@ -1,7 +1,6 @@
 #menu {
     background-color: var(--g0);
     box-shadow: 0px 3px 5px var(--c5);
-    /* border-radius: 5px; */
     width: 80vw;
     height: 15vh;
     padding: 0 5vw;
@@ -136,4 +135,129 @@ body.has-scrolled main {
 
 #menu details > *:not(summary) > * {
     padding: 3px 0;
+}
+
+@media screen and (orientation: portrait) {
+
+    #top-of-site-pixel-anchor {
+        display: none;
+    }
+
+    #menu {
+        width: 100vw;
+        height: 10vh;
+        box-shadow: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        padding: 0 10vw;
+    }
+
+    body main, body.has-scrolled > main {
+        height: 75vh;
+    }
+
+    #sandwich {
+        display: block;
+        position: fixed;
+        width: 8vw;
+        height: 0.6vh;
+        background-color: var(--g3);
+        right: 10vw;
+        top: 4.7vh;
+        border-radius: 0.3vh;
+    }
+
+    #sandwich::before,
+    #sandwich::after {
+        content: '';
+        display: block;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        transform: translateY(-200%);
+        background-color: inherit;
+        border-radius: 0.3vh;
+    }
+
+    #sandwich::after {
+        transform: translateY(200%);
+    }
+
+    #menu.opened #sandwich {
+        transform: rotate(45deg);
+    }
+
+    #menu.opened #sandwich::before,
+    #menu.opened #sandwich::after {
+        transform: rotate(-90deg);
+    }
+    
+    #menu > nav {
+        width: 80vw;
+        height: 70vh;
+        position: fixed;
+        padding: 5vh 10vw;
+        top: 10vh;
+        left: 0;
+        display: none;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        gap: 3vh;
+        backdrop-filter: blur(5px) brightness(0.15);
+        animation: appear .5s ease-in-out forwards;
+    }
+
+    #menu > nav > a,
+    #menu > nav > details {
+        margin: 0;
+        height: 4vh;
+        width: calc(70% - 2ch - 4px);
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        border: 2px solid var(--c4);
+        color: var(--c4);
+        border-radius: 5px;
+        font-weight: 700;
+        flex-basis: auto;
+        padding: 0 1ch;
+        transition: all 0.5s ease-in-out;
+    }
+
+    #menu > nav > details {
+        background-color: var(--c4);
+        color: #fff;
+    }
+
+    #menu > nav > a.active {
+        width: calc(100% - 2ch - 4px);
+    }
+
+    #menu > nav > a.active::after {
+        display: none;
+    }
+
+    #menu > nav > details > summary.button {
+        height: 100%;
+        width: 100%;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        color: var(--g0);
+        background-color: transparent;
+        font-weight: 700;
+    }
+
+    #menu.opened > nav {
+        display: flex;
+        animation: appear .5s ease-in-out backwards;
+    }
+
+    
+
 }

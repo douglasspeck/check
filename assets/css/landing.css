@@ -203,6 +203,8 @@
     display: flex;
     flex-direction: column;
     gap: 3vh;
+    position: relative;
+    text-align: center;
 }
 
 #landing .timeline > ul > li {
@@ -379,7 +381,7 @@
 
 #landing #equipe > .people {
     display: flex;
-    align-items: top;
+    align-items: flex-start;
     justify-content: space-evenly;
 }
 
@@ -483,4 +485,190 @@
 
 #landing #equipe > .people > .person > .person-info > a::after {
     display: none;
+}
+
+@media screen and (orientation: portrait) {
+
+    #landing #top-of-site-pixel-anchor {
+        display: block;
+        width: 100vw;
+        height: 34vh;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: linear-gradient(to bottom, transparent, transparent 70%, var(--g3));
+        z-index: -1;
+    }
+
+    #landing main > section {
+        margin: 0;
+    }
+
+    #landing #banner {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+    }
+
+    #landing #banner .img-container {
+        transform: none;
+        width: 100vw;
+        height: 20vh;
+        padding: 2vh 0;
+        background-color: #fff;
+        margin: 0;
+        z-index: -2;
+        justify-content: flex-start;
+    }
+
+    #landing #banner .img-container > img {
+        height: 100%;
+        width: auto;
+        box-shadow: none;
+    }
+
+    #landing #banner .img-container::before,
+    #landing #banner .img-container::after {
+        display: none;
+    }
+
+    #landing main > section > section {
+        margin: 0;
+        height: auto;
+    }
+
+    #landing #banner h1 {
+        font-size: 32px;
+        padding: 0;
+    }
+
+    #landing #banner .full-line {
+        font-size: 2em;
+    }
+
+    #landing #banner p {
+        font-size: 14px;
+        margin-top: 1.5em;
+    }
+
+    #landing h2 {
+        font-size: 24px;
+        margin-left: 2ch;
+    }
+
+    #landing h3 {
+        font-size: 18px;
+        margin-left: 6ch;
+    }
+
+    #landing .timeline > ul {
+        width: 90%;
+        margin: 5vh auto;
+    }
+
+    #landing .timeline > ul > li {
+        width: 70%;
+        font-size: 1em;
+        height: 5vh;
+        border-width: 3px;
+        border-radius: 5px;
+    }
+
+    #landing .timeline > ul > li:nth-child(2n)::before,
+    #landing .timeline > ul > li:nth-child(2n+1):not(:first-of-type)::before {
+        width: 30%;
+        height: 5vh;
+        border-width: 3px;
+    }
+
+    #landing .timeline > ul > li:nth-child(2n)::before {
+        left: 100%;
+        transform: translate(-10vh, -100%);
+    }
+
+    #landing .timeline > ul > li:nth-child(2n+1):not(:first-of-type)::before {
+        transform: translate(2vh, -100%);
+    }
+
+    #landing .timeline > ul > li:first-child::before {
+        width: 2.5vh;
+        height: 4vh;
+        border-width: 3px;
+    }
+
+    #landing #devlog .devlog-container {
+        width: 90%;
+        padding: 5%;
+    }
+
+    #landing #devlog .devlog-container::before {
+        box-shadow: inset 0px -16vh 6vh var(--g0)
+    }
+
+    #landing #devlog .devlog-content * {
+        font-size: 13px;
+        margin: 0;
+    }
+
+    #landing #devlog .devlog-content h3,
+    #landing #devlog .devlog-content > section:not(:first-of-type) > h3{
+        margin: 0;
+    }
+
+    #landing #devlog > .devlog-container > a {
+        right: 50%;
+        transform: translateX(50%);
+        width: 60vw;
+    }
+
+    #landing #equipe {
+        min-height: 30vh;
+    }
+
+    #landing #equipe > .people {
+        margin: 3vh 0;
+        row-gap: 3vh;
+        flex-wrap: wrap;
+    }
+
+    #landing #equipe > .people > .person {
+        width: 36vw;
+        height: 36vw;
+        border-radius: 0;
+        margin-top: 5vh;
+    }
+
+    #landing #equipe > .people > .person > img,
+    #landing #equipe > .people > .person::after {
+        width: 32vw;
+        height: 32vw;
+    }
+
+    #landing #equipe > .people > .person > img {
+        transform: translate(-0.5vh, -5vh);
+    }
+
+    #landing #equipe > .people > .person > .person-info {
+        transform: translate(0, -4vh);
+    }
+
+    #landing #equipe > .people > .person::after {
+        top: 4vw;
+        left: 4vw;
+        transform: translate(0.5vh, -5vh);
+    }
+
+    #landing #equipe > .people > .person > .person-info {
+        display: block;
+    }
+
+    #landing #equipe > .people > .person > .person-info > h3,
+    #landing #equipe > .people > .person > .person-info > p {
+        font-size: 10px;
+    }
+
+    #landing #equipe > .people > .person:nth-child(2n) {
+        margin-left: auto;
+    }
+
 }

@@ -108,13 +108,13 @@
                         <div class="person-info">
                             <h3 class="person-name">Douglas Speck</h3>
                             <p class="person-role">Front-End</p>
-                            <a href="mailto:d260138@dac.unicamp.br" class="person-contact">d260138@dac.unicamp.br</a>
+                            <p><a href="mailto:d260138@dac.unicamp.br" class="person-contact">d260138@dac.unicamp.br</a></p>
                         </div>
                     </section>
                     <section class="person">
                         <img src="assets/img/guilherme.jpeg" alt="Fotografia do Guilherme.">
                         <div class="person-info">
-                            <h3 class="person-name">Guilherme Rafael de Oliveira</h3>
+                            <h3 class="person-name">Guilherme R. de Oliveira</h3>
                             <p class="person-role">Back-End</p>
                             <p><a href="mailto:g221050@dac.unicamp.br" class="person-contact">g221050@dac.unicamp.br</a></p>
                         </div>
