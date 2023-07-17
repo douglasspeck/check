@@ -19,12 +19,13 @@
     }
 
     echo '<header id="menu">
-        <a id="check" href="' . $index . '">' . file_get_contents($check) . 'check</a>
+        <a id="check" href="' . $index . '">' . file_get_contents($check) . '<p>check</p></a>
+        <span id="sandwich" aria-hidden="true" onclick="toggleMenu();"></span>
         <nav>
-            <a class="active" href="' . $index . '">Home</a>
+            <a class="active" href="#banner">Home</a>
             <a href="#sobre">Sobre</a>
             <a href="#devlog">DevLog</a>
-            <a href="#contato">Contato</a>
+            <a href="#equipe">Equipe</a>
             <details>
                 <summary class="button">Trilhas</summary>
                 <div>';
