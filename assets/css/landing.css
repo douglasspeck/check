@@ -98,7 +98,7 @@
 }
 
 #landing #banner h1 {
-    font-size: 3.5em;
+    font-size: 3em;
     padding: 10vh 0 5vh;
     font-weight: 800;
 }
@@ -145,58 +145,6 @@
     color: var(--c4)
 }
 
-/* #landing .carousel {
-    display: flex;
-    flex-wrap: nowrap;
-    overflow-x: scroll;
-    overflow-y: hidden;
-    margin-top: 3vh;
-    gap: 7vh;
-}
-
-#landing .carousel::-webkit-scrollbar {
-    display: none;
-}
-
-#landing .carousel p {
-    font-size: 16px;
-    text-align: center;
-    font-variant: small-caps;
-    font-weight: bold;
-}
-
-#landing .carousel .horse {
-    display: inline-block;
-    width: 15vw;
-    position: relative;
-}
-
-#landing .carousel .horse:not(:last-child)::after {
-    content: '⟹';
-    position: absolute;
-    top: 10vh;
-    left: 100%;
-    transform: translateX(1vh) translateY(-50%);
-    width: 5vh;
-    height: 5vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 24px;
-    color: var(--c3);
-}
-
-#landing .carousel .horse > img {
-    width: 15vw;
-    height: 20vh;
-    background-color: var(--c5);
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: none;
-} */
-
 #landing .timeline > ul {
     margin-top: 5vh;
     list-style: none;
@@ -210,7 +158,7 @@
 #landing .timeline > ul > li {
     display: flex;
     height: 10vh;
-    width: 30vw;
+    width: calc(40% - 4px);
     border-radius: 10px;
     align-items: center;
     justify-content: center;
@@ -235,8 +183,8 @@
     top: 0;
     left: 0;
     transform: translate(-100%, -1vh);
-    border-bottom: 5px dashed var(--c2);
-    border-left: 5px dashed var(--c2);
+    border-bottom: 4px dashed var(--c2);
+    border-left: 4px dashed var(--c2);
     pointer-events: none;
 }
 
@@ -244,13 +192,13 @@
     content: '';
     display: block;
     position: absolute;
-    width: 33vw;
+    width: calc(100% - 4px);
     height: 9vh;
     top: 0;
     left: 0;
-    transform: translate(-18vw, -100%);
-    border-top: 5px dashed var(--c2);
-    border-right: 5px dashed var(--c2);
+    transform: translate(-50%, -100%);
+    border-top: 4px dashed var(--c2);
+    border-right: 4px dashed var(--c2);
     pointer-events: none;
 }
 
@@ -258,13 +206,13 @@
     content: '';
     display: block;
     position: absolute;
-    width: 33vw;
+    width: calc(100% - 4px);
     height: 9vh;
     top: 0;
     left: 0;
-    transform: translate(14.5vw, -100%);
-    border-top: 5px dashed var(--c2);
-    border-left: 5px dashed var(--c2);
+    transform: translate(50%, -100%);
+    border-top: 4px dashed var(--c2);
+    border-left: 4px dashed var(--c2);
     pointer-events: none;
 }
 
@@ -302,7 +250,7 @@
     margin: 0;
     padding: 0 1ch;
     background-color: var(--c4);
-    font-size: 24px;
+    font-size: 1.5em;
     font-family: 'Sono', monospace;
     transform: none;
     border: 2px solid var(--c4);
@@ -325,7 +273,6 @@
 }
 
 #landing #devlog .devlog-content * {
-    font-size: 16px;
     font-family: 'Sono', monospace;
     font-weight: 300;
     list-style: none;
@@ -538,7 +485,6 @@
     }
 
     #landing #banner h1 {
-        font-size: 32px;
         padding: 0;
     }
 
@@ -547,17 +493,14 @@
     }
 
     #landing #banner p {
-        font-size: 14px;
         margin-top: 1.5em;
     }
 
     #landing h2 {
-        font-size: 24px;
         margin-left: 2ch;
     }
 
     #landing h3 {
-        font-size: 18px;
         margin-left: 6ch;
     }
 
@@ -567,7 +510,6 @@
     }
 
     #landing .timeline > ul > li {
-        width: 70%;
         font-size: 1em;
         height: 5vh;
         border-width: 3px;
@@ -576,18 +518,13 @@
 
     #landing .timeline > ul > li:nth-child(2n)::before,
     #landing .timeline > ul > li:nth-child(2n+1):not(:first-of-type)::before {
-        width: 30%;
-        height: 5vh;
+        width: 100%;
+        height: 100%;
         border-width: 3px;
     }
 
-    #landing .timeline > ul > li:nth-child(2n)::before {
-        left: 100%;
-        transform: translate(-10vh, -100%);
-    }
-
     #landing .timeline > ul > li:nth-child(2n+1):not(:first-of-type)::before {
-        transform: translate(2vh, -100%);
+        transform: translate(50%, -100%);
     }
 
     #landing .timeline > ul > li:first-child::before {
@@ -606,8 +543,8 @@
     }
 
     #landing #devlog .devlog-content * {
-        font-size: 13px;
         margin: 0;
+        font-size: 0.9em;
     }
 
     #landing #devlog .devlog-content h3,
@@ -636,6 +573,7 @@
         height: 36vw;
         border-radius: 0;
         margin-top: 5vh;
+        pointer-events: none;
     }
 
     #landing #equipe > .people > .person > img,
@@ -664,7 +602,7 @@
 
     #landing #equipe > .people > .person > .person-info > h3,
     #landing #equipe > .people > .person > .person-info > p {
-        font-size: 10px;
+        font-size: 0.75em;
     }
 
     #landing #equipe > .people > .person:nth-child(2n) {

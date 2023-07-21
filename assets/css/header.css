@@ -154,7 +154,8 @@ body.has-scrolled main {
     }
 
     body main, body.has-scrolled > main {
-        height: 75vh;
+        height: 85vh;
+        margin-top: 10vh;
     }
 
     #sandwich {
@@ -197,7 +198,7 @@ body.has-scrolled main {
     
     #menu > nav {
         width: 80vw;
-        height: 70vh;
+        height: 90vh;
         position: fixed;
         padding: 5vh 10vw;
         top: 10vh;

@@ -32,7 +32,7 @@
                     <img src="assets/img/ty-3d-hash.gif" alt="">
                 </section>
                 <section>
-                    <h1>Cadernos Autocorretivos <span class="full-line">Digitais</span></h1>
+                    <h1>Cadernos<br>Autocorretivos<br><span class="full-line">Digitais</span></h1>
                     <p><strong>Check</strong> é uma plataforma digital interativa para o ensino de matemática baseada em sequências didáticas e inspirada nos <em>Cadernos Auto-corretivos: Frações</em> desenvolvidos pela equipe de residência pedagógica da Licenciatura em Matemática da Unicamp.</p>
                 </section>
             </section>
