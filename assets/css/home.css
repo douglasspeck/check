@@ -6,6 +6,7 @@
     box-shadow: 1px 1px 3px var(--g1);
     border-radius: var(--x);
     padding: calc(var(--x) * 2);
+    background-color: #fff;
 }
 
 #home h2 {

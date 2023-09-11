@@ -13,11 +13,17 @@ function connect($db_host, $db_name, $db_user, $db_pass){
     return $db;
 }
 
-$db = connect($db_host, $db_name, $db_user, $db_pass);
+try {
+    $db = connect($db_host, $db_name, $db_user, $db_pass);
+} catch (Exception $e) {
+    err(602);
+    $db = false;
+}
 
 // O parâmetro opcional $dataset é um array de elementos na forma ['coluna', $valor] para busca
 
 function fetchAll(mysqli $db, $table, $dataset_and=0, $dataset_or=0){
+    if (!$db) {return false;}
     $data = [];
     $sql = "SELECT * FROM $table";
     if($dataset_and ==! 0) {
@@ -42,6 +48,7 @@ function fetchAll(mysqli $db, $table, $dataset_and=0, $dataset_or=0){
 }
 
 function getSequence(mysqli $db, $notebook, $sequence){
+    if (!$db) {return false;}
     $data = [];
     $sql = "SELECT id_activity,parameters FROM activities WHERE notebook = " . $notebook . " AND sequence = " . $sequence;
     $results = $db->query($sql);
