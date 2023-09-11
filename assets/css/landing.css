@@ -603,6 +603,7 @@
 
     #landing #equipe > .people > .person > .person-info {
         display: block;
+        opacity: 1;
     }
 
     #landing #equipe > .people > .person > .person-info > h3,

@@ -209,7 +209,6 @@ body.has-scrolled main {
         justify-content: flex-start;
         gap: 3vh;
         backdrop-filter: blur(5px) brightness(0.15);
-        animation: appear .5s ease-in-out forwards;
     }
 
     #menu > nav > a,
@@ -231,7 +230,7 @@ body.has-scrolled main {
 
     #menu > nav > details {
         background-color: var(--c4);
-        color: #fff;
+        color: var(--c2);
     }
 
     #menu > nav > a.active {
@@ -249,7 +248,7 @@ body.has-scrolled main {
         display: flex;
         align-items: center;
         justify-content: flex-start;
-        color: var(--g0);
+        color: var(--c1);
         background-color: transparent;
         font-weight: 700;
     }
@@ -258,8 +257,15 @@ body.has-scrolled main {
         display: flex;
         animation: appear .5s ease-in-out backwards;
     }
-
     
+    #menu > nav > details > div {
+        margin: 1em -1ch;
+        border-radius: 5px;
+    }
+
+    #menu > nav > details > div > a {
+        padding: calc(1ch - 2px);
+    }
 
 }
 
