@@ -82,7 +82,7 @@ function createFigure(fig, id){
 
 function generateFigures() {
 
-    if (window.location.pathname !== '/sequencias.php') {return;}
+    if (window.location.pathname !== '/~fracoes/sequencias.php' && window.location.pathname !== '/~fracoes/painel.php') {return;}
 
     let figures = document.getElementsByTagName("figure");
 

@@ -1,8 +1,8 @@
 <?php 
 
-$db_host = "webapp1.ime.unicamp.br";
+$db_host = "localhost";
 $db_name = "fracoes";
-$db_user = "fracoes";
-$db_pass = "2Pd13#ET4";
+$db_user = "root";
+$db_pass = "adGoEWNV1!";
 
 ?>

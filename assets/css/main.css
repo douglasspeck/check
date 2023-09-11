@@ -45,6 +45,11 @@ html, body {
     font-size: calc(var(--x)*1.7);
 }
 
+body {
+    background: url(../img/dotbg.svg) center center;
+    background-size: 25px auto;
+}
+
 main {
     color: var(--g0);
     width: 80vw;

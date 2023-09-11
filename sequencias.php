@@ -59,7 +59,7 @@ if($_SESSION['logged'] == false) {
                 ?>
             </section>
         </main>
-        <?php include 'assets/php/scripts.php' ?>
+        <?php include 'assets/php/footer.php' ?>
     </body>
 </html>
 

@@ -2,11 +2,17 @@ a {
     text-decoration: none;
 }
 
+a:focus-visible {
+    outline: none;
+}
+
 .bold {
     font-weight: bold;
 }
 
 p {
+    margin-block-start: 0;
+    margin-block-end: 0;
     margin-top: 1em;
     line-height: 1.5;
     letter-spacing: 0.15ch;
