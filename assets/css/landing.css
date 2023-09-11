@@ -549,12 +549,12 @@
 
     #landing #devlog .devlog-content * {
         margin: 0;
-        font-size: 0.9em;
     }
 
     #landing #devlog .devlog-content h3,
     #landing #devlog .devlog-content > section:not(:first-of-type) > h3{
         margin: 0;
+        font-size: 1em;
     }
 
     #landing #devlog > .devlog-container > a {
