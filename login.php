@@ -10,13 +10,6 @@ if (isset($_SESSION['logged']) && $_SESSION['logged']) {
     header("Location: painel.php");
 }
 
-function checkIfExists($db, $table, $column, $value) {
-    $sql = "SELECT COUNT(*) as count FROM $table WHERE $column = '" . $db->real_escape_string($value) . "'";
-    $result = $db->query($sql);
-    $row = $result->fetch_assoc();
-    return $row['count'] > 0;
-}
-
 if (isset($_POST['signin'])) {
     $usernameOrEmail = $_POST['username_or_email'];
     $password = $_POST['password'];
