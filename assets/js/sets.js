@@ -1,7 +1,6 @@
 function generateSets() {
 
     let sets = document.getElementsByTagName("set");
-    let subsets = document.getElementsByTagName("subset");
 
     let id = 0;
 
@@ -13,159 +12,165 @@ function generateSets() {
 
     }
 
-    while (subsets.length > 0) {
-
-        let subset = subsets[0];
-        createSet(subset, id);
-        id++;
-
-    }
-
-}
-
-function dist(a,b) {
-
-    return Math.sqrt(Math.pow(a.x - b.x, 2) + Math.pow(a.y - b.y, 2));
-
 }
 
 function createSet(set, id){
     
-    let figures = JSON.parse(set.getAttribute('figures'));
+    let figures = set.getElementsByTagName("minifigure");
     
     let size = set.getAttribute('size');
-    size = size ? size : 100; // default
+    size = size ? size : 400; // default
     
     let svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
     svg.setAttribute("xmlns","http://www.w3.org/2000/svg");
-    svg.setAttribute("width",`${size}px`);
+    svg.setAttribute("width",`${size/2}px`);
     svg.setAttribute("height",`${size}px`);
-    svg.setAttribute("viewbox",`0 0 ${size} ${size}`);
+    svg.setAttribute("viewbox",`0 0 100 100`);
     svg.setAttribute("version","1.1");
     svg.setAttribute("id",`set-${id}`);
 
-    let center = {x: size/2, y: size/2};
-    
-    let circles = [];
+    let contour = document.createElementNS("http://www.w3.org/2000/svg", "path");
 
-    while (circles.length < figures.circles) {
+    contour.setAttribute("d", `M 0 0 L 0 ${size} L ${size/2} ${size} L ${size/2} 0 Z`);
+    contour.setAttribute("fill", "none");
+    contour.setAttribute("stroke", "black");
+    svg.appendChild(contour);
 
-        let c = {
-            x: Math.random() * size/2 + size/4,
-            y: Math.random() * size/2 + size/4
-        }
+    let cells = [];
+    let cells_left = [];
 
-        let overlapping = false;
+    let cols = 4;
+    let rows = cols * 2;
 
-        for (i = 0; i < circles.length; i++) {
+    for (let i = 0; i < rows; i++) {
+        cells.push([]);
+    }
 
-            let c0 = circles[i];
+    for (let i = 0; i < cols * cols * 2; i++) {
 
-            overlapping = dist(c,c0) < size/9 ? true : overlapping;
+        cells_left.push(i-1);
 
-        }
+        let cellx = (size/2) * ((i % cols) / cols + 1/(cols*2));
+        let celly = size * ((Math.ceil((i + 1) / cols) - 1) / (cols*2) + 1/(cols*4));
 
-        if (!overlapping) {
-            
-            c.deg = Math.atan2(c.y - center.y, c.x - center.x);
-            circles.push(c)
+        cells[Math.floor(i/4)].push({x: cellx, y: celly});
+
+    }
+
+    let subsets = [];
+
+    for (var i = 0; i < figures.length; i++) {
+
+        let fig = figures[i];
+
+        let s = fig.getAttribute('subset');
         
+        subsets[s] = [];
+
+        subsets[s].push(fig);
+
+    }
+
+    createSubsets(subsets, cells, rows, cols);
+
+    for (i = 0; i < cells.length; i++) {
+        for (j = 0; j < cells[i].length; j++) {
+
+            let c = cells[i][j];
+
+            if (c.fig) {
+
+                createCircle(svg, size/(cols*2 + 2), 1, c.x, c.y);
+
+            }
+
         }
-
-    }
-
-    // Calculate the convex hull of the circles using Graham's scan algorithm
-    let hull = [];
-    let top = 0;
-
-    // Find the point with the lowest y-coordinate (ties broken by lowest x-coordinate)
-    for (let i = 0; i < circles.length; i++) {
-        if (circles[i].y < circles[top].y || (circles[i].y === circles[top].y && circles[i].x < circles[top].x)) {
-            top = i;
-        }
-    }
-
-    hull.push({x: circles[top].x, y: circles[top].y});
-
-    // Sort the points by polar angle around the lowest point
-    circles.sort((a, b) => Math.atan2(a.y - circles[top].y, a.x - circles[top].x) - Math.atan2(b.y - circles[top].y, b.x - circles[top].x));
-
-    function cross(a, b, c) {
-        return (b.x - a.x) * (c.y - a.y) - (b.y - a.y) * (c.x - a.x);
-    }
-
-    for (let i = 0; i < circles.length; i++) {
-        // Remove any points that would make the hull concave
-        while (hull.length > 1 && cross(hull[hull.length - 2], hull[hull.length - 1], circles[i]) <= 0) {
-            hull.pop();
-        }
-        hull.push({x: circles[i].x, y: circles[i].y});
-    }
-
-    // Calculate the centroid of the hull
-    let centroid = { x: 0, y: 0 };
-    for (let i = 0; i < hull.length; i++) {
-        centroid.x += hull[i].x;
-        centroid.y += hull[i].y;
-    }
-    centroid.x /= hull.length;
-    centroid.y /= hull.length;
-
-    // Pad each point in the hull
-    for (let i = 0; i < hull.length; i++) {
-        let point = hull[i];
-        let dx = point.x - centroid.x;
-        let dy = point.y - centroid.y;
-        let length = Math.sqrt(dx * dx + dy * dy);
-        let nx = dx / length;
-        let ny = dy / length;
-        let padding = size / 5;
-        point.x += nx * padding;
-        point.y += ny * padding;
-    }
-
-    // Draw the convex hull
-    let path = document.createElementNS("http://www.w3.org/2000/svg", "path");
-    d = `M ${hull[0].x} ${hull[0].y} Q ${(hull[0].x + hull[1].x) / 2} ${(hull[0].y + hull[1].y) / 2} ${hull[1].x} ${hull[1].y} `;
-    
-    for (let i = 2; i <= hull.length; i++) {
-        let segmentLength = Math.sqrt((hull[i-1].x - hull[i % hull.length].x) ** 2 + (hull[i-1].y - hull[i % hull.length].y) ** 2);
-        let numControlPoints = 10;
-    
-        for (let j = 1; j <= numControlPoints; j++) {
-            let controlPoint = {x: hull[i-1].x + j * (hull[i % hull.length].x - hull[i-1].x) / (numControlPoints + 1), 
-                                y: hull[i-1].y + j * (hull[i % hull.length].y - hull[i-1].y) / (numControlPoints + 1)};
-            let dx = controlPoint.x - centroid.x;
-            let dy = controlPoint.y - centroid.y;
-            let rand = Math.random() - 0.3;
-            let length = Math.sqrt(dx * dx + dy * dy);
-            let nx = dx / length * rand;
-            let ny = dy / length * rand;
-            let padding = segmentLength / numControlPoints;
-            controlPoint.x += nx * padding;
-            controlPoint.y += ny * padding;
-            d += `L ${controlPoint.x} ${controlPoint.y} `;
-        }
-    
-        d += `L ${hull[i % hull.length].x} ${hull[i % hull.length].y} `;
-    }    
-    d += "Z";
-    path.setAttribute("d", d);
-    path.setAttribute("fill", "none");
-    path.setAttribute("stroke", "black");
-    svg.appendChild(path);
-
-
-    circles.sort((a,b) => a.deg - b.deg);
-
-    for (i = 0; i < circles.length; i++) {
-
-        let c = circles[i];
-        createCircle(svg, size/10, 1, c.x, c.y);
-
     }
 
     set.after(svg);
     set.remove();
+    svg.parentNode.classList.add("set");
     
+}
+
+function createSubsets(subsets, cells, rows, columns) {
+
+    let currentRow;
+    let k1 = 0, k2 = 0;
+
+    for (var i = 0; i < subsets.length; i++) {
+
+        if (i % 2) {
+
+            currentRow = 0 + k1;
+
+            currentCol = null;
+            
+            while (currentCol === null) {
+                currentCol = getEmptyCol(cells, currentRow);
+                currentRow++;
+                k1++;
+            }
+
+        } else {
+
+            currentRow = rows - 1 - k2;
+
+            currentCol = null;
+            
+            while (currentCol === null) {
+                currentCol = getEmptyCol(cells, currentRow);
+                currentRow--;
+                k2++;
+            }
+
+        }
+        
+
+        //     let middleness = 100;
+
+        //     let r = 0;
+
+        //     for (var j = 0; j < middleness; j++) { r += Math.random(); }
+
+        //     r /= middleness;
+
+        //     let n = Math.ceil(r * cells_left.length) - 1;
+
+        //     for (var j = 0; j < subsets[i].length; j++) {
+
+        //         if (cells_left[n]) {
+                    
+        //             cells[cells_left[n]].fig = subsets[i][j];
+        //             cells_left.splice(n, 1);
+
+        //         } else {
+
+        //             k = 1;
+
+        //             while (!cells_left[n-k]) { k++; }
+
+        //             cells[cells_left[n]].fig = subsets[i][j-k];
+
+        //         }
+
+        //     }
+
+    }
+
+}
+
+function getEmptyCol(cells, currentRow) {
+
+    let firstEmptyCell = null;
+    
+    for (let i = 0; i < cells[currentRow].length; i++) {
+
+        if (!cells[currentRow][i].fig) {
+            firstEmptyCell = i;
+            break;
+        }
+
+    }
+
 }

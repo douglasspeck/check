@@ -76,7 +76,7 @@ if($_SESSION['logged'] == false) {
                         </article>
                     </section>
                 </main>
-                <?php include 'assets/php/scripts.php' ?>
+                <?php include 'assets/php/footer.php' ?>
             </body>
         </html>
 
@@ -107,7 +107,7 @@ if($_SESSION['logged'] == false) {
                         </section>
                     </section>
                 </main>
-                <?php include 'assets/php/scripts.php' ?>
+                <?php include 'assets/php/footer.php' ?>
             </body>
         </html>
 

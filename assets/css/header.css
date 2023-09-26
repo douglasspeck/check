@@ -1,15 +1,36 @@
 #menu {
-    background-color: #fff;
-    width: 90vw;
-    height: calc(var(--x) * 5);
-    min-height: max(5vh,5vw);
+    background-color: var(--g0);
+    box-shadow: 0px 3px 5px var(--c5);
+    width: 80vw;
+    height: 15vh;
     padding: 0 5vw;
-    z-index: 5;
+    z-index: 100;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    color: var(--g1);
-    box-shadow: 0 -10px 12px #000;
+    color: var(--c3);
+    transition: all 0.3s ease-in;
+}
+
+#top-of-site-pixel-anchor {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    top: 5vh;
+    left: 0;
+  }  
+
+body.has-scrolled #menu {
+    height: 10vh;
+    padding: 0 10vw;
+}
+
+body.has-scrolled main {
+    height: 90vh;
+}
+
+#menu.is-pinned {
+    padding: 0 10vw;
 }
 
 #menu > nav {
@@ -25,11 +46,11 @@
 }
 
 #menu > nav > a:hover, #menu > nav > a.active:hover {
-    color: var(--a2);
+    color: var(--c4);
 }
 
 #menu > nav > a.active {
-    color: var(--g0);
+    color: var(--c4);
     position: relative;
 }
 
@@ -37,35 +58,43 @@
     content: '';
     position: absolute;
     top: 100%;
-    left: 0;
-    width: 100%;
+    right: 0;
+    width: 0;
     height: 2px;
-    background-color: var(--g0);
+    background-color: var(--a2);
+    transition: all 300ms ease-in-out;
 }
 
 #menu > nav > a.active:hover::after {
-    background-color: var(--a2);
+    width: 100%;
+    left: 0;
 }
 
 #check {
     display: flex;
     height: 50%;
     align-items: center;
-    font-family: Courier;
-    transform: scaleY(1.25);
-    color: var(--g0);
+    color: var(--g3);
     font-size: 2em;
+    line-height: 0;
 }
 
-#check > * {
-    transform: scaleY(0.8);
+#check > svg {
     height: 0.8em;
     width: 1.2em;
-    margin-top: 0.1em;
+}
+
+#check > p {
+    font-size: 100%;
+    line-height: 1;
+    padding-top: 0.2em;
+    letter-spacing: 0.15ch;
+    font-weight: 200;
+    margin: 0;
 }
 
 #check > svg > g {
-    fill: var(--g0);
+    fill: var(--c3);
     stroke: none;
 }
 
@@ -106,4 +135,142 @@
 
 #menu details > *:not(summary) > * {
     padding: 3px 0;
+}
+
+@media screen and (orientation: portrait) {
+
+    #top-of-site-pixel-anchor {
+        display: none;
+    }
+
+    #menu {
+        width: 100vw;
+        height: 10vh;
+        box-shadow: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        padding: 0 10vw;
+    }
+
+    body main, body.has-scrolled > main {
+        height: 85vh;
+        margin-top: 10vh;
+    }
+
+    #sandwich {
+        display: block;
+        position: fixed;
+        width: 8vw;
+        height: 0.6vh;
+        background-color: var(--g3);
+        right: 10vw;
+        top: 4.7vh;
+        border-radius: 0.3vh;
+    }
+
+    #sandwich::before,
+    #sandwich::after {
+        content: '';
+        display: block;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        transform: translateY(-200%);
+        background-color: inherit;
+        border-radius: 0.3vh;
+    }
+
+    #sandwich::after {
+        transform: translateY(200%);
+    }
+
+    #menu.opened #sandwich {
+        transform: rotate(45deg);
+    }
+
+    #menu.opened #sandwich::before,
+    #menu.opened #sandwich::after {
+        transform: rotate(-90deg);
+    }
+    
+    #menu > nav {
+        width: 80vw;
+        height: 90vh;
+        position: fixed;
+        padding: 5vh 10vw;
+        top: 10vh;
+        left: 0;
+        display: none;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        gap: 3vh;
+        backdrop-filter: blur(5px) brightness(0.15);
+    }
+
+    #menu > nav > a,
+    #menu > nav > details {
+        margin: 0;
+        height: 4vh;
+        width: calc(70% - 2ch - 4px);
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        border: 2px solid var(--c4);
+        color: var(--c4);
+        border-radius: 5px;
+        font-weight: 700;
+        flex-basis: auto;
+        padding: 0 1ch;
+        transition: all 0.5s ease-in-out;
+    }
+
+    #menu > nav > details {
+        background-color: var(--c4);
+        color: var(--c2);
+    }
+
+    #menu > nav > a.active {
+        width: calc(100% - 2ch - 4px);
+    }
+
+    #menu > nav > a.active::after {
+        display: none;
+    }
+
+    #menu > nav > details > summary.button {
+        height: 100%;
+        width: 100%;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        color: var(--c1);
+        background-color: transparent;
+        font-weight: 700;
+    }
+
+    #menu.opened > nav {
+        display: flex;
+        animation: appear .5s ease-in-out backwards;
+    }
+    
+    #menu > nav > details > div {
+        margin: 1em -1ch;
+        border-radius: 5px;
+    }
+
+    #menu > nav > details > div > a {
+        padding: calc(1ch - 2px);
+    }
+
+}
+
+@media screen and (max-height: 600px), screen and (max-width: 600px) {
+    #menu details > div {
+        font-size: 0.75em;
+    }
 }

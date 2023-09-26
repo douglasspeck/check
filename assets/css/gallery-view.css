@@ -7,7 +7,7 @@
     min-height: 50vh;
 }
 
-.gallery > article {
+.gallery > .activity {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -19,7 +19,11 @@
     box-shadow: 1px 1px 3px var(--g1);
 }
 
-.gallery > .associate {
+.activity > .fraction {
+    order: 2;
+}
+
+.gallery > .associate, .gallery > .set {
     flex-direction: row;
     grid-column: span 2;
     position: relative;
@@ -32,6 +36,7 @@
     justify-content: space-evenly;
     align-items: center;
     margin: auto;
+    gap: 10px;
 }
 
 .input {

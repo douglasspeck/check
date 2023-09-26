@@ -2,13 +2,62 @@ a {
     text-decoration: none;
 }
 
-h1 {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(var(--x) * 3);
+a:focus-visible {
+    outline: none;
 }
 
 .bold {
     font-weight: bold;
+}
+
+p {
+    margin-block-start: 0;
+    margin-block-end: 0;
+    margin-top: 1em;
+    line-height: 1.5;
+    letter-spacing: 0.15ch;
+}
+
+em {
+    padding: 3px 5px;
+    font-style: normal;
+    background-color: var(--c5);
+    color: #000;
+}
+
+figure.quote {
+    margin-top: 2vh;
+    padding: 2vh;
+    background-color: var(--g2);
+    border-radius: 10px;
+}
+
+figure.quote p {
+    margin: 0;
+}
+
+figure.quote > blockquote > p::before {
+    content: '"';
+    font-family: serif;
+}
+
+figure.quote > blockquote > p::after {
+    content: '"';
+    font-family: serif;
+}
+
+figure.quote > figcaption > p {
+    margin-top: 1em;
+}
+
+figure.quote > figcaption > p::before {
+    content: '(';
+}
+
+figure.quote > figcaption > p::after {
+    content: ')';
+}
+
+figure.quote .author {
+    text-transform: uppercase;
 }

@@ -10,14 +10,18 @@
         
         $activities = [
             'fill_gap',
-            'paint_figures'
+            'paint_figures',
+            'associate_elements',
+            'count_figures'
         ];
 
-        echo '<article class="activity">';
+        echo '<article class="activity">
+        ';
         
         $activities[$type-1]($elements, $example);
 
-        echo '</article>';
+        echo '
+        </article>';
 
     }
 

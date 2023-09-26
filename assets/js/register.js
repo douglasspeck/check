@@ -13,7 +13,8 @@
 function register(data) {
 
     console.log(
-        `USER INPUT\n
+        `USER INPUT
+        input: ${data.input}
         type: ${data.type}
         value: ${data.value}
         timestamp: ${data.timestamp}

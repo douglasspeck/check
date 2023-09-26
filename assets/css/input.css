@@ -35,5 +35,5 @@ button, .button {
 
 button:not(.ir):hover, .button:hover {
     background-color: var(--a3);
-    color: #fff !important;
+    color: #fff;
 }

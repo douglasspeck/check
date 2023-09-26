@@ -5,10 +5,11 @@
  * @since           0.4.0
  * 
  * @function        createTextInput
+ * @description     Copies the given pseudo-element attributes to a new text input element
  * @param           {Element}   el      The element to create the text input within
  * @param           {Number}    id      The element's ID
  * 
- * @function        generateFractions
+ * @function        generateTextInputs
  * @description     Creates a corresponding text input for each <text> pseudo-tag
  * 
  */

@@ -36,17 +36,19 @@ if($_SESSION['logged'] == false) {
 
                 include 'assets/php/create_activity.php';
 
-                $data = getSequence($db, $notebook, $sequence);
+                $data = $db == false ? false : getSequence($db, $notebook, $sequence);
 
                 echo '<h1>Sequência ' . $sequence . '</h1>
                 <section class="gallery">';
 
-                for ($i = 0; $i < count($data); $i++) {
-
-                    $item = json_decode($data[$i]['parameters'],true);
-
-                    create_activity($item);
-
+                if ($data != false) {
+                    for ($i = 0; $i < count($data); $i++) {
+    
+                        $item = json_decode($data[$i]['parameters'],true);
+    
+                        create_activity($item);
+    
+                    }
                 }
 
                 echo '</section>';
@@ -59,7 +61,7 @@ if($_SESSION['logged'] == false) {
                 ?>
             </section>
         </main>
-        <?php include 'assets/php/scripts.php' ?>
+        <?php include 'assets/php/footer.php' ?>
     </body>
 </html>
 

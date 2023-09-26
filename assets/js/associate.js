@@ -163,6 +163,9 @@ function removeResults(id,str) {
 function createAssoc(el,id) {
 
     let first = document.createElement("section");
+
+    console.log(el);
+
     first.innerHTML = el.children[0].innerHTML;
     first.classList.add("first-container");
     
@@ -183,10 +186,11 @@ function createAssoc(el,id) {
     let art = document.createElement("article");
     art.appendChild(first);
     art.appendChild(second);
+    art.classList.add("activity");
     art.classList.add("associate");
 
-    el.parentNode.insertBefore(art,el);
-    el.remove();
+    el.parentNode.parentNode.insertBefore(art,el.parentNode);
+    el.parentNode.remove();
 
 }
 
@@ -203,7 +207,7 @@ function generateAssoc() {
         let assoc = associate[0];
         createAssoc(assoc, id);
         
-        id = parseInt(id)++;
+        id = parseInt(id) + 1;
 
     }
 

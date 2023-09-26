@@ -5,6 +5,7 @@
  * @since           0.2.0
  * 
  * @function        createFraction
+ * @description     Copies the given pseudo-element attributes to three input elements
  * @param           {Element}   el      The element to create the fraction within
  * @param           {Number}    id      The element's ID
  * 
@@ -60,6 +61,22 @@ function createFraction(el,id){
 
 }
 
+function createGap(el,id){
+
+    let val = el.getAttribute("value");
+
+    let gap = document.createElement("input");
+
+    console.log(val);
+
+    gap.classList.add("gap");
+    gap.setAttribute("type", "number");
+    gap.setAttribute("value", val);
+    el.after(gap);
+    el.remove();
+
+}
+
 function generateFractions() {
 
     let fractions = document.getElementsByTagName("fraction");
@@ -70,6 +87,22 @@ function generateFractions() {
 
         let fra = fractions[0];
         createFraction(fra, id);
+        id++;
+
+    }
+
+}
+
+function generateGaps() {
+
+    let gaps = document.getElementsByTagName("gap");
+
+    let id = 0;
+
+    while (gaps.length > 0) {
+
+        let gap = gaps[0];
+        createGap(gap, id);
         id++;
 
     }
