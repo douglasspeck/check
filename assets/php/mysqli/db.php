@@ -23,28 +23,49 @@ try {
 // O parâmetro opcional $dataset é um array de elementos na forma ['coluna', $valor] para busca
 
 function fetchAll(mysqli $db, $table, $dataset_and=0, $dataset_or=0){
-    if (!$db) {return false;}
-    $data = [];
     $sql = "SELECT * FROM $table";
-    if($dataset_and ==! 0) {
-        $sql = $sql . " WHERE ";
+    if($dataset_and != 0 && $dataset_or === 0) {
+        $sql .= " WHERE ";
         for($i = 0; $i < count($dataset_and); $i++) {
-            $sql = $sql . $dataset_and[$i][0] . " = '" . $dataset_and[$i][1] . "'";
+            $column = $db->real_escape_string($dataset_and[$i][0]);
+            $value = $db->real_escape_string($dataset_and[$i][1]);
+            $sql .= "$column = '$value'";
             if ($i < count($dataset_and) - 1) {
-                $sql = $sql . " AND ";
+                $sql .= " AND ";
             }
         }
-    } else if ($dataset_or ==! 0) {
-        $sql = $sql . " WHERE ";
+    } else if ($dataset_and === 0 && $dataset_or != 0) {
+        $sql .= " WHERE ";
         for($i = 0; $i < count($dataset_or); $i++) {
-            $sql = $sql . $dataset_or[$i][0] . " = '" . $dataset_or[$i][1] . "'";
+            $column = $db->real_escape_string($dataset_or[$i][0]);
+            $value = $db->real_escape_string($dataset_or[$i][1]);
+            $sql .= "$column = '$value'";
             if ($i < count($dataset_or) - 1) {
-                $sql = $sql . " OR ";
+                $sql .= " OR ";
             }
         }
     }
     $results = $db->query($sql);
     return $results;
+}
+
+function checkIfExists(mysqli $db, $table, $column, $value) {
+    $sql = "SELECT COUNT(*) as count FROM $table WHERE $column = '" . $db->real_escape_string($value) . "'";
+    $result = $db->query($sql);
+    $row = $result->fetch_assoc();
+    return $row['count'] > 0;
+}
+
+function getFormQuestion(mysqli $db) {
+    $data = [];
+    $sql = "SELECT `type_question`,`title_question`,`options_question`,`values_question` FROM form_questions";
+    $results = $db->query($sql);
+    if ($results->num_rows > 0) {
+        while ($row = $results->fetch_assoc()) {
+            $data[] = $row;
+        }
+    }
+    return $data;
 }
 
 function getSequence(mysqli $db, $notebook, $sequence){
@@ -66,17 +87,18 @@ function newLine(mysqli $db, $table, $dataset) {
     $columns = [];
     $values = [];
     foreach($dataset as $data) {
-      $columns[] = $data[0];
-      if (strpos($data[1], 'mysql_function:') !== false) {
-        $values[] = str_replace('mysql_function:', '', $data[1]);
-      } else {
-        $values[] = "'" . $data[1] . "'";
-      }
+        $columns[] = $data[0];
+        $values[] = "'" . $db->real_escape_string($data[1]) . "'";
     }
     $column_names = implode(',', $columns);
     $column_values = implode(',', $values);
     $sql = "INSERT INTO $table ($column_names) VALUES ($column_values)";
-    $db->query($sql);
+
+    if ($db->query($sql)) {
+        return true;
+    } else {
+        return false;
+    }
 }
 
 function update(mysqli $db, $table, $dataset, $id){

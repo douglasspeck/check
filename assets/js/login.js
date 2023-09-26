@@ -1,101 +1,153 @@
-// trasitions signin<->signup and student<->teacher
-var container = document.querySelector('.form-container')
-var formSignin = document.querySelector('#signin')
-var buttonsForm = document.querySelector('.form-buttons')
-var formSignupStudent = document.querySelector('#signup-student')
-var formSignupTeacher = document.querySelector('#signup-teacher')
-var btnColor = document.querySelector('.btn-color')
+// transitions and responsiveness
+const container = document.querySelector('.form-container');
+const formSignin = document.querySelector('#signin');
+const buttonsForm = document.querySelector('.form-buttons');
+const formSignupStudent = document.querySelector('#signup-student');
+const formSignupTeacher = document.querySelector('#signup-teacher');
+const btnColor = document.querySelector('.btn-color');
 
-document.querySelector('#create-account')
-.addEventListener('click', () => {
-    container.style.width = "350px"
-    container.style.height = "520px"
-    formSignin.style.left = "-450px"
-    buttonsForm.style.left = "0px"
-    formSignupStudent.style.left = "25px"
-    formSignupTeacher.style.left = "450px"
-})
+function setContainerSize(width, height) {
+  container.style.width = width;
+  container.style.height = height;
+}
 
-document.querySelector('#btn-student')
-.addEventListener('click', () => {
-    container.style.width = "350px"
-    container.style.height = "520px"
-    formSignupStudent.style.left = "25px"
-    formSignupTeacher.style.left = "450px"
-    btnColor.style.left = "0px"
-})
+function adjustResponsiveness() {
+  const windowWidth = window.innerWidth;
 
-document.querySelector('#btn-teacher')
-.addEventListener('click', () => {
-    container.style.width = "675px"
-    container.style.height = "365px"
-    formSignupStudent.style.left = "-450px"
-    formSignupTeacher.style.left = "25px"
-    btnColor.style.left = "103px"
-})
+  if (windowWidth < 700) {
+    setContainerSize('350px', '555px');
+    document.querySelector('#form-column-2').style.removeProperty('position');
+    document.querySelector('#form-column-2').style.removeProperty('left');
+  } else {
+    setContainerSize('675px', '350px');
+    document.querySelector('#form-column-2').style.position='absolute';
+    document.querySelector('#form-column-2').style.left='325px';
+  }
+}
 
-document.querySelectorAll('#enter-account-1, #enter-account-2')
-.forEach(element => {
-    element.addEventListener('click', () => {
-        container.style.width = "350px"
-        container.style.height = "355px"
-        formSignin.style.left = "25px"
-        buttonsForm.style.left = "425px"
-        formSignupStudent.style.left = "450px"
-        formSignupTeacher.style.left = "900px"
-        btnColor.style.left = "0px"
-    })
-})
+document.querySelector('#create-account').addEventListener('click', () => {
+  window.removeEventListener('resize', adjustResponsiveness);
+  
+  formSignin.style.display = 'none';
+  formSignupStudent.style.display = 'flex';
+  buttonsForm.style.display = 'flex';
+  btnColor.style.display = 'flex';
+
+  setContainerSize('350px', '505px');
+});
+
+document.querySelector('#btn-student').addEventListener('click', () => {
+  window.removeEventListener('resize', adjustResponsiveness);
+  
+  formSignupStudent.style.display = 'flex';
+  formSignupTeacher.style.display = 'none';
+  btnColor.style.left = '0px';
+
+  setContainerSize('350px', '505px');
+});
+
+document.querySelector('#btn-teacher').addEventListener('click', () => {
+  formSignupStudent.style.display = 'none';
+  formSignupTeacher.style.display = 'flex';
+  btnColor.style.left = '103px';
+  
+  adjustResponsiveness()
+  window.addEventListener('resize', adjustResponsiveness);
+});
+
+document.querySelectorAll('#enter-account-1, #enter-account-2').forEach(element => {
+  element.addEventListener('click', () => {
+    window.removeEventListener('resize', adjustResponsiveness);
+
+    formSignin.style.display = 'flex';
+    formSignupStudent.style.display = 'none';
+    formSignupTeacher.style.display = 'none';
+    buttonsForm.style.display = 'none';
+    btnColor.style.left= '0px';
+
+    setContainerSize('350px', '335px');
+  });
+});
 
 // alert error login
 function alertErrorLogin(messageError) {
-    const message = document.createElement("div");
-    message.classList.add("error-login-message");
-    message.innerText = messageError;
-    document.body.appendChild(message);
+  const message = document.createElement("div");
+  message.classList.add("error-login-message");
+  message.innerText = messageError;
+  document.body.appendChild(message);
 }
 
-// show/hide password
+// icon show/hide password
 function showHide(id_input, id_icon) {
-    const inputPassword = document.getElementById(id_input);
-    const iconShowPassword = document.getElementById(id_icon);
+  const inputPassword = document.getElementById(id_input);
+  const iconShowPassword = document.getElementById(id_icon);
   
-    if(inputPassword.type === 'password'){
-        inputPassword.setAttribute('type', 'text');
-        iconShowPassword.innerText = 'visibility_off'
-    } else {
-        inputPassword.setAttribute('type', 'password');
-        iconShowPassword.innerText = 'visibility'
-    }
+  if(inputPassword.type === 'password'){
+    inputPassword.setAttribute('type', 'text');
+    iconShowPassword.innerText = 'visibility_off'
+  } else {
+    inputPassword.setAttribute('type', 'password');
+    iconShowPassword.innerText = 'visibility'
+  }
 }
 
 // username validation in sign up
 document.querySelectorAll("#username-1, #username-2")
 .forEach(function(usernameInput) {
     usernameInput.addEventListener("input", function(event) {
-        const regex = /^[a-zA-Z0-9]+$/;
-        if (regex.test(usernameInput.value)) {
-            usernameInput.setCustomValidity("");
-        } else {
-            const errorMessage = "Nome de usuário inválido. Use apenas letras e números sem espaços.";
-            usernameInput.setCustomValidity(errorMessage);
-        }
+      const regex = /^[a-z0-9_]{6,}$/;
+      if (regex.test(usernameInput.value)) {
+        usernameInput.setCustomValidity("");
+      } else {
+        const errorMessage = "Mínimo 6 caracteres. Utilize apenas letras minúsculas, números e underline";
+        usernameInput.setCustomValidity(errorMessage);
+      }
     });
 });
 
-// password validation in sign up
-const password = document.getElementById('password-student');
-const confirm = document.getElementById('confirm-student');
-
-function validate(item) {
-    item.setCustomValidity('');
-    item.checkValidity();
-
-    if (item == confirm) {
-        if (item.value === password.value) item.setCustomValidity('');
-        else item.setCustomValidity('As senhas não coincidem.');
+// email validation in sign up
+document.querySelectorAll("#email_student, #email_teacher")
+.forEach(function(emailInput) {
+  emailInput.addEventListener("input", function(event) {
+    const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (regex.test(emailInput.value)) {
+      emailInput.setCustomValidity("");
+    } else {
+      const errorMessage = "Formato de email inválido";
+      emailInput.setCustomValidity(errorMessage);
     }
+  });
+});
+  
+// password validation in sign up
+const passwordStudent = document.getElementById('password-student');
+const confirmStudent = document.getElementById('confirm-student');
+const passwordTeacher = document.getElementById('password-teacher');
+const confirmTeacher = document.getElementById('confirm-teacher');
+
+function validatePassword(item, confirmItem) {
+  item.setCustomValidity('');
+  item.checkValidity();
+
+  if (item.value !== confirmItem.value) {
+    confirmItem.setCustomValidity('As senhas não coincidem');
+  } else {
+    confirmItem.setCustomValidity('');
+  }
 }
 
-password.addEventListener('input', function(){validate(password)});
-confirm.addEventListener('input', function(){validate(confirm)});
+passwordStudent.addEventListener('input', function() {
+  validatePassword(passwordStudent, confirmStudent);
+});
+
+confirmStudent.addEventListener('input', function() {
+  validatePassword(confirmStudent, passwordStudent);
+});
+
+passwordTeacher.addEventListener('input', function() {
+  validatePassword(passwordTeacher, confirmTeacher);
+});
+
+confirmTeacher.addEventListener('input', function() {
+  validatePassword(confirmTeacher, passwordTeacher);
+});

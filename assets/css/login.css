@@ -13,8 +13,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #eeeeee;
-    overflow: hidden;
+    background-color: var(--g2);
+    overflow: auto;
 }
 
 #login-page .error-login-message {
@@ -22,7 +22,7 @@
     top: 30px;
     padding: 6px 30px;
     background-color: rgba(255, 0, 0, 0.12);
-    color: red;
+    color: var(--a3);
     font-size: 13px;
     border-radius: 3px;
     animation: slide-top 3s cubic-bezier(0.25, 0.45, 0.45, 0.95) both;
@@ -48,11 +48,10 @@
 }
 
 #login-page .form-container {
-    background-color: white;
-    top: 20px;
+    background-color: #fff;
     padding: 6px;
     width: 350px;
-    height: 355px;
+    height: 335px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -71,20 +70,20 @@
 
 #login-page form {
     position: absolute;
-    transition: .3s;
     width: 300px;
     display: flex;
     flex-direction: column;
+    left: 25px;
 }
 
 #login-page #signup-student {
+    display: none;
     margin-top: 100px;
-    left: 450px;
 }
   
 #login-page #signup-teacher {
+    display: none;
     margin-top: 100px;
-    left: 900px;
     flex-wrap: wrap;
 }
 
@@ -92,7 +91,9 @@ input[type="text"],
 input[type="email"],
 input[type="password"] {
     border: none;
-    background-color: whitesmoke;
+    font-size: 13px;
+    text-align: left;
+    background-color: var(--g3);
     border-radius: 18px;
     padding: 8px 35px 8px 37px;
     outline: none;
@@ -108,8 +109,8 @@ input[type="password"] {
 }
 
 #login-page button[type="submit"] {
-    background: #eb6841;
-    color: white;
+    background: var(--a2);
+    color: #fff;
     border-radius: 30px;
     width: 100%;
     border: none;
@@ -121,50 +122,49 @@ input[type="password"] {
 }
 
 #login-page button[type="submit"]:hover {
-    background: #da5229;
+    background: var(--a3);
 }
 
 #login-page .form-buttons {
-    left: 425px;
+    display: none;
     margin-top: 25px;
     position: relative;
     border-radius: 30px;
     box-shadow: 0 0 7px 0 rgba(0,0,0,0.3);
-    transition: .3s;
 }
 
-#login-page #form-column-2 {
-    position: absolute;
-    left: 325px;
+#login-page .form-buttons #btn-student,
+#login-page .form-buttons #btn-teacher {
+    color: #000;
+    font-weight: 500;
+    cursor: pointer;
+    background: none;
+    border: none;
+    font-size: 15px;
+    position: relative;
 }
 
 #login-page .form-buttons #btn-student {
-    color: black;
-    cursor: pointer;
-    background: transparent;
-    border: none;
-    font-size: 15px;
-    position: relative;
-    padding: 10px 40px 10px 44px;
+    padding: 10px 40px 10px 40px;
 }
 
 #login-page .form-buttons #btn-teacher {
-    color: black;
-    cursor: pointer;
-    background: transparent;
-    border: none;
-    font-size: 15px;
-    position: relative;
-    padding: 10px 25px 10px 6px;
+    padding: 10px 25px 10px 15px;
+}
+
+#login-page .form-buttons #btn-student:hover,
+#login-page .form-buttons #btn-teacher:hover {
+    color:#000 !important;
 }
 
 #login-page .btn-color {
+    display: none;
     position: absolute;
-    width: 129px;
+    width: 120px;
     height: 100%;
-    background: #edc951;
+    background: var(--a1);
     border-radius: 30px;
-    transition: .3s;
+    transition: .35s;
 }
 
 #login-page #forgotpass-link {
@@ -194,7 +194,7 @@ input[type="password"] {
 #create-account,
 #enter-account-1,
 #enter-account-2 {
-    color: #eb6841;
+    color: var(--a2);
     border: none;
     background: none;
 }
@@ -203,12 +203,12 @@ input[type="password"] {
 #enter-account-1:hover,
 #enter-account-2:hover {
     text-decoration: underline;
-    color: #da5229;
+    color: var(--a3);
     cursor: pointer;
 }
 
 #login-page a {
-    color: rgba(0, 73, 209, 0.7);
+    color: var(--c1);
 }
 
 #login-page .material-icons {
