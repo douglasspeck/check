@@ -8,6 +8,10 @@
     overflow: hidden;
 }
 
+#form-page-after {
+    justify-content: space-between;
+}
+
 #form-page .error-message {
     position: absolute;
     top: 30px;

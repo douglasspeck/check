@@ -134,7 +134,7 @@ CREATE TABLE IF NOT EXISTS `fracoes`.`sequences` (
   PRIMARY KEY (`id`)
 ) DEFAULT charset = utf8;
 
-CREATE TABLE IF NOT EXISTS `fracoes`.`activities` (
+CREATE TABLE IF NOT EXISTS `fracoes`.`activities` ( /* atualizar no banco */
   `id_activity` INT NOT NULL AUTO_INCREMENT,
   `notebook` INT UNSIGNED NOT NULL,
   `sequence` INT UNSIGNED NOT NULL,
@@ -158,7 +158,7 @@ CREATE TABLE IF NOT EXISTS `fracoes`.`sequences_answers` (
   `answers` JSON NOT NULL,
   `correction` JSON NOT NULL,
   `start_session` TIMESTAMP NOT NULL,
-  `end_session` TIMESTAMP NOT NULL,
+  `end_session` TIMESTAMP NULL,
   `completed` TINYINT NOT NULL DEFAULT 0,
   `attemp` INT NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`),

@@ -154,13 +154,13 @@ if (!$alreadyAnswered) {
     $resources = [];
     include 'assets/php/head.php';
     ?>
-    <body class="form-page" id="form-page">
+    <body class="form-page" id="form-page-after">
 
-      <!-- include header -->
+      <?php include 'assets/php/header.php'; ?>
 
       <h2>Você já respondeu</h2>
 
-      <!-- include footer -->
+      <?php include 'assets/php/footer.php'; ?>
 
     <?php include 'assets/php/scripts.php'; ?>
     </body>
