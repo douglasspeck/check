@@ -1,15 +1,4 @@
-<?php
-
-    if(!isset($_SESSION)) {
-        session_start();
-    }
-
-    if ($_GET['logout'] == true) {
-        session_destroy();
-        header("Location: /~fracoes");
-    }
-
-?>
+<?php $rl=false; require_once('assets/php/session.php'); ?>
 
 <!DOCTYPE html>
 <html lang="pt-BR">

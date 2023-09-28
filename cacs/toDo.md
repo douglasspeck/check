@@ -6,7 +6,7 @@
     - [x] Com base no banco de atividades, definir quais as ferramentas que serão criadas.
     - [ ] Terminar o banco de atividades (2/2).
 - [ ] Diagramar as páginas:
-    - [ ] Landing Page
+    - [x] Landing Page
     - [ ] Páginas de Atividade
 - [ ] Implementação:
     - [ ] Caderno 1

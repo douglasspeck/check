@@ -1,13 +1,9 @@
 <?php
 
-if(!isset($_SESSION)) {
-    session_start();
-}
+require_once('assets/php/session.php');
 
-if($_SESSION['logged'] == false) {
-    header("Location: login.php");
-} else {
-    if (isset($_SESSION['id_student'])) {        
+if (isset($_SESSION['id_student'])) {     
+
 ?>
 
         <!DOCTYPE html>
@@ -113,7 +109,6 @@ if($_SESSION['logged'] == false) {
 
 <?php
 
-    }
-}
+    };
 
 ?>

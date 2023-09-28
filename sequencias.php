@@ -1,14 +1,4 @@
-<?php
-
-if(!isset($_SESSION)) {
-    session_start();
-}
-
-if($_SESSION['logged'] == false || isset($_SESSION['id_student']) == false) {
-    header("Location: login.php");
-}
-
-?>
+<?php require_once('assets/php/session.php'); ?>
 
 <!DOCTYPE html>
 <html lang="pt-BR">
