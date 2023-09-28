@@ -46,14 +46,14 @@ function createSet(set, id){
         cells.push([]);
     }
 
-    for (let i = 0; i < cols * cols * 2; i++) {
+    for (let i = 1; i <= cols * rows; i++) {
 
         cells_left.push(i-1);
 
         let cellx = (size/2) * ((i % cols) / cols + 1/(cols*2));
         let celly = size * ((Math.ceil((i + 1) / cols) - 1) / (cols*2) + 1/(cols*4));
 
-        cells[Math.floor(i/4)].push({x: cellx, y: celly});
+        cells[Math.floor(i/4)].push({x: cellx, y: celly, fig: null});
 
     }
 
@@ -71,7 +71,7 @@ function createSet(set, id){
 
     }
 
-    createSubsets(subsets, cells, rows, cols);
+    createSubsets(subsets, cells, cells_left, rows, cols);
 
     for (i = 0; i < cells.length; i++) {
         for (j = 0; j < cells[i].length; j++) {
@@ -93,7 +93,7 @@ function createSet(set, id){
     
 }
 
-function createSubsets(subsets, cells, rows, columns) {
+function createSubsets(subsets, cells, cells_left, rows, columns) {
 
     let currentRow;
     let k1 = 0, k2 = 0;
@@ -125,36 +125,22 @@ function createSubsets(subsets, cells, rows, columns) {
             }
 
         }
-        
 
-        //     let middleness = 100;
-
-        //     let r = 0;
-
-        //     for (var j = 0; j < middleness; j++) { r += Math.random(); }
-
-        //     r /= middleness;
-
-        //     let n = Math.ceil(r * cells_left.length) - 1;
-
-        //     for (var j = 0; j < subsets[i].length; j++) {
-
-        //         if (cells_left[n]) {
-                    
-        //             cells[cells_left[n]].fig = subsets[i][j];
-        //             cells_left.splice(n, 1);
-
-        //         } else {
-
-        //             k = 1;
-
-        //             while (!cells_left[n-k]) { k++; }
-
-        //             cells[cells_left[n]].fig = subsets[i][j-k];
-
-        //         }
-
-        //     }
+        let middleness = 100;
+        let r = 0;
+        for (var j = 0; j < middleness; j++) { r += Math.random(); }
+        r /= middleness;
+        let n = Math.ceil(r * cells_left.length) - 1;
+        for (var j = 0; j < subsets[i].length; j++) {
+            if (cells_left[n]) {   
+                cells[cells_left[n]].fig = subsets[i][j];
+                cells_left.splice(n, 1);
+            } else {
+                k = 1;
+                while (!cells_left[n-k]) { k++; }
+                cells[cells_left[n]].fig = subsets[i][j-k];
+            }
+        }
 
     }
 
