@@ -103,38 +103,50 @@ body.has-scrolled main {
 }
 
 #menu details {
-    width: 100%;
+    width: fit-content;
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
     position: relative;
 }
 
+#menu details > summary {
+    width: fit-content;
+}
+
 #menu details[open] > summary {
     border-radius: 5px 5px 0 0;
 }
 
-#menu details > *:not(summary) {
-    width: calc(100% - 6px);
+#menu details > ul {
+    width: fit-content;
     border-radius: 0 0 5px 5px;
     padding: 3px;
     display: flex;
     flex-direction: column;
     position: absolute;
     top: 100%;
+    left: 0;
     background-color: #fff;
     box-shadow: 0 1px 2px #ddd;
-    transform: scaleY(0) translateY(-0.5);
+    transform-origin: top;
+    transform: scaleY(0);
     transition: all 1s ease-in-out;
 }
 
-#menu details[open] > *:not(summary) {
-    transform: scale(1), translateY(0);
+#menu details[open] > ul {
+    transform: scaleY(1);
     transition: all 1s ease-in-out;
 }
 
-#menu details > *:not(summary) > * {
+#menu details > ul > li {
     padding: 3px 0;
+    width: 3cm;
+}
+
+#menu details > ul > li::marker {
+    content: "";
+    display: none;
 }
 
 @media screen and (orientation: portrait) {

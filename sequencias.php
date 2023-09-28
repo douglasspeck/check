@@ -4,10 +4,9 @@ if(!isset($_SESSION)) {
     session_start();
 }
 
-if($_SESSION['logged'] == false) {
+if($_SESSION['logged'] == false || isset($_SESSION['id_student']) == false) {
     header("Location: login.php");
-} else {
-    if (isset($_SESSION['id_student'])) { 
+}
 
 ?>
 
@@ -61,14 +60,9 @@ if($_SESSION['logged'] == false) {
                 ?>
             </section>
         </main>
-        <?php include 'assets/php/footer.php' ?>
+        <?php include('assets/php/footer.php'); ?>
     </body>
 </html>
-
-<?php
-    }
-}
-?>
 
 <!--
 
