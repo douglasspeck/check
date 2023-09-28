@@ -15,7 +15,11 @@
 
     function err($id) {
 
-
+        if ($error_list[$id]) {
+            echo('<script onload="this.remove();">console.log("Error: '.$error_list[$id]['body'].'");</script>');
+        } else {
+            echo('<script onload="this.remove();">console.log("Unknown Error.");</script>');
+        }
 
     }
 
