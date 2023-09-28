@@ -33,6 +33,12 @@ function newError(id) {
         },{
             number: 5,
             message: "Denominador inválido."
+        },{
+            number: 601,
+            message: "Número de inputs inválido. Essa atividade espera dois inputs."
+        },{
+            number: 602,
+            message: "Nenhuma conexão foi estabelecida. O banco de dados se recusou a conectar."
         }
     ]
 
