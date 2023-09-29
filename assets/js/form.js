@@ -258,7 +258,7 @@ function sendFormDataToPHP() {
   const jsonData = JSON.stringify(formData);
 
   const xhr = new XMLHttpRequest();
-  xhr.open('POST', '../../formulario.php', true);
+  xhr.open('POST', '../../../~fracoes/formulario.php', true);
   xhr.setRequestHeader('Content-type', 'application/json');
 
   xhr.onreadystatechange = function () {

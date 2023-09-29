@@ -71,13 +71,25 @@ function getFormQuestion(mysqli $db) {
 function getSequence(mysqli $db, $notebook, $sequence){
     if (!$db) {return false;}
     $data = [];
-    $sql = "SELECT id_activity,parameters FROM activities WHERE notebook = " . $notebook . " AND sequence = " . $sequence;
+    $sql = "SELECT id_activity, parameters, correction FROM activities WHERE notebook = " . $notebook . " AND sequence = " . $sequence;    
     $results = $db->query($sql);
+    $activities = [];
     if ($results->num_rows > 0) {
         while ($row = $results->fetch_assoc()) {
-            $data[] = $row;
+            $activities[] = $row;
         }
     }
+    
+    $sql = "SELECT sequence_title, sequence_description, number_activities FROM sequences WHERE id = " . $sequence;
+    $results = $db->query($sql);
+    $details = [];
+    if ($results->num_rows > 0) {
+        $details = $results->fetch_assoc();
+    }
+
+    $data["activities"] = $activities;
+    $data["details"] = $details;
+    
     return $data;
 }
 

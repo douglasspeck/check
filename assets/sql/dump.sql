@@ -128,20 +128,20 @@ CREATE TABLE IF NOT EXISTS `fracoes`.`form_answers` (
 
 CREATE TABLE IF NOT EXISTS `fracoes`.`sequences` (
   `id` INT UNSIGNED NOT NULL,
-  `short_description` VARCHAR(255) NOT NULL,
-  `long_description` VARCHAR(1000) NOT NULL,
+  `sequence_title` VARCHAR(255) NOT NULL,
+  `sequence_description` VARCHAR(1000) NOT NULL,
   `number_activities` INT NOT NULL,
   PRIMARY KEY (`id`)
 ) DEFAULT charset = utf8;
 
-CREATE TABLE IF NOT EXISTS `fracoes`.`activities` ( /* atualizar no banco */
+CREATE TABLE IF NOT EXISTS `fracoes`.`activities` (
   `id_activity` INT NOT NULL AUTO_INCREMENT,
   `notebook` INT UNSIGNED NOT NULL,
   `sequence` INT UNSIGNED NOT NULL,
   `activity` INT NOT NULL,
   `item` VARCHAR(2) NULL,
-  `parameters` JSON NOT NULL,
-  `correction` VARCHAR(255) NOT NULL,
+  `parameters` JSON NULL,
+  `correction` JSON NULL,
   PRIMARY KEY (`id_activity`),
   INDEX `fk_activities_sequences1_idx` (`sequence` ASC),
   CONSTRAINT `fk_activities_sequences1`

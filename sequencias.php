@@ -39,12 +39,13 @@ if($_SESSION['logged'] == false) {
                 $data = $db == false ? false : getSequence($db, $notebook, $sequence);
 
                 echo '<h1>Sequência ' . $sequence . '</h1>
+                <p>' . $data["details"]['sequence_description'] . '</p>
                 <section class="gallery">';
 
-                if ($data != false) {
-                    for ($i = 0; $i < count($data); $i++) {
+                if ($data["activities"] != false) {
+                    for ($i = 0; $i < count($data["activities"]); $i++) {
     
-                        $item = json_decode($data[$i]['parameters'],true);
+                        $item = json_decode($data["activities"][$i]['parameters'],true);
     
                         create_activity($item);
     
@@ -54,12 +55,45 @@ if($_SESSION['logged'] == false) {
                 echo '</section>';
 
             ?>
+            <section class="sequenceActions">
+                <button class="solutions-btn" onclick="showSolutions();">Ver Respostas</button>
+                <button class="correct-btn" onclick="correctionSequence();">Corrigir Sequência</button>
+            </section>
+
             <section class="toolBar">
                 <?php
                     echo $sequence > 1 ? '<button class="prev-btn" onclick="prevPage(' . $notebook . ',' . $sequence . ');">Anterior</button>' : '';
                     echo '<button class="next-btn" onclick="nextPage(' . $notebook . ',' . $sequence . ');">Próxima</button>';
                 ?>
             </section>
+
+            <div id="solutions" class="solutions">
+                <h2>Respostas da Sequência <?php echo $sequence ?> </h2>
+
+                <?php
+                
+                echo '<section class="gallery">';
+
+                if ($data["activities"] != false) {
+                    for ($i = 0; $i < count($data["activities"]); $i++) {
+    
+                        $item = json_decode($data["activities"][$i]['correction'],true);
+    
+                        create_activity($item);
+    
+                    }
+                }
+
+                echo '</section>';
+                
+                ?>
+
+                <span class="hide" onclick="hideSolutions()"><button>Fechar</button></span>
+
+            </div>
+
+            <div id="blur-background" class="blur-background"></div>
+
         </main>
         <?php include 'assets/php/footer.php' ?>
     </body>
