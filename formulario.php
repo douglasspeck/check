@@ -1,15 +1,7 @@
 <?php
 
-require_once 'assets/php/mysqli/db.php';
-
-if (!isset($_SESSION)) {
-  session_start();
-}
-
-if ($_SESSION['logged'] == false) {
-  header("Location: login.php");
-  exit();
-}
+require_once('assets/php/mysqli/db.php');
+require_once('assets/php/session.php');
 
 // Check if there is data received in JSON format
 $data = json_decode(file_get_contents('php://input'), true);
