@@ -1,4 +1,4 @@
-function createRect(el, size, sec, square) {
+function createRect(el, size, sec, x0=0, y0=0, square=false) {
 
     let f = factors(sec * 1);
     
@@ -16,7 +16,7 @@ function createRect(el, size, sec, square) {
         let x = (i % W) * w;
         let y = Math.floor(i / W) * h;
 
-        let d = `M ${x} ${y + o} L ${x + w} ${y + o} L ${x + w} ${y + o + h} L ${x} ${y + o + h} Z`;
+        let d = `M ${x + x0} ${y + o + y0} L ${x + w + x0} ${y + o + y0} L ${x + w + x0} ${y + o + h + y0} L ${x + x0} ${y + o + h + y0} Z`;
         
         path.setAttributeNS(null, "d", d);
     

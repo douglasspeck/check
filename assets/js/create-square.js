@@ -1,4 +1,4 @@
-function createSquare(el, size, sec) {
+function createSquare(el, size, sec, x=0, y=0) {
 
     for (let i = 1; i <= sec; i++) {
 
@@ -27,7 +27,7 @@ function createSquare(el, size, sec) {
 
         }
         else {
-            return createRect(el, size, sec, true);
+            return createRect(el, size, sec, x, y, true);
         }
 
         path.setAttributeNS(null, "transform", `rotate(${deg},${l},${l})`);

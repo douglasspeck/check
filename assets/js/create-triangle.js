@@ -1,9 +1,9 @@
-function createTriangle(el, size, sec) {
+function createTriangle(el, size, sec, x0 = 0, y0 = 0) {
 
-    let cx = size / 2;
+    let cx = x0 + size / 2;
     let h = cx * Math.sqrt(3);
     let o = (size - h) / 2;
-    let cy = h * 2 / 3 + o;
+    let cy = y0 + h * 2 / 3 + o;
 
     let x1, y1, x2, y2;
     
