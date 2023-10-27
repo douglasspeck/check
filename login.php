@@ -1,14 +1,7 @@
 <?php
 
-require_once 'assets/php/mysqli/db.php';
-
-if (!isset($_SESSION)) {
-    session_start();
-}
-
-if (isset($_SESSION['logged']) && $_SESSION['logged']) {
-    header("Location: painel.php");
-}
+require_once('assets/php/mysqli/db.php');
+require_once('assets/php/session.php');
 
 if (isset($_POST['signin'])) {
     $usernameOrEmail = $_POST['username_or_email'];
@@ -36,7 +29,7 @@ if (isset($_POST['signin'])) {
             $_SESSION['registration_date'] = $student['registration_date'];
 
             $_SESSION['logged'] = true;
-            header("Location: painel.php");
+            header("Location: /~fracoes/painel.php");
         } else if ($teacher && password_verify($password, $teacher['password'])) {
             $_SESSION['id_teacher'] = $teacher['id_teacher'];
             $_SESSION['teacher_name'] = $teacher['teacher_name'];
@@ -46,7 +39,7 @@ if (isset($_POST['signin'])) {
             $_SESSION['registration_date'] = $teacher['registration_date'];
 
             $_SESSION['logged'] = true;
-            header("Location: painel.php");
+            header("Location: /~fracoes/painel.php");
         } else {
             echo '<script>
             document.addEventListener("DOMContentLoaded", function(event) {
@@ -93,7 +86,7 @@ if (isset($_POST['signup-student'])) {
         $_SESSION['registration_date'] = $user['registration_date'];
 
         $_SESSION['logged'] = true;
-        header("Location: formulario.php");
+        header("Location: /~fracoes/formulario.php");
 
         $md5 = md5($_SESSION['id_student']);
 
@@ -158,7 +151,7 @@ if (isset($_POST['signup-teacher'])) {
         $_SESSION['registration_date'] = $user['registration_date'];
 
         $_SESSION['logged'] = true;
-        header("Location: formulario.php");
+        header("Location: /~fracoes/formulario.php");
 
         $md5 = md5($_SESSION['id_teacher']);
 
