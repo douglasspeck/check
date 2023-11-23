@@ -1,6 +1,6 @@
 <?php
 
-    $to_scan = './assets/js/';
+    $to_scan = '../assets/js/';
     
     $js = scandir($to_scan);
 

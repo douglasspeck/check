@@ -1,162 +1,310 @@
-function generateSets() {
+let cols = 4;
+    let rows = cols;
+    const MIDDLENESS = 100;
 
-    let sets = document.getElementsByTagName("set");
+    function generateSets() {
 
-    let id = 0;
+        let sets = document.getElementsByTagName("set");
 
-    while (sets.length > 0) {
+        let id = 0;
 
-        let set = sets[0];
-        createSet(set, id);
-        id++;
+        while (sets.length > 0) {
 
-    }
+            let set = sets[0];
+            createSet(set, id);
+            id++;
 
-}
+            console.log("Set created");
 
-function createSet(set, id){
-    
-    let figures = set.getElementsByTagName("minifigure");
-    
-    let size = set.getAttribute('size');
-    size = size ? size : 400; // default
-    
-    let svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-    svg.setAttribute("xmlns","http://www.w3.org/2000/svg");
-    svg.setAttribute("width",`${size/2}px`);
-    svg.setAttribute("height",`${size}px`);
-    svg.setAttribute("viewbox",`0 0 100 100`);
-    svg.setAttribute("version","1.1");
-    svg.setAttribute("id",`set-${id}`);
-
-    let contour = document.createElementNS("http://www.w3.org/2000/svg", "path");
-
-    contour.setAttribute("d", `M 0 0 L 0 ${size} L ${size/2} ${size} L ${size/2} 0 Z`);
-    contour.setAttribute("fill", "none");
-    contour.setAttribute("stroke", "black");
-    svg.appendChild(contour);
-
-    let cells = [];
-    let cells_left = [];
-
-    let cols = 4;
-    let rows = cols * 2;
-
-    for (let i = 0; i < rows; i++) {
-        cells.push([]);
-    }
-
-    for (let i = 1; i <= cols * rows; i++) {
-
-        cells_left.push(i-1);
-
-        let cellx = (size/2) * ((i % cols) / cols + 1/(cols*2));
-        let celly = size * ((Math.ceil((i + 1) / cols) - 1) / (cols*2) + 1/(cols*4));
-
-        cells[Math.floor(i/4)].push({x: cellx, y: celly, fig: null});
+        }
 
     }
 
-    let subsets = [];
+    generateSets();
 
-    for (var i = 0; i < figures.length; i++) {
-
-        let fig = figures[i];
-
-        let s = fig.getAttribute('subset');
+    function createSet(set, id){
         
-        subsets[s] = [];
+        let size = set.getAttribute('size');
+        size = size ? size : 400; // default
+        
+        let svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+        svg.setAttribute("xmlns","http://www.w3.org/2000/svg");
+        svg.setAttribute("width",`${size}px`);
+        svg.setAttribute("height",`${size}px`);
+        svg.setAttribute("viewbox",`0 0 100 100`);
+        svg.setAttribute("version","1.1");
+        svg.setAttribute("id",`set-${id}`);
 
-        subsets[s].push(fig);
+        let contour = document.createElementNS("http://www.w3.org/2000/svg", "path");
 
+        contour.setAttribute("d", `M 0 0 L 0 ${size} L ${size} ${size} L ${size} 0 Z`);
+        contour.setAttribute("fill", "none");
+        contour.setAttribute("stroke", "black");
+        svg.appendChild(contour);
+    
+        let figures = set.getElementsByTagName("minifigure");
+        let subsets = [];
+
+        for (var i = 0; i < figures.length; i++) {
+
+            let fig = figures[i];
+
+            let s = fig.getAttribute('subset');
+            
+            subsets[s] ??= [];
+
+            subsets[s].push(fig);
+
+        }
+
+        let cells = [...Array(rows)].map(e => Array(cols));
+
+        for (let i = 0; i < cells.length; i++) {
+            for (let j = 0; j < cells[i].length; j++) {
+                cellx = ((j % cols) + 0.5) * (size/2) / cols;
+                celly = ((i % rows) + 0.5) * size / rows;
+                cells[i][j] = {}
+            }
+        }
+
+        cells = createSubsets(subsets, cells, size);
+
+        rows = cells.length;
+        cols = cells[0].length;
+
+        for (i = 0; i < rows; i++) {
+            for (j = 0; j < cols; j++) {
+
+                cells[i][j].x = ((j % cols) + 0.5) * (size) / cols;
+                cells[i][j].y = ((i % rows) + 0.5) * size / rows;
+
+                let c = cells[i][j];
+
+                if (c.fig != null) {
+
+                    if (c.fig == "circle") {
+                        createCircle(svg, size/(cols*2 + 2), 1, c.x, c.y);
+                    } else if (c.fig == "square") {
+                        createSquare(svg, size/(cols*2 + 2), 1, (c.x - size/(cols*2 + 2)/2), (c.y - size/(cols*2 + 2)/2));
+                    } else if (c.fig == "triangle") {
+                        createTriangle(svg, size/(cols*2 + 2), 1, (c.x - size/(cols*2 + 2)/2), (c.y - size/(cols*2 + 2)/2));
+                    }
+                    
+                    svg.children[svg.children.length - 1].classList.add("minifigure");
+                    svg.children[svg.children.length - 1].classList.add("minifigure-pattern-" + c.pattern);
+
+                }
+
+            }
+        }
+
+        cells = cropMatrix(cells);
+
+        set.after(svg);
+        set.remove();
+        svg.parentNode.classList.add("set");
+        
     }
 
-    createSubsets(subsets, cells, cells_left, rows, cols);
+    function createSubsets(subsets, cells, size) {
 
-    for (i = 0; i < cells.length; i++) {
-        for (j = 0; j < cells[i].length; j++) {
+        let figures = [];
 
-            let c = cells[i][j];
+        for (let i = 0; i < subsets.length; i++) {
 
-            if (c.fig) {
+            figures[i] = [];
 
-                createCircle(svg, size/(cols*2 + 2), 1, c.x, c.y);
+            for (let j = 0; j < subsets[i].length; j++) {
+
+                let amount = subsets[i][j].getAttribute('amount');
+
+                for (let k = 0; k < amount; k++) {
+
+                    figures[i].push({
+                        "shape" : subsets[i][j].getAttribute('shape'),
+                        "pattern" : i + 1
+                    });
+
+                }
 
             }
 
         }
+
+        cells = populate(cells, figures);
+
+        return cells;
+
     }
 
-    set.after(svg);
-    set.remove();
-    svg.parentNode.classList.add("set");
-    
-}
+    function populate(cells, figures) {
 
-function createSubsets(subsets, cells, cells_left, rows, columns) {
+        let start_row = 0;
+        let start_col = 0;
+        let current_row = 0;
+        let current_col = 0;
 
-    let currentRow;
-    let k1 = 0, k2 = 0;
+        for (i = 0; i < figures.length; i++) {
 
-    for (var i = 0; i < subsets.length; i++) {
+            start_row = i % 2 ? firstRow(cells) : firstRow(cells, true);
+            start_col = i % 2 ? firstCol(cells, start_row, true) : firstCol(cells, start_row);
 
-        if (i % 2) {
-
-            currentRow = 0 + k1;
-
-            currentCol = null;
-            
-            while (currentCol === null) {
-                currentCol = getEmptyCol(cells, currentRow);
-                currentRow++;
-                k1++;
+            if (start_row == -1) {
+                start_row = cells.length;
+                cells = newRow(cells);
             }
 
+            if (start_col == -1) {
+                start_col = cells[0].length;
+                cells = newCol(cells);
+            }
+
+            current_row = start_row;
+            current_col = start_col;
+
+            for (j = 0; j < figures[i].length; j++) {
+
+                if (cells[current_row][current_col].fig === undefined) {
+                    cells[current_row][current_col].fig = figures[i][j].shape;
+                    cells[current_row][current_col].pattern = figures[i][j].pattern;
+                } else {
+                    j--;
+                }
+
+                if (current_col < cells[current_row].length - 1 && cells[current_row][current_col + 1].fig === undefined) {
+                    console.log("Right!");
+                    current_col++;
+                } else if (current_col > 0 && cells[current_row][current_col - 1].fig === undefined) {
+                    current_col--;
+                    console.log("Left!");
+                } else if (current_row > 0 && cells[current_row - 1][current_col].fig === undefined) {
+                    current_row--;
+                    console.log("Up!");
+                } else if (current_row < cells.length - 1 && cells[current_row + 1][current_col].fig === undefined) {
+                    current_row++;
+                    console.log("Down!");
+                } else if (j % 2) {
+                    cells = newCol(cells, current_col);
+                } else {
+                    cells = newRow(cells, current_row);
+                }
+
+                console.log(`A new cell has been filled in [${current_row}][${current_col}].`)
+
+            }
+
+        }
+
+        return cells;
+
+    }
+
+    function cropMatrix(cells) {
+
+        let cols = [];
+
+        for (let i = 0; i < cells.length; i++) {
+
+            if (cells[i].every(e => e.fig === undefined)) {
+                cells = cells.slice(0,i).concat(cells.slice(-i));
+            }
+
+            for (let j = 0; j < cells[i].length; j++) {
+
+                cols[j] += cells[i][j];
+
+            }
+
+        }
+
+        for (let i = 0; i < cols.length; i++) {
+
+            if (!cols[i]) {
+
+                for (let j = 0; j < cells.length; j++) {
+                    
+                    cells[j] = cells[j].slice(0, i).concat(cells[j].slice(-i));
+
+                }
+
+            }
+
+        }
+
+        return cells;
+
+    }
+
+    function newRow(matrix, after = matrix.length) {
+
+        let row = [...Array(matrix[0].length)].map(e => e = {});
+
+        matrix = matrix.slice(0,after).concat([row]).concat(matrix.slice(after));
+
+        console.log("A new row was added.");
+
+        return matrix;
+
+    }
+
+    function newCol(matrix, after = matrix[0].length) {
+
+        for (let i = 0; i < matrix.length; i++) {
+
+            matrix[i] = matrix[i].slice(0,after).concat({}).concat(matrix[i].slice(after));
+
+        }
+
+        console.log("A new column was added.");
+
+        return matrix;
+
+    }
+
+    function firstRow(cells, backwards = false) {
+
+        let row = -1;
+
+        if (backwards) {
+            for (let i = cells.length - 1; i >= 0; i--) {
+                if (!cells[i].every(e => e.fig != null)) {
+                    row = i;
+                    break;
+                }
+            }
         } else {
-
-            currentRow = rows - 1 - k2;
-
-            currentCol = null;
-            
-            while (currentCol === null) {
-                currentCol = getEmptyCol(cells, currentRow);
-                currentRow--;
-                k2++;
-            }
-
-        }
-
-        let middleness = 100;
-        let r = 0;
-        for (var j = 0; j < middleness; j++) { r += Math.random(); }
-        r /= middleness;
-        let n = Math.ceil(r * cells_left.length) - 1;
-        for (var j = 0; j < subsets[i].length; j++) {
-            if (cells_left[n]) {   
-                cells[cells_left[n]].fig = subsets[i][j];
-                cells_left.splice(n, 1);
-            } else {
-                k = 1;
-                while (!cells_left[n-k]) { k++; }
-                cells[cells_left[n]].fig = subsets[i][j-k];
+            for (let i = 0; i < cells.length; i++) {
+                if (!cells[i].every(e => e.fig != null)) {
+                    row = i;
+                    break;
+                }
             }
         }
 
+        return row;
+
     }
 
-}
+    function firstCol(cells, row, backwards = false) {
 
-function getEmptyCol(cells, currentRow) {
+        let col = -1;
 
-    let firstEmptyCell = null;
-    
-    for (let i = 0; i < cells[currentRow].length; i++) {
-
-        if (!cells[currentRow][i].fig) {
-            firstEmptyCell = i;
-            break;
+        if (backwards) {
+            for (let i = cells[row].length - 1; i >= 0; i--) {
+                if (!cells[row][i].fig != null) {
+                    col = i;
+                    break;
+                }
+            }
+        } else {
+            for (let i = 0; i < cells[row].length; i++) {
+                if (!cells[row][i].fig != null) {
+                    col = i;
+                    break;
+                }
+            }
         }
 
-    }
+        return col;
 
-}
+    }

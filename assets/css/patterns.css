@@ -1,0 +1,9 @@
+.minifigure {
+    filter: brightness(200%);
+}
+
+.minifigure-pattern-1 { fill: url(#pattern-1); }
+.minifigure-pattern-2 { fill: url(#pattern-2); }
+.minifigure-pattern-3 { fill: url(#pattern-3); }
+.minifigure-pattern-4 { fill: url(#pattern-4); }
+.minifigure-pattern-5 { fill: url(#pattern-5); }
