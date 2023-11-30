@@ -6,7 +6,7 @@ if(!isset($_SESSION)) {
 
 if ($_GET['logout'] == true) {
     session_destroy();
-    header("Location: /~fracoes");
+    header("Location: /~fracoes/");
 }
 
 $rl = isset($rl) ? $rl : true;
