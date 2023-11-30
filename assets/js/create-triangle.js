@@ -1,7 +1,7 @@
 function createTriangle(el, size, sec, x0 = 0, y0 = 0) {
 
     let cx = x0 + size / 2;
-    let h = cx * Math.sqrt(3);
+    let h = (cx - x0) * Math.sqrt(3);
     let o = (size - h) / 2;
     let cy = y0 + h * 2 / 3 + o;
 
@@ -35,10 +35,16 @@ function createTriangle(el, size, sec, x0 = 0, y0 = 0) {
 
         let d, transform = '';
 
-        if (sec % 3 == 0) {
+        if (sec == 1) {
+
+            d = `M ${cx-size/2} ${y0+h+o} L ${cx+size/2} ${y0+h+o} L ${cx} ${y0+o} Z`;
+
+        }
+
+        else if (sec % 3 == 0) {
 
             deg = 720 / sec * i * -1;
-    
+
             d = `M ${cx} ${cy} L ${x1} ${y1} L ${x2} ${y2} Z`;
     
             transform = `rotate(${deg},${cx},${cy})`;
