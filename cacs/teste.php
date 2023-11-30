@@ -21,6 +21,8 @@
                         <minifigure shape="circle" amount=3 subset=0></minifigure>
                         <minifigure shape="circle" amount=5 subset=1></minifigure>
                         <minifigure shape="triangle" amount=2 subset=1></minifigure>
+                        <minifigure shape="circle" amount=5 subset=2></minifigure>
+                        <minifigure shape="triangle" amount=2 subset=2></minifigure>
                         <gap subset=0 value=1></gap>
                         <gap subset=1 value=3></gap>
                     </set>
