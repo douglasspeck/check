@@ -95,12 +95,12 @@ if (isset($_POST['signup-student'])) {
         $message =
             'Olá, ' . $_SESSION['student_name'] . '
 
-Seja muito bem-vindo(a)!
-Sua conta @' . $_SESSION['username'] . ' foi criada com sucesso.
+    Seja muito bem-vindo(a)!
+    Sua conta @' . $_SESSION['username'] . ' foi criada com sucesso.
 
-Clique no link para confirmar seu endereço de email. 
+    Clique no link para confirmar seu endereço de email. 
 
-' . $link;
+    ' . $link;
         $header = 'From: Check Frações noreply@check.com';
 
         mail($_SESSION['email_student'], $subject, $message, $header);
@@ -160,12 +160,12 @@ if (isset($_POST['signup-teacher'])) {
         $message =
             'Olá, ' . $_SESSION['teacher_name'] . '
 
-Seja muito bem-vindo(a)!
-Sua conta @' . $_SESSION['username'] . ' foi criada com sucesso.
+    Seja muito bem-vindo(a)!
+    Sua conta @' . $_SESSION['username'] . ' foi criada com sucesso.
 
-Clique no link para confirmar seu endereço de email. 
+    Clique no link para confirmar seu endereço de email. 
 
-' . $link;
+    ' . $link;
         $header = 'From: Check Frações noreply@check.com';
 
         mail($_SESSION['email_teacher'], $subject, $message, $header);

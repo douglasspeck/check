@@ -20,13 +20,11 @@
             <a href="/~fracoes/#equipe">Equipe</a>
             <details>
                 <summary class="button">Trilhas</summary>
-                <ul>';
-                echo $_SESSION['logged'] === true ? '
+                <ul>
                                 <li><a href="sequencias.php">Retomar</a></li>
                                 <li><a href="painel.php">Painel</a></li>
                                 <li><a href="">Perfil</a></li>
-                                <li><a href="/~fracoes/?logout=true">Logout</a></li>' : '
-                                <li><a href="login.php">Login</a></li>
+                                <li><a href="/~fracoes/?logout=true">Logout</a></li>
                             </ul>
                         </details>';
     } else {
